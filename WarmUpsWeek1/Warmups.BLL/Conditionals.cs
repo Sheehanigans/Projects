@@ -100,16 +100,25 @@ namespace Warmups.BLL
 
         public string FrontBack(string str)
         {
-            throw new NotImplementedException();
+            string frontBack = str;
+            string front = str.Substring(0,1);
+            string back = str.Substring(str.Length - 1, 1);
+
+            if (str.Length == 1)
+            {
+                 return frontBack;
+            }
+            else if (str.Length == 2)
+            {
+                return back + front;
+            }
+            else
+            {
+                frontBack = back + (str.Substring(1, str.Length - 2)) + front;
+            }
+            return frontBack;
         }
-        //{
-        //    char front;
-        //    char back;
-
-        //    string flipped = str.ToCharArray();
-
-        //}
-
+                
         public string Front3(string str)
         {
             string Front3 = (str + str + str);
@@ -150,16 +159,23 @@ namespace Warmups.BLL
 
         public bool StartHi(string str)
         {
-            //bool startHi = true;
+            bool startHi = false;
 
-            //if (str.StartsWith("hi"))
-            //{
-            //    return startHi;
-            //}
-            //return false;
-
-            throw new NotImplementedException();
-
+            if (str.Length == 2 && str.Substring(0, 2) == "hi")
+            {
+                startHi = true;
+            }
+            else if (str.Length >= 3 && str.Substring(0,3) == "hi ")
+            {
+                startHi = true;
+            }
+            else if (str.Length >= 3 
+                && str.Substring(0,2) == "hi"
+                && !Char.IsLetter(str[2]))
+            {
+                startHi = true;
+            }
+            return startHi;
         }
 
         public bool IcyHot(int temp1, int temp2)
@@ -227,47 +243,140 @@ namespace Warmups.BLL
 
         public bool IxStart(string str)
         {
-            //bool isLetter = true;
-            //string letters = 
+            bool ixStart = true;
+            string firstChar = str.Substring(0, 1);
 
-            //if (str.Contains("\w"+"ix"))
-            //{
-            //    return isLetter;
-            //}
-            //return false;
-
-            throw new NotImplementedException();
-
+            if (str.Contains(firstChar + "ix"))
+            {
+                return ixStart;
+            }
+            return false;
         }
 
         public string StartOz(string str)
         {
-            throw new NotImplementedException();
+            string startOz = "";
+
+            if (str.Length == 1)
+            {
+                return startOz;
+            }
+            else if (str.Substring(0, 1) == "o" && str.Substring(1, 1) != "z")
+            {
+                return str.Substring(0,1);
+            } 
+            else if (str.Substring(0, 1) != "o" && str.Substring(1, 1) == "z")
+            {
+                return str.Substring(1, 1);
+            } 
+            else if (str.Substring(0, 1) == "o" && str.Substring(1, 1) == "z")
+            {
+                return str.Substring(0, 2);
+            }
+            else
+            {
+                return startOz;
+            }
         }
 
         public int Max(int a, int b, int c)
         {
-            throw new NotImplementedException();
+            int max = 0; 
+
+            if (a > b && a > c)
+            {
+                max = a;
+                return max;
+            }
+            else if (b > a && b > c)
+            {
+                max = b;
+                return max;
+            }
+            else if (c > a && c > b)
+            {
+                max = c;
+                return max;
+            }
+            return max;
         }
 
         public int Closer(int a, int b)
         {
-            throw new NotImplementedException();
+            int closerToTen = 0;
+            int aClose = Math.Abs(a - 10);
+            int bClose = Math.Abs(b - 10);
+
+            if (aClose == bClose)
+            {
+                closerToTen = 0;
+            }
+            else if (aClose < bClose)
+            {
+                closerToTen = a;
+            }
+            else if (bClose < aClose)
+            {
+                closerToTen = b;
+            }
+            return closerToTen;
         }
 
         public bool GotE(string str)
         {
-            throw new NotImplementedException();
+            bool gotE = true;
+
+            int eCount = 0;
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str.Substring(i,1) == "e")
+                {
+                    eCount++;
+                }
+            }
+            if (eCount < 4 && eCount > 0)
+            {
+                gotE = true;
+            } 
+            else
+            {
+                gotE = false;
+            }
+            return gotE;
         }
 
         public string EndUp(string str)
         {
-            throw new NotImplementedException();
+            string endUp = "";
+
+            int strLong = str.Length - 3;
+
+            if (str.Length < 3)
+            {
+                endUp = str.ToUpper();
+            }
+            else if (str.Length > 3)
+            {
+                string temp = str.Substring(0, strLong);
+                string upper3 = str.Substring((strLong), 3);
+                upper3 = upper3.ToUpper();
+                endUp = temp + upper3;
+            }
+            return endUp;
         }
 
         public string EveryNth(string str, int n)
         {
-            throw new NotImplementedException();
+            string everyNth = "";
+            string tempString = "";
+
+            for (int i = 0; i < str.Length; i += n)
+            {
+                    tempString += str.Substring(i, 1);
+            }
+            everyNth = tempString;
+            return everyNth;
         }
     }
 }
