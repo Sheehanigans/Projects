@@ -13,9 +13,13 @@ namespace GuessingGame
             int theAnswer;
             int playerGuess;
             string playerInput;
+            string playerName;
 
             Random r = new Random();
             theAnswer = r.Next(1, 21);
+
+            Console.WriteLine("What is your name?");
+            //Console.ReadLine(playerName);
 
             do
             {
