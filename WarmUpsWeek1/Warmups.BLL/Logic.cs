@@ -76,72 +76,208 @@ namespace Warmups.BLL
                 speeding = 2;
             }
             return speeding; 
-            //throw new NotImplementedException();
         }
         
         public int SkipSum(int a, int b)
         {
-            throw new NotImplementedException();
+            int skipSum = 0;
+
+            int sum = a + b;
+
+            if (sum > 9 && sum < 20)
+            {
+                skipSum = 20; 
+            }
+            else if (sum < 10 || sum > 19)
+            {
+                skipSum = sum;
+            }
+            return skipSum;
         }
         
         public string AlarmClock(int day, bool vacation)
         {
-            throw new NotImplementedException();
+            string alarmClock = "";
+
+            if (!vacation && day >= 1 && day <= 5)
+            {
+                alarmClock = "7:00";
+            }
+            else if (!vacation && (day < 1 || day > 5))
+            {
+                alarmClock = "10:00";
+            }
+            return alarmClock;
         }
         
         public bool LoveSix(int a, int b)
         {
-            throw new NotImplementedException();
+            bool loveSix = false;
+
+            int sum = a + b;
+
+            if (a == 6 || b == 6)
+            {
+                loveSix = true;
+            }
+            else if (sum == 6)
+            {
+                loveSix = true;
+            }
+            return loveSix;
         }
         
         public bool InRange(int n, bool outsideMode)
         {
-            throw new NotImplementedException();
+            bool inRange = false;
+
+            if (!outsideMode && (n >= 1 && n <= 10))
+            {
+                inRange = true;
+            }
+            else if (outsideMode && (n <= 1 || n > 10))
+            {
+                inRange = true;
+            }
+            return inRange;
         }
         
         public bool SpecialEleven(int n)
         {
-            throw new NotImplementedException();
+            bool specialEleven = false;
+
+            if (n % 11 == 1)
+            {
+                specialEleven = true;
+            } 
+            else if (n % 11 == 0)
+            {
+                specialEleven = true;
+            }
+            return specialEleven;
         }
         
         public bool Mod20(int n)
         {
-            throw new NotImplementedException();
+            bool mod20 = false;
+
+            if (n % 20 == 1 || n % 20 == 2)
+            {
+                mod20 = true;
+            }
+            return mod20;
         }
         
         public bool Mod35(int n)
         {
-            throw new NotImplementedException();
+            bool mod35 = false;
+
+            bool three = n % 3 == 0;
+            bool five = n % 5 == 0;
+
+            if (three && five)
+            {
+                mod35 = false;
+            }
+            else if (three || five)
+            {
+                mod35 = true;
+            }
+            return mod35;
         }
         
         public bool AnswerCell(bool isMorning, bool isMom, bool isAsleep)
         {
-            throw new NotImplementedException();
+            bool answerCell = true;
+
+            if (isAsleep)
+            {
+                answerCell = false;
+            }
+            else if (isMorning && isMom)
+            {
+                answerCell = true;
+            }
+            else if (isMorning)
+            {
+                answerCell = false;
+            }
+            return answerCell;
         }
         
         public bool TwoIsOne(int a, int b, int c)
         {
-            throw new NotImplementedException();
+            bool twoIsOne = false;
+
+            if (a + b == c)
+            {
+                twoIsOne = true;
+            }
+            else if (b + c == a)
+            {
+                twoIsOne = true;
+            } 
+            else if (c + a == b)
+            {
+                twoIsOne = true;
+            }
+            return twoIsOne;
         }
         
         public bool AreInOrder(int a, int b, int c, bool bOk)
         {
-            throw new NotImplementedException();
+            bool areInOrder = false;
+
+            if (b > a && c > b)
+            {
+                areInOrder = true;
+            }
+            else if (bOk && c > b)
+            {
+                areInOrder = true;
+            }
+            return areInOrder;
         }
         
         public bool InOrderEqual(int a, int b, int c, bool equalOk)
         {
-            throw new NotImplementedException();
+            bool inOrderEqual = false; 
+
+            if (!equalOk && a < b && b < c)
+            {
+                inOrderEqual = true; 
+            }
+            else if (equalOk && (a == b || b == c))
+            {
+                inOrderEqual = true;
+            }
+            return inOrderEqual;
         }
         
         public bool LastDigit(int a, int b, int c)
         {
-            throw new NotImplementedException();
+            bool lastDigit = false;
+            
+            if ((a % 10 == b % 10) || (b % 10 == c % 10) || (a % 10 == c % 10))
+            {
+                lastDigit = true;
+            }
+            return lastDigit;
         }
         
         public int RollDice(int die1, int die2, bool noDoubles)
         {
-            throw new NotImplementedException();
+            int rollDice = 0;
+
+            if (noDoubles && die1 == die2)
+            {
+                die1 += 1;
+            }
+
+            int rolls = die1 + die2;
+            rollDice = rolls;
+
+            return rollDice;
         }
 
     }
