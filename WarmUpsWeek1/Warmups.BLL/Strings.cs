@@ -338,12 +338,64 @@ namespace Warmups.BLL
 
         public string TweakFront(string str)
         {
-            throw new NotImplementedException();
+            string tweak = "";
+            int len = str.Length;
+
+            if (str == "")
+            {
+                tweak = "";
+            }
+            else if (str.Substring(0, 1) == "a"
+                && str.Substring(1, 1) == "b")
+            {
+                string noFirstTwo = str.Substring(2, str.Length - 2);
+                string a = str.Substring(0, 1);
+                string b = str.Substring(1, 1);
+                tweak = a + b + noFirstTwo;
+            }
+            else if (str.Substring(0, 1) != "a" 
+                && str.Substring(1, 1) == "b")
+            {
+                string noFirstTwo = str.Substring(2, str.Length - 2);
+                string b = str.Substring(1, 1);
+                tweak = b + noFirstTwo;
+            }
+            else  if (str.Substring(0,1) == "a")
+            {
+                string noFirstTwo = str.Substring(2, str.Length - 2);
+                string a = str.Substring(0, 1);
+                tweak = a + noFirstTwo;
+            }
+            else
+            {
+                string noFirstTwo = str.Substring(2, str.Length - 2);
+                tweak = noFirstTwo;
+            }
+            return tweak;
         }
 
         public string StripX(string str)
         {
-            throw new NotImplementedException();
+            string strip = "";
+
+            if (str.Length <= 1)
+            {
+                strip = "";
+            }
+            else if (str.Substring(0,1) == "x"
+                && str.Substring(str.Length - 1, 1) == "x")
+            {
+                strip = str.Substring(1, str.Length - 2);
+            }
+            else if (str.Substring(0, 1) == "x")
+            {
+                strip = str.Substring(1, str.Length - 1);
+            }
+            else if (str.Substring(str.Length - 1, 1) == "x")
+            {
+                strip = str.Substring(0, str.Length - 1);
+            }
+            return strip;
         }
     }
 }
