@@ -109,56 +109,159 @@ namespace Warmups.BLL
         {
             int count9 = 0;
 
-
-
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] == 9)
+                {
+                    count9++;
+                }
+            }
             return count9;
-            
-            //throw new NotImplementedException();
         }
 
         public bool ArrayFront9(int[] numbers)
         {
-            throw new NotImplementedException();
+            bool front9 = false;
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (numbers[i] == 9)
+                {
+                    front9 = true;
+                }
+            }
+            return front9;
         }
 
         public bool Array123(int[] numbers)
         {
-            throw new NotImplementedException();
+            bool arrary123 = false;
+
+            for (int i = 0; i < numbers.Length - 2; i++)
+            {
+                if (numbers[i] == 1 
+                    && numbers[i + 1] == 2
+                    && numbers [i + 2] == 3)
+                {
+                    arrary123 = true;
+                }
+            }
+            return arrary123;
         }
 
         public int SubStringMatch(string a, string b)
         {
-            throw new NotImplementedException();
+            int len = Math.Min(a.Length, b.Length);
+            int match = 0;
+
+            for (int i = 0; i < len - 1; i++)
+            {
+                if ((a[i] == b[i]) && (a[i + 1] == b[i + 1]))
+                {
+                    match++;
+                }
+            }
+            return match;
         }
+
+
+        // WTF ????? ALMOST DONE
 
         public string StringX(string str)
         {
-            throw new NotImplementedException();
+            string x = "";
+
+            int length = str.Length;
+
+            if (length < 3)
+            {
+                x = str;
+            }
+
+            string temp = str.Substring(1, length - 1);
+            temp = temp.Replace("x", "");
+            //x = str.Substring (0,1) + temp + str.Substring(length - 1,1);
+            x = str[0] + temp + str[length - 1];
+
+            return x;
+            
+            //throw new NotImplementedException();
         }
 
         public string AltPairs(string str)
         {
-            throw new NotImplementedException();
+            string alt = "";
+
+            for (int i = 0; i < str.Length; i += 4)
+            {
+                alt += str[i];
+                if (i + 1 < str.Length)
+                {
+                    alt += str[i + 1];
+                }
+            }
+            return alt;
         }
 
         public string DoNotYak(string str)
         {
-            throw new NotImplementedException();
+            string yak = "";
+            string temp = "";
+
+            if (str.Contains("yak"))
+            {
+                temp = str.Replace("yak","");
+                yak += temp;
+            }
+            return yak;
         }
 
         public int Array667(int[] numbers)
         {
-            throw new NotImplementedException();
+            int array = 0;
+
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] == 6 && numbers[i + 1] == 6)
+                {
+                    array++;
+                }
+                else if (numbers[i] == 6 && numbers[i + 1] == 7)
+                {
+                    array++;
+                }
+            }
+            return array;
         }
 
         public bool NoTriples(int[] numbers)
         {
-            throw new NotImplementedException();
+            bool noTrips = true;
+
+            for (int i = 0; i < numbers.Length - 3; i++)
+            {
+                if (numbers[i] == numbers[i + 1] && numbers[i] == numbers[i + 2])
+                {
+                    noTrips = false;
+                }
+            }
+            return noTrips;
         }
+
+        // WTF ?????????????????????????
 
         public bool Pattern51(int[] numbers)
         {
-            throw new NotImplementedException();
+            bool pattern51 = false;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if ((numbers[i] + 5 == (numbers[i + 1]) && Math.Abs(numbers[i + 2] - (numbers[i] - 1)) <= 2))
+                {
+                    pattern51 = true;
+                }
+            }
+            return pattern51;
         }
 
     }
