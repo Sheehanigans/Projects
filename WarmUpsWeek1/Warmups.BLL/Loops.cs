@@ -72,8 +72,6 @@ namespace Warmups.BLL
             return everyOther;
         }
 
-        // WTF ?????????????
-
         public string StringSplosion(string str)
         {
             string splosion = "";
@@ -248,13 +246,11 @@ namespace Warmups.BLL
             return noTrips;
         }
 
-        // WTF ?????????????????????????
-
         public bool Pattern51(int[] numbers)
         {
             bool pattern51 = false;
 
-            for (int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < numbers.Length - 2; i++)
             {
                 if ((numbers[i] + 5 == (numbers[i + 1]) && Math.Abs(numbers[i + 2] - (numbers[i] - 1)) <= 2))
                 {
