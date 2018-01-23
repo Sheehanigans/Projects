@@ -70,13 +70,17 @@ namespace Warmups.BLL
             return rotate;
         }
 
-        // WTF ??????????????????????????????
-
         public int[] Reverse(int[] numbers)
         {
-            int[] reverse = {numbers[2], numbers[1], numbers[0] };
+            int[] reversedArray = new int[numbers.Length];
+            int j = numbers.Length;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                j--;
+                reversedArray[i] = numbers[j];
+            }
 
-            return reverse;
+            return reversedArray;
         }
         
         public int[] HigherWins(int[] numbers)
@@ -118,16 +122,9 @@ namespace Warmups.BLL
         
         public int[] KeepLast(int[] numbers)
         {
-            int len = numbers.Length;
-
             int last = numbers[numbers.Length - 1];
 
             int[] zeros = new int[numbers.Length * 2];
-
-            for (int i = 0; i < len - 1; i++)
-            {
-                zeros[i] += 0;
-            }
 
             zeros[zeros.Length - 1] = last;
 

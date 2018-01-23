@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BETTER Tic Tac Toe", "BETTER Tic Tac Toe\BETTER Tic Tac Toe.csproj", "{4476DFE1-5134-4680-AD94-104B441605DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPTicTacToe", "OOPTicTacToe\OOPTicTacToe.csproj", "{4A88BD8C-D738-48B2-8829-BE229522BD97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4476DFE1-5134-4680-AD94-104B441605DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4476DFE1-5134-4680-AD94-104B441605DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4476DFE1-5134-4680-AD94-104B441605DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4476DFE1-5134-4680-AD94-104B441605DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A88BD8C-D738-48B2-8829-BE229522BD97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A88BD8C-D738-48B2-8829-BE229522BD97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A88BD8C-D738-48B2-8829-BE229522BD97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A88BD8C-D738-48B2-8829-BE229522BD97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD177389-4AAE-4236-B844-9A4BE5A813F3}
+	EndGlobalSection
+EndGlobal

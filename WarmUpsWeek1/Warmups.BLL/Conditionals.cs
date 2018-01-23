@@ -47,13 +47,13 @@ namespace Warmups.BLL
 
         public bool Makes10(int a, int b)
         {
-            bool doesMake10 = true;
+            bool doesMake10 = false;
 
             if (a == 10 || b == 10 || a + b == 10)
             {
-                return doesMake10; 
+                doesMake10 = true; 
             }
-            return false;
+            return doesMake10;
         }
 
         public bool NearHundred(int n)

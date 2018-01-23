@@ -58,7 +58,7 @@ namespace Warmups.BLL
         {
             int speeding = 0;
 
-            if ((!isBirthday || isBirthday) && speed <= 60)
+            if ((!isBirthday || isBirthday) && speed <= 60) //split apart
             {
                 speeding = 0;
             }

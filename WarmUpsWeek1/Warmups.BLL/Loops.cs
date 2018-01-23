@@ -76,8 +76,6 @@ namespace Warmups.BLL
         {
             string splosion = "";
 
-            int length = str.Length;
-
             for(int i = 0; i < str.Length; i++)
             {
                 splosion += str.Substring(0, i + 1);
@@ -162,28 +160,21 @@ namespace Warmups.BLL
             return match;
         }
 
-
-        // WTF ????? ALMOST DONE
-
         public string StringX(string str)
         {
             string x = "";
-
-            int length = str.Length;
-
-            if (length < 3)
+            
+            for (int i = 1; i < str.Length - 1; i++)
             {
-                x = str;
+                if (str.Substring(i, 1) != "x")
+                {
+                    x += str.Substring(i, 1);
+                }
             }
 
-            string temp = str.Substring(1, length - 1);
-            temp = temp.Replace("x", "");
-            //x = str.Substring (0,1) + temp + str.Substring(length - 1,1);
-            x = str[0] + temp + str[length - 1];
-
+            x = str.Substring(0, 1) + x;
+            x = x + str.Substring(str.Length - 1, 1);
             return x;
-            
-            //throw new NotImplementedException();
         }
 
         public string AltPairs(string str)
