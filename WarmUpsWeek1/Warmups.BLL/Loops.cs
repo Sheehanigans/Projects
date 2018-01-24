@@ -46,19 +46,36 @@ namespace Warmups.BLL
             return countXX;
         }
 
-        // WTF?????????
-
         public bool DoubleX(string str)
         {
-            bool doubleX = true;
-
-            int i = str.IndexOf("x");
-
-            if (i == -1 || i == str.Length - 1)
+            bool IsDouble;
+            int IndexOfFirstX = 0;
+            bool FoundFirstX = false;
+            while (!FoundFirstX)
             {
-                doubleX = false;
-            }            
-            return doubleX;
+                for (int i = 0; i < str.Length - 1; i++)
+                {
+                    if (str.Substring(i, 1) == "x")
+                    {
+                        IndexOfFirstX = i;
+                        FoundFirstX = true;
+                        break;
+                    }
+                }
+                if (FoundFirstX == false)
+                {
+                    return false;
+                }
+            }
+            if (str.Substring(IndexOfFirstX + 1, 1) == "x")
+            {
+                IsDouble = true;
+            }
+            else
+            {
+                IsDouble = false;
+            }
+            return IsDouble;
         }
 
         public string EveryOther(string str)

@@ -4,6 +4,8 @@ namespace GoblinBattle.UI
 {
     class Goblin
     {
+        private Weapons w = new Weapons();
+
         // we only need one rng for all goblin instances, so static
         private static Random _rng = new Random();
 
@@ -22,12 +24,17 @@ namespace GoblinBattle.UI
         }
 
         public string Name { get; set; }
-        public bool IsDead { get; private set; }
+        public bool IsDead { get { return _hitPoints <= 0; } }
+        public Weapons weapon { get; set; }
 
         // attack another goblin instance (target)
         public void Attack(Goblin target)
         {
             int damage = _rng.Next(5);
+            if (weapon != null)
+            {
+                damage += weapon.Damage;
+            }
             Console.WriteLine($"{Name} attacks {target.Name} for {damage} damage!");
 
             target.Hit(damage);
@@ -44,7 +51,6 @@ namespace GoblinBattle.UI
             if (_hitPoints <= 0)
             {
                 Console.WriteLine($"{Name} has died!");
-                IsDead = true;
             }
         }
     }

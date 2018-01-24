@@ -8,6 +8,11 @@ namespace GoblinBattle.UI
         {
             Goblin g1 = new Goblin();
             Goblin g2 = new Goblin();
+
+            Weapons w = new Weapons();
+            w.Name = "Lightsaber";
+            w.Damage = 3;
+            g1.weapon = w;
             
             g1.HitPoints = 10;
             g1.Name = "Bob";
@@ -22,7 +27,7 @@ namespace GoblinBattle.UI
             {
                 if (whoseTurn == 1)
                 {
-                    g1.Attack(g2);
+                    g1.Attack(g2);                  
                     whoseTurn = 2;
                 }                    
                 else
