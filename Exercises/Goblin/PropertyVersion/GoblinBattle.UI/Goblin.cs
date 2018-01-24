@@ -4,10 +4,15 @@ namespace GoblinBattle.UI
 {
     class Goblin
     {
-        private Weapons w = new Weapons();
-
         // we only need one rng for all goblin instances, so static
-        private static Random _rng = new Random();
+        public static Random _rng = new Random();
+
+        public int VariableHitPoints { get; private set; }
+
+        public Goblin(int hp)
+        {
+            HitPoints = hp;
+        }
 
         private int _hitPoints;
         public int HitPoints
@@ -25,17 +30,29 @@ namespace GoblinBattle.UI
 
         public string Name { get; set; }
         public bool IsDead { get { return _hitPoints <= 0; } }
-        public Weapons weapon { get; set; }
+        public G1Weapons G1weapon { get; set; }
+        public G2Weapons G2weapon { get; set; }
+        public G1Armor G1armor { get; set; }
+        public G2Armor G2armor { get; set; }
+
 
         // attack another goblin instance (target)
         public void Attack(Goblin target)
         {
-            int damage = _rng.Next(5);
-            if (weapon != null)
+            int damage = _rng.Next(30);
+            if (target.Name == "Tom Solo")//FIND WAY TO SWITCH ATTACKERS 
             {
-                damage += weapon.Damage;
+                damage += G1weapon.Damage;
+                damage -= G1armor.Deflect;
+                Console.WriteLine($"{Name} attacks {target.Name} with {G1weapon.Name} for {damage} damage! {G1armor.Name} protected {target.Name} for {G1armor.Deflect} points.");//change G1.armor to G2.armor... throws error
+
             }
-            Console.WriteLine($"{Name} attacks {target.Name} for {damage} damage!");
+            else if (target.Name == "Jedi Master Bob")
+            {
+                damage += G2weapon.Damage;
+                damage -= G2armor.Deflect;
+                Console.WriteLine($"{Name} attacks {target.Name} with {G2weapon.Name} for {damage} damage! {G2armor.Name} protected {target.Name} for {G2armor.Deflect} points.");
+            }
 
             target.Hit(damage);
         }
