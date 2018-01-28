@@ -9,28 +9,28 @@ namespace GoblinBattle.UI
             Goblin g1 = new Goblin(100); //passing in hp
             Goblin g2 = new Goblin(100); //passing in hp
 
-            G1Weapons g1w = new G1Weapons();
-            G2Weapons g2w = new G2Weapons();
+            Weapon g1w = new Weapon();
+            Weapon g2w = new Weapon();
 
             g1w.Name = "Lightsaber";
             g1w.Damage = 9;
-            g1.G1weapon = g1w;
+            g1.weapon = g1w;
 
             g2w.Name = "Blaster Pistol";
             g2w.Damage = 4;
-            g2.G2weapon = g2w;
+            g2.weapon = g2w;
 
-            G1Armor g1a = new G1Armor();
-            G2Armor g2a = new G2Armor();
+            Armor g1a = new Armor();
+            Armor g2a = new Armor();
 
 
             g1a.Name = "The Force";
             g1a.Deflect = 10;
-            g1.G1armor = g1a;
+            g1.armor = g1a;
 
             g2a.Name = "Witty Comments";
             g2a.Deflect = 5;
-            g2.G2armor = g2a;
+            g2.armor = g2a;
 
             //g1.HitPoints = 10;
             g1.Name = "Jedi Master Bob";//Jedi Master Bob

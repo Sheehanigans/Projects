@@ -30,10 +30,8 @@ namespace GoblinBattle.UI
 
         public string Name { get; set; }
         public bool IsDead { get { return _hitPoints <= 0; } }
-        public G1Weapons G1weapon { get; set; }
-        public G2Weapons G2weapon { get; set; }
-        public G1Armor G1armor { get; set; }
-        public G2Armor G2armor { get; set; }
+        public Weapon weapon { get; set; }
+        public Armor armor { get; set; }
 
 
         // attack another goblin instance (target)
@@ -42,16 +40,15 @@ namespace GoblinBattle.UI
             int damage = _rng.Next(30);
             if (target.Name == "Tom Solo")//FIND WAY TO SWITCH ATTACKERS 
             {
-                damage += G1weapon.Damage;
-                damage -= G1armor.Deflect;
-                Console.WriteLine($"{Name} attacks {target.Name} with {G1weapon.Name} for {damage} damage! {G1armor.Name} protected {target.Name} for {G1armor.Deflect} points.");//change G1.armor to G2.armor... throws error
-
+                damage += weapon.Damage;
+                damage -= armor.Deflect;
+                Console.WriteLine($"{Name} attacks {target.Name} with {weapon.Name} for {damage} damage! {armor.Name} protected {target.Name} for {armor.Deflect} points.");
             }
             else if (target.Name == "Jedi Master Bob")
             {
-                damage += G2weapon.Damage;
-                damage -= G2armor.Deflect;
-                Console.WriteLine($"{Name} attacks {target.Name} with {G2weapon.Name} for {damage} damage! {G2armor.Name} protected {target.Name} for {G2armor.Deflect} points.");
+                damage += weapon.Damage;
+                damage -= armor.Deflect;
+                Console.WriteLine($"{Name} attacks {target.Name} with {weapon.Name} for {damage} damage! {armor.Name} protected {target.Name} for {armor.Deflect} points.");
             }
 
             target.Hit(damage);

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoblinBattle.UI", "GoblinBattle.UI\GoblinBattle.UI.csproj", "{1CEFCF15-282B-45A9-A25D-A7F7F21167DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{3A64C20E-0A06-4CB7-BFC7-3F5D4D5D02D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1CEFCF15-282B-45A9-A25D-A7F7F21167DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CEFCF15-282B-45A9-A25D-A7F7F21167DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1CEFCF15-282B-45A9-A25D-A7F7F21167DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1CEFCF15-282B-45A9-A25D-A7F7F21167DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A64C20E-0A06-4CB7-BFC7-3F5D4D5D02D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A64C20E-0A06-4CB7-BFC7-3F5D4D5D02D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A64C20E-0A06-4CB7-BFC7-3F5D4D5D02D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A64C20E-0A06-4CB7-BFC7-3F5D4D5D02D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D7EC6886-D6C0-4501-ACAF-8C732D33120B}
+		SolutionGuid = {B193E8A4-CDF3-4A89-9C3B-BD2E465EA6C5}
 	EndGlobalSection
 EndGlobal

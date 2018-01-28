@@ -33,7 +33,7 @@ namespace SimpleCalculator.Tests
             Calculator c = new Calculator();
             int expected = int.MinValue;
             int actual = c.Evaluate("corndog");
-            Assert.AreEqual(expected, actual); // Assert turns it into a failable test 
+            Assert.AreEqual(expected, actual); 
         }
 
         [Test]
@@ -42,12 +42,12 @@ namespace SimpleCalculator.Tests
             Calculator c = new Calculator();
             int expected = 30;
             int actual = c.Evaluate("33 - 3");
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);// Assert is apart of NUnit, 
         }
 
         //CLEANER WAY TO DO THE ABOVE 
 
-        [TestCase("1 + 1", 2)]//comma separated literal values, passed into method params
+        [TestCase(/*input*/"1 + 1",/*expected*/2)] //comma separated literal values, passed into method params
         [TestCase("33 - 3", 30)]
         [TestCase("corndog", int.MinValue)]
         [TestCase("20 * 10", 200)]
@@ -55,7 +55,7 @@ namespace SimpleCalculator.Tests
         {
             Calculator c = new Calculator();
             int actual = c.Evaluate(input);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual); 
         }
     }
 }
