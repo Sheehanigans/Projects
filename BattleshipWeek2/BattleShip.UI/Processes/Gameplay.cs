@@ -65,10 +65,10 @@ namespace BattleShip.UI
                         FireShotResponse r = P2.PlayerBoard.FireShot(c);
                         Console.Clear();
 
-                        while (r.ShotStatus == ShotStatus.Duplicate)
+                        while (r.ShotStatus == ShotStatus.Duplicate || r.ShotStatus == ShotStatus.Invalid) //added invalid
                         {
                             ConsoleOutput.DrawBoard(P2.PlayerBoard);
-                            Console.WriteLine("You already shot there!");
+                            Console.WriteLine("Bad shot! Quit wasting ammo. Try again!");
                             Console.WriteLine($"{P1.Name} FIRE AWAY!");
                             c = ConsoleInput.EnterCoords();
                             r = P2.PlayerBoard.FireShot(c);
@@ -101,10 +101,10 @@ namespace BattleShip.UI
                         Console.Clear();
 
                         //invalid shot
-                        while (r.ShotStatus == ShotStatus.Duplicate)
+                        while (r.ShotStatus == ShotStatus.Duplicate || r.ShotStatus == ShotStatus.Invalid) //added
                         {
                             ConsoleOutput.DrawBoard(P1.PlayerBoard);
-                            Console.WriteLine("You already shot there!");
+                            Console.WriteLine("Bad shot! Quit wasting ammo. Try again!");
                             Console.WriteLine($"{P2.Name} FIRE AWAY!");
                             c = ConsoleInput.EnterCoords();
                             r = P1.PlayerBoard.FireShot(c);

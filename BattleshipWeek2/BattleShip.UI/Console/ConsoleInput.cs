@@ -68,27 +68,52 @@ namespace BattleShip.UI
 
             if (!validCoord) //do??
             {
-                bool valid = false;
-                while (!valid)
+                bool coord1valid = false;
+                bool coord2valid = false;
+                //bool valid = false; 
+
+                while (!coord1valid && !coord2valid)
                 {
                     Console.WriteLine("Enter a valid coordinate. A letter A to J and a number 1 to 10. Ex: B4.");
                     string userInput = Console.ReadLine().ToUpper();
 
                     //check coord 1 and then coord 2
-                    //check coord to with tryparse
+                    //check coord two with tryparse
 
                     if (userInput.Length > 3 || userInput.Length < 2)
                     {
-                        valid = false;
+                        coord1valid = false;
                     }
-                    else if (userInput[0] - 'A' + 1 <= 10
-                        && Convert.ToInt32(userInput.Substring(1)) > 0
-                        && Convert.ToInt32(userInput.Substring(1)) < 11)
+                    else if (userInput[0] - 'A' + 1 <= 10)
                     {
                         coord1 = userInput[0] - 'A' + 1;
-                        coord2 = Convert.ToInt32(userInput.Substring(1));
-                        valid = true;
+                        coord1valid = true;
+
+                        if (Int32.TryParse(userInput.Substring(1), out coord2))
+                        {
+                            coord2valid = false;
+                        }
+
+                        if (coord2 > 0 && coord2 < 11)
+                        {
+                            coord2valid = true;
+                        }
                     }
+
+
+
+                        //if (userInput.Length > 3 || userInput.Length < 2)
+                        //{
+                        //    valid = false;
+                        //}
+                        //else if (userInput[0] - 'A' + 1 <= 10
+                        //    && Convert.ToInt32(userInput.Substring(1)) > 0
+                        //    && Convert.ToInt32(userInput.Substring(1)) < 11)
+                        //{
+                        //    coord1 = userInput[0] - 'A' + 1;
+                        //    coord2 = Convert.ToInt32(userInput.Substring(1));
+                        //    valid = true;
+                        //}
                 }
             }
             return toReturn = new Coordinate(coord1, coord2);
