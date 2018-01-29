@@ -77,7 +77,7 @@ namespace BattleShip.UI
                     //check coord 1 and then coord 2
                     //check coord to with tryparse
 
-                    if (userInput.Length > 3 || userInput.Length == 0)
+                    if (userInput.Length > 3 || userInput.Length < 2)
                     {
                         valid = false;
                     }
