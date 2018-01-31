@@ -16,7 +16,9 @@ namespace BattleShip.UI
         {
             bool stillPlaying = true;
 
+            Console.WriteLine();
             Console.WriteLine("Hello! Player 1 setup your board. Player 2 will follow. First turn will be randomly chosen.");
+            Console.WriteLine("Press anything to begin!");
             Console.ReadLine();
 
             Player P1 = Setup.CreatePlayer(1); //one more step to set up board, put that at the top of loop new loop, 
