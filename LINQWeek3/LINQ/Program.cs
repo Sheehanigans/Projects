@@ -24,7 +24,10 @@ namespace LINQ
             //Exercise10();
             //Exercise11();
             //Exercise12();
-            Exercise13();
+            //Exercise13();
+            //Exercise14();
+            Exercise15();
+
 
 
 
@@ -268,10 +271,7 @@ namespace LINQ
 
             allCustomers.Where(o => o.Orders.Any(total => total.Total < 500M));
 
-            PrintCustomerInformation(allCustomers);
-
-
-            
+            PrintCustomerInformation(allCustomers);            
         }
 
         /// <summary>
@@ -330,6 +330,15 @@ namespace LINQ
         /// </summary>
         static void Exercise14()
         {
+            //Come back to this. The conditional needs to break
+
+            var numbers = DataLoader.NumbersC;
+            var cond = numbers.TakeWhile(i => i <= 6);
+
+            foreach (var nums in cond)
+            {
+                Console.WriteLine(nums);
+            }
 
         }
 
@@ -338,7 +347,13 @@ namespace LINQ
         /// </summary>
         static void Exercise15()
         {
+            var numbers = DataLoader.NumbersC;
+            var divThree = numbers.SkipWhile(i => i % 3 != 0);
 
+            foreach (var nums in divThree)
+            {
+                Console.WriteLine(nums);
+            }
         }
 
         /// <summary>
@@ -346,6 +361,18 @@ namespace LINQ
         /// </summary>
         static void Exercise16()
         {
+            var anon = DataLoader.LoadProducts()
+                .Select (i => new
+                {
+                    Name = i.ProductName.OrderByDescending()
+                });
+
+            foreach (var names in anon)
+            {
+                Console.WriteLine(names);
+            }
+
+
 
         }
 

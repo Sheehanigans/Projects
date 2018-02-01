@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{88BA4C80-7C27-4FCA-8B7C-9716BC299BEA}</ProjectGuid>
+    <ProjectGuid>{54A5BC1F-597D-4C20-A204-89AA0D977660}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>OrderExercise</RootNamespace>
-    <AssemblyName>OrderExercise</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SystemIO.UI</RootNamespace>
+    <AssemblyName>SystemIO.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -42,13 +43,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
-    <Compile Include="Order.cs" />
+    <Compile Include="Data\StudentRepository.cs" />
+    <Compile Include="Helpers\ConsoleIO.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="MainMenu.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Workflows\AddStudentWorkflow.cs" />
+    <Compile Include="Workflows\EditStudentWorkflow.cs" />
+    <Compile Include="Workflows\ListStudentWorkflow.cs" />
+    <Compile Include="Workflows\RemoveStudentWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

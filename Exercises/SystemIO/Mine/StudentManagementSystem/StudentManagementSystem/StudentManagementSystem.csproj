@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{88BA4C80-7C27-4FCA-8B7C-9716BC299BEA}</ProjectGuid>
+    <ProjectGuid>{8BF29134-43E3-4068-9094-E5F13452EDE6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>OrderExercise</RootNamespace>
-    <AssemblyName>OrderExercise</AssemblyName>
+    <RootNamespace>StudentManagementSystem</RootNamespace>
+    <AssemblyName>StudentManagementSystem</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,10 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
-    <Compile Include="Order.cs" />
+    <Compile Include="Data\StudentRepository.cs" />
+    <Compile Include="Helpers\ConsoleIO.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Workflows\AddStudentWorkflow.cs" />
+    <Compile Include="Workflows\ListStudentWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

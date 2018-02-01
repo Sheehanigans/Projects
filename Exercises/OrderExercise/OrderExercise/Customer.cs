@@ -8,5 +8,8 @@ namespace OrderExercise
 {
     class Customer
     {
+        public int ID { get; }
+        public string number{ get; }
+        public string State { get; }
     }
 }
