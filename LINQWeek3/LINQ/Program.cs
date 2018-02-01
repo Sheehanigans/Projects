@@ -26,7 +26,23 @@ namespace LINQ
             //Exercise12();
             //Exercise13();
             //Exercise14();
-            Exercise15();
+            //Exercise15();
+            //Exercise16();
+            //Exercise17();
+            //Exercise18();
+            //Exercise19();
+            //Exercise20();
+            //Exercise22();
+            //Exercise23();
+            //Exercise24();
+            //Exercise25();
+            //Exercise26();
+            //Exercise27();
+            //Exercise28();
+            //Exercise29();
+            //Exercise30();
+            Exercise31();
+
 
 
 
@@ -259,7 +275,7 @@ namespace LINQ
             {
                 Console.WriteLine(nums);
             }
-            Console.ReadLine();
+            Console.ReadLine(); 
         }
 
         /// <summary>
@@ -361,19 +377,18 @@ namespace LINQ
         /// </summary>
         static void Exercise16()
         {
+
             var anon = DataLoader.LoadProducts()
-                .Select (i => new
+                .OrderBy(o => o.ProductName)
+                .Select(i => new
                 {
-                    Name = i.ProductName.OrderByDescending()
+                    Name = i.ProductName
                 });
 
             foreach (var names in anon)
             {
                 Console.WriteLine(names);
             }
-
-
-
         }
 
         /// <summary>
@@ -381,7 +396,18 @@ namespace LINQ
         /// </summary>
         static void Exercise17()
         {
+            var anon = DataLoader.LoadProducts()
+               .OrderByDescending(o => o.UnitsInStock)
+               .Select(i => new
+               {
+                   Name = i.ProductName,
+                   Units = i.UnitsInStock
+               });
 
+            foreach (var names in anon)
+            {
+                Console.WriteLine(names);
+            }
         }
 
         /// <summary>
@@ -389,6 +415,19 @@ namespace LINQ
         /// </summary>
         static void Exercise18()
         {
+            var anon = DataLoader.LoadProducts()
+               .OrderBy(o => o.Category)
+               .ThenByDescending(t => t.UnitPrice)
+               .Select(i => new
+               {
+                   Cat = i.Category,
+                   UPrice = i.UnitPrice
+               });
+
+            foreach (var names in anon)
+            {
+                Console.WriteLine(names);
+            }
 
         }
 
@@ -397,7 +436,13 @@ namespace LINQ
         /// </summary>
         static void Exercise19()
         {
+            var numbers = DataLoader.NumbersB;
+            var descending = numbers.Reverse();
 
+            foreach (var nums in descending)
+            {
+                Console.WriteLine(nums);
+            }
         }
 
         /// <summary>
@@ -414,7 +459,20 @@ namespace LINQ
         /// </summary>
         static void Exercise20()
         {
+            var prodByCat = DataLoader.LoadProducts()
+                .GroupBy(g => g.Category);
 
+            foreach (var cats in prodByCat)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("-- " + cats.Key + "--");
+                Console.WriteLine("");
+
+                foreach (var prod in cats)
+                {
+                    Console.WriteLine(prod.ProductName);
+                }
+            }
         }
 
         /// <summary>
@@ -434,7 +492,7 @@ namespace LINQ
         
         static void Exercise21()
         {
-
+            //NOPE
         }
 
         /// <summary>
@@ -442,7 +500,13 @@ namespace LINQ
         /// </summary>
         static void Exercise22()
         {
+            var prodByCat = DataLoader.LoadProducts()
+                .GroupBy(g => g.Category);
 
+            foreach (var cats in prodByCat)
+            {
+                Console.WriteLine("-- " + cats.Key + "--");
+            }
         }
 
         /// <summary>
@@ -450,7 +514,9 @@ namespace LINQ
         /// </summary>
         static void Exercise23()
         {
+            var checkProd = DataLoader.LoadProducts().Exists(e => e.ProductID == 789);
 
+            Console.WriteLine(checkProd);
         }
 
         /// <summary>
@@ -458,7 +524,13 @@ namespace LINQ
         /// </summary>
         static void Exercise24()
         {
+            var outOfStock = DataLoader.LoadProducts()
+                .GroupBy(g => g.Category, i => i.UnitsInStock);
 
+            foreach (IGrouping<string,int> group in outOfStock)
+            {
+                if (group.Contains(0)) Console.WriteLine(group.Key);
+            }
         }
 
         /// <summary>
@@ -466,7 +538,16 @@ namespace LINQ
         /// </summary>
         static void Exercise25()
         {
+            var outOfStock = DataLoader.LoadProducts()
+                .GroupBy(g => g.Category, i => i.UnitsInStock);
 
+            foreach (IGrouping<string, int> group in outOfStock)
+            {
+                if (!group.Contains(0))
+                {
+                    Console.WriteLine(group.Key);
+                }
+            }
         }
 
         /// <summary>
@@ -474,7 +555,16 @@ namespace LINQ
         /// </summary>
         static void Exercise26()
         {
+            var numbers = DataLoader.NumbersA.Where(i => i % 2 != 0);
 
+            int odds = 0;
+
+            foreach (var odd in numbers)
+            {
+                odds++;
+            }
+
+            Console.WriteLine(odds);
         }
 
         /// <summary>
@@ -482,6 +572,17 @@ namespace LINQ
         /// </summary>
         static void Exercise27()
         {
+            var countOfOrders = DataLoader.LoadCustomers()
+                .Select(i => new
+                {
+                    CustID = i.CustomerID,
+                    Ord = i.Orders.Length
+                });
+
+            foreach (var count in countOfOrders)
+            {
+                Console.WriteLine(count.CustID + " has " + count.Ord + " order(s)");
+            }
 
         }
 
@@ -490,7 +591,18 @@ namespace LINQ
         /// </summary>
         static void Exercise28()
         {
+            var catsAndProd = DataLoader.LoadProducts()
+                .GroupBy(g => g.Category)
+                .Select(i => new
+                {
+                    Category = i.Key,
+                    ProdCount = i.Count()
+                });
 
+            foreach (var prods in catsAndProd)
+            {
+                Console.WriteLine(prods.Category + " has " + prods.ProdCount + " products");
+            }                
         }
 
         /// <summary>
@@ -498,7 +610,19 @@ namespace LINQ
         /// </summary>
         static void Exercise29()
         {
+            var catsAndUnits = DataLoader.LoadProducts()
+                .GroupBy(g => g.Category)
+                .Select(i => new
+                {
+                    Categories = i.Key,
+                    Units = i.Sum(t => t.UnitsInStock)
+                });
 
+
+            foreach (var units in catsAndUnits)
+            {
+                Console.WriteLine(units.Categories + " has " + units.Units);
+            }
         }
 
         /// <summary>
@@ -506,7 +630,20 @@ namespace LINQ
         /// </summary>
         static void Exercise30()
         {
+            var catsAndLowUnits = DataLoader.LoadProducts()
+                .GroupBy(g => g.Category)
+                .Select(i => new
+                {
+                    Cat = i.Key,
+                    Prod = i.OrderBy(o => o.UnitPrice).First(),
+                    Price = i.Min(m => m.UnitPrice)
 
+                });
+
+            foreach (var units in catsAndLowUnits)
+            {
+                Console.WriteLine($"{units.Cat} has {units.Prod.ProductName} at  + {units.Price:c}");
+            }
         }
 
         /// <summary>
@@ -514,7 +651,20 @@ namespace LINQ
         /// </summary>
         static void Exercise31()
         {
+            var catsAndTopThree = DataLoader.LoadProducts()
+                .GroupBy(g => g.Category)
+                .Select(i => new
+                {
+                    Cat = i.Key,
+                    Avg = i.Average(a => a.UnitPrice)
+                });
 
+            var orderedList = catsAndTopThree.OrderByDescending(g => g.Avg).Take(3);
+
+            foreach (var topCats in orderedList)
+            {
+                Console.WriteLine($"{topCats.Cat} is {topCats.Avg}");
+            }
         }
     }
 }
