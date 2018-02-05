@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudentManagementSystem.Models;
 
 namespace StudentManagementSystem.Helpers
 {
@@ -11,6 +12,8 @@ namespace StudentManagementSystem.Helpers
         public const string SeparatorBar = "==============================================";
 
         public const string StudentLineFormat = "{0, -20} {1, -15} {2, 5}";
+
+        public const string PickStudentLineFormat = "{0, -2} {1, -20} {2, -15} {3, 5}";
 
         public static string GetRequiredStringFromUser(string prompt)
         {
@@ -30,6 +33,21 @@ namespace StudentManagementSystem.Helpers
                     return input;
                 }
             }
+        }
+
+        public static void PrintPickListOfStudents(List<Student> students)
+        {
+            Console.WriteLine(SeparatorBar);
+            Console.WriteLine(PickStudentLineFormat, "", "Name", "Major", "GPA");
+            Console.WriteLine(SeparatorBar);
+
+            for (int i = 0; i < students.Count(); i++)
+            {
+                Console.WriteLine(PickStudentLineFormat, i + 1, students[i].LastName + "," + students[i].FirstName, students[i].Major, students[i].GPA);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(SeparatorBar);
         }
 
         internal static decimal GetRequiredDecimalFromUser(string prompt)
@@ -91,6 +109,36 @@ namespace StudentManagementSystem.Helpers
                         continue;
                     }
                     return input;
+                }
+            }
+
+        }
+
+        public static int GetStudentIndexFromUser(string prompt, int count)
+        {
+            int output;
+
+            while (true)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+
+                if (!int.TryParse(input, out output))
+                {
+                    Console.WriteLine("Must enter valid integer");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    if (output < 1 || output > count)
+                    {
+                        Console.WriteLine("Please choose a student by number between {0} and {1}", 1, count);
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        continue; //goes to the top of the loop
+                    }
+                    return output;
                 }
             }
         }

@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8BF29134-43E3-4068-9094-E5F13452EDE6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>StudentManagementSystem</RootNamespace>
-    <AssemblyName>StudentManagementSystem</AssemblyName>
+    <ProjectGuid>{4C693835-017E-425E-B680-13DD2E543CF6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RockPaperScissors.Tests</RootNamespace>
+    <AssemblyName>RockPaperScissors.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,20 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\StudentRepository.cs" />
-    <Compile Include="Helpers\ConsoleIO.cs" />
-    <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="MainMenu.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="BLLTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Workflows\AddStudentWorkflow.cs" />
-    <Compile Include="Workflows\EditStudentWorkflow.cs" />
-    <Compile Include="Workflows\ListStudentWorkflow.cs" />
-    <Compile Include="Workflows\RemoveStudentWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RockPaperScissors.BLL\RockPaperScissors.BLL.csproj">
+      <Project>{278d0e1d-2edd-47f2-9074-e39cc9848bd6}</Project>
+      <Name>RockPaperScissors.BLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

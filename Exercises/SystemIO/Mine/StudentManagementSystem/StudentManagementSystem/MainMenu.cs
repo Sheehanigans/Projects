@@ -44,11 +44,13 @@ namespace StudentManagementSystem
                     break;
                 case "3":
                     Console.WriteLine("Remove student");
-                    Console.ReadKey();
+                    RemoveStudentWorkflow removeWorkflow = new RemoveStudentWorkflow();
+                    removeWorkflow.Execute();
                     break;
                 case "4":
                     Console.WriteLine("Edit student");
-                    Console.ReadKey();
+                    EditStudentWorkflow editWorkflow = new EditStudentWorkflow();
+                    editWorkflow.Execute();
                     break;
                 case "Q":
                     return false; //will make us leave the method 

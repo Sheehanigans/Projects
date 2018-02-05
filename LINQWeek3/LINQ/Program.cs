@@ -40,14 +40,8 @@ namespace LINQ
             //Exercise27();
             //Exercise28();
             //Exercise29();
-            //Exercise30();
-            Exercise31();
-
-
-
-
-
-
+            Exercise30();
+            //Exercise31();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -636,13 +630,12 @@ namespace LINQ
                 {
                     Cat = i.Key,
                     Prod = i.OrderBy(o => o.UnitPrice).First(),
-                    Price = i.Min(m => m.UnitPrice)
-
-                });
+                })
+                .OrderBy(o => o.Prod.UnitPrice);
 
             foreach (var units in catsAndLowUnits)
             {
-                Console.WriteLine($"{units.Cat} has {units.Prod.ProductName} at  + {units.Price:c}");
+                Console.WriteLine($"{units.Cat} has {units.Prod.ProductName} at  + {units.Prod.UnitPrice:c}");
             }
         }
 
@@ -663,7 +656,7 @@ namespace LINQ
 
             foreach (var topCats in orderedList)
             {
-                Console.WriteLine($"{topCats.Cat} is {topCats.Avg}");
+                Console.WriteLine($"{topCats.Cat} is {topCats.Avg:c}");
             }
         }
     }

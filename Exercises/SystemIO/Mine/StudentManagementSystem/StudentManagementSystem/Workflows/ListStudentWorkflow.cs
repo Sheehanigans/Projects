@@ -25,6 +25,7 @@ namespace StudentManagementSystem.Workflows
             {
                 Console.WriteLine(ConsoleIO.StudentLineFormat, student.LastName + "," + student.FirstName, student.Major, student.GPA);
             }
+
             Console.WriteLine("");
             Console.WriteLine(ConsoleIO.SeparatorBar);
             Console.WriteLine("");

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8BF29134-43E3-4068-9094-E5F13452EDE6}</ProjectGuid>
+    <ProjectGuid>{C2412C7F-74E2-4125-B427-E92E0FA42B80}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>StudentManagementSystem</RootNamespace>
-    <AssemblyName>StudentManagementSystem</AssemblyName>
+    <RootNamespace>RationalNumbers</RootNamespace>
+    <AssemblyName>RationalNumbers</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,17 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\StudentRepository.cs" />
-    <Compile Include="Helpers\ConsoleIO.cs" />
-    <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="MainMenu.cs" />
+    <Compile Include="InvalidDenominatorException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Workflows\AddStudentWorkflow.cs" />
-    <Compile Include="Workflows\EditStudentWorkflow.cs" />
-    <Compile Include="Workflows\ListStudentWorkflow.cs" />
-    <Compile Include="Workflows\RemoveStudentWorkflow.cs" />
+    <Compile Include="RationalNumber.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
