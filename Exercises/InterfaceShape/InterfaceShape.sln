@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceShape", "InterfaceShape\InterfaceShape.csproj", "{753089F8-F3AB-47DA-92FC-C4842C3BAE7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{753089F8-F3AB-47DA-92FC-C4842C3BAE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{753089F8-F3AB-47DA-92FC-C4842C3BAE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{753089F8-F3AB-47DA-92FC-C4842C3BAE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{753089F8-F3AB-47DA-92FC-C4842C3BAE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {807D9E1B-1DDF-43BD-A955-DC4169C2353E}
+	EndGlobalSection
+EndGlobal
