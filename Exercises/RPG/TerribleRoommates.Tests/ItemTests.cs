@@ -80,5 +80,11 @@ namespace TerribleRoommates.Tests
         {
             //should NOT allow 
         }
+
+        [Test]
+        public void CannotAddNonPotionToFannyPack()
+        {
+
+        }
     }
 }
