@@ -5,11 +5,11 @@ using System.Text;
 
 namespace RyanSheehanPowerball
 {
-    public class DataStorage
+    public class PickRepository
     {
         private string _filePath;
 
-        public DataStorage (string filePath)
+        public PickRepository (string filePath)
         {
             filePath = _filePath;
         }

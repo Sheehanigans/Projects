@@ -4,7 +4,8 @@ using System.Text;
 
 namespace RyanSheehanPowerball.Views
 {
-    class ConsoleIO
+    public class ConsoleIO
     {
+
     }
 }

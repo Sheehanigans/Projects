@@ -21,6 +21,8 @@ namespace RyanSheehanPowerball.Workflows
 
             Pick pick = new Pick();
 
+            //pick.PickID
+
         }
         
     }
