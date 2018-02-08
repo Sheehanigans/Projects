@@ -1,4 +1,5 @@
-﻿using RyanSheehanPowerball.Workflows;
+﻿using RyanSheehanPowerball._2.Workflows;
+using RyanSheehanPowerball.Workflows;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,7 +34,8 @@ namespace RyanSheehanPowerball
                     addPick.Execute();
                     break;
                 case "2":
-                    //show pick
+                    LookupPickWorkflow lookupPick = new LookupPickWorkflow();
+                    lookupPick.Execute();
                     break;
                 case "3":
                     //Draw!

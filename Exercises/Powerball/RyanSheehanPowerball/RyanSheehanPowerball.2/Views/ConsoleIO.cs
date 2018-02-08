@@ -10,6 +10,8 @@ namespace RyanSheehanPowerball._2.Views
     {
         internal static string GetStringFromUser(string prompt)
         {
+            Console.Clear();
+
             while (true)
             {
                 Console.WriteLine(prompt);
@@ -28,8 +30,45 @@ namespace RyanSheehanPowerball._2.Views
             }
         }
 
+        internal static int GetIDFromUser(string prompt)
+        {
+            int output;
+            Console.WriteLine(prompt);
+
+            PickRepository repo = new PickRepository(Settings.FilePath);
+            List<Pick> picks = repo.List();
+
+            int id = 0;
+
+            bool isValid = false;
+            while (!isValid)
+            {
+                string input = Console.ReadLine();
+
+                if (!int.TryParse(input, out output))
+                {
+                    Console.WriteLine("Enter a valid number.");
+
+                }
+                else if (output < 0 || output > picks.Count())
+                {
+                    Console.WriteLine("Pick ID does not exist");
+                }
+                else
+                {
+                    id = output;
+                    isValid = true;
+                }
+
+            }
+            return id;
+        }
+
         internal static int[] GetPickNumbers(string prompt)
         {
+
+            Console.Clear(); 
+
             int output;
 
             int[] picks = new int[5];
@@ -65,19 +104,70 @@ namespace RyanSheehanPowerball._2.Views
                     }
                 }
             }
+
             return picks;
         }
 
-        internal static int GetPowerball(string prompt)
+        public static int GetPowerball(string prompt)
         {
+            int output;
             Console.WriteLine(prompt);
-            int pb = int.Parse(Console.ReadLine());
+
+            int pb = 0;
+
+            bool isValid = false;
+            while (!isValid)
+            {
+                string input = Console.ReadLine();
+
+                if (!int.TryParse(input, out output))
+                {
+                    Console.WriteLine("Enter a valid number.");
+
+                }
+                else if (output < 0 || output > 26)
+                {
+                    Console.WriteLine("Enter a number between 0 and 26");
+                }
+                else
+                {
+                    pb = output;
+                    isValid = true;
+                }
+
+            }
+
             return pb;
         }
 
-        internal static object GetYesOrNo(string prompt)
+        internal static string GetYesOrNo(string prompt)
         {
-            throw new NotImplementedException();
+
+            while (true)
+            {
+                Console.Write(prompt + " (Y/N)? ");
+                string input = Console.ReadLine().ToUpper();
+
+                if (string.IsNullOrEmpty(input))
+                {
+                    Console.WriteLine("You must enter Y/N.");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    if (input != "Y" && input != "N")
+                    {
+                        Console.WriteLine("You must enter Y/N.");
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        continue;
+                    }
+
+                    return input;
+                }
+            }
+
         }
     }
 }

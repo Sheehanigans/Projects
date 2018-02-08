@@ -30,7 +30,9 @@ namespace RyanSheehanPowerball.Workflows
             pick.Powerball = ConsoleIO.GetPowerball("Choose your POWERBALL: ");
 
             Console.WriteLine();
-            Console.WriteLine($"Pick ID: {pick.PickID}. {pick.FirstName} {pick.LastName}, you chose {pick.PickNumbers} with a POWERBALL of {pick.Powerball}");
+            Console.WriteLine($"Pick ID: {pick.PickID}. {pick.FirstName} {pick.LastName}, you chose " +
+                $"{pick.PickNumbers[0]},{pick.PickNumbers[1]},{pick.PickNumbers[2]},{pick.PickNumbers[3]}," +
+                $"{pick.PickNumbers[4]} with a POWERBALL of {pick.Powerball}");
             Console.WriteLine();
 
             if (ConsoleIO.GetYesOrNo("Add the following information?") == "Y")

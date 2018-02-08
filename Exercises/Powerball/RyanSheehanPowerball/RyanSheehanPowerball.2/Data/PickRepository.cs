@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RyanSheehanPowerball
 {
-    public class PickRepository
+    public class PickRepository : IPickRepository
     {
         private string _filePath;
 

@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,15 +44,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\PickID.cs" />
+    <Compile Include="Data\PickInMemoryRepo.cs" />
     <Compile Include="Data\PickRepository.cs" />
+    <Compile Include="Data\PickRepoFactory.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="IPickRepository.cs" />
+    <Compile Include="Data\IPickRepository.cs" />
+    <Compile Include="LottoManager.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Models\Pick.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ConsoleIO.cs" />
     <Compile Include="Workflows\AddPickWorkflow.cs" />
+    <Compile Include="Workflows\LookupPickWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

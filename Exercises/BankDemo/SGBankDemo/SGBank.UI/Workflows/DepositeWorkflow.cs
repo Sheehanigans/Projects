@@ -29,15 +29,11 @@ namespace SGBank.UI.Workflows
                 Console.WriteLine($"Old balance: {response.OldBalance:c}");
                 Console.WriteLine($"Amount deposited: {response.Amount:c}");
                 Console.WriteLine($"New balance: {response.Account.Balance:c}");
-
-
-
             }
             else
             {
                 Console.WriteLine("An error occured: ");
                 Console.WriteLine(response.Message);
-
             }
 
             Console.WriteLine("Press any key to continue...");

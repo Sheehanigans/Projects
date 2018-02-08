@@ -40,6 +40,9 @@ namespace SGBank.BLL
         {
             AccountDepositeResponse response = new AccountDepositeResponse();
 
+            //lookup an account
+            response.Account = _accountRepository.LoadAccount(accountNumber);
+
             if (response.Account == null)
             {
                 response.Success = false;
