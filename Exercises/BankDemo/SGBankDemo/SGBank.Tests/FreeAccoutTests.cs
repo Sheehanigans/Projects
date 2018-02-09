@@ -42,9 +42,7 @@ namespace SGBank.Tests
             account.Balance = balance;
             account.Type = accountType;
 
-            AccountDepositeResponse response = new AccountDepositeResponse();
-            response = deposite.Deposite(account, amount);
-
+            AccountDepositeResponse response = deposite.Deposite(account, amount);
             Assert.AreEqual(expectedResult, response.Success);
         }
 
@@ -63,9 +61,7 @@ namespace SGBank.Tests
             account.Balance = balance;
             account.Type = accountType;
 
-            AccountWithdrawResponse response = new AccountWithdrawResponse();
-            response = withdraw.Withdraw(account, amount);
-
+            AccountWithdrawResponse response = withdraw.Withdraw(account, amount);
             Assert.AreEqual(expectedResult, response.Success);
         }
     }

@@ -48,6 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Workflows\AccountLookupWorkflow.cs" />
     <Compile Include="Workflows\DepositeWorkflow.cs" />
+    <Compile Include="Workflows\WithdrawWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
