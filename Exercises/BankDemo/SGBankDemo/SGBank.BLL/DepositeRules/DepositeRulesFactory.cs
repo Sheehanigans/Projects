@@ -18,6 +18,8 @@ namespace SGBank.BLL.DepositeRules
                     return new FreeAccountDepositeRule();
                 case AccountType.Basic:
                     return new NoLimitDepositRule();
+                case AccountType.Premium:
+                    return new NoLimitDepositRule();
             }
 
             throw new Exception("Account type is not supported");

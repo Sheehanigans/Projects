@@ -12,6 +12,8 @@ namespace SGBank.UI.Workflows
     {
         public void Execute()
         {
+            Console.Clear();
+
             AccountManager accountManager = AccountManagerFactory.Create();
 
             Console.Write("Please enter an account number: ");

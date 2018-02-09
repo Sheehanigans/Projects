@@ -9,34 +9,28 @@ using System.Threading.Tasks;
 
 namespace SGBank.BLL.WithdrawRules
 {
-    public class BasicAccountWithdrawRule : IWithdraw
+    public class PremiumAccountWithdrawRule : IWithdraw
     {
         public AccountWithdrawResponse Withdraw(Account account, decimal amount)
         {
             AccountWithdrawResponse response = new AccountWithdrawResponse();
 
-            if (account.Type != AccountType.Basic)
+            if(account.Type != AccountType.Premium)
             {
                 response.Success = false;
-                response.Message = "Error: a non-basic account hit the Basic Withdraw Rule. Contact IT";
+                response.Message = "Error: a non-premoium account hit the Premium Withdraw Rule. Contact IT";
                 return response;
             }
-            else if (amount >= 0)
+            if (amount >= 0)
             {
                 response.Success = false;
                 response.Message = "Withdrawal amounts must be negative!";
                 return response;
             }
-            else  if (amount < -500)
+            else if ((account.Balance + amount) < -500)
             {
                 response.Success = false;
-                response.Message = "Basic accounts cannot withdraw more than $500!";
-                return response;
-            }
-            else if ((account.Balance + amount) < -100)
-            {
-                response.Success = false;
-                response.Message = "This amount will overdraft more than your $100 limit!";
+                response.Message = "This amount will overdraft more than your $500 limit!";
                 return response;
             }
 
@@ -45,13 +39,6 @@ namespace SGBank.BLL.WithdrawRules
             response.Amount = amount;
             response.OldBalance = account.Balance;
             account.Balance += amount;
-
-            if (account.Balance < 0.00M)
-            {
-                decimal overdraft = 10.00M;
-                account.Balance -= overdraft;
-                Console.WriteLine("A $10 overdraft fee was applied.");
-            }
 
             return response;
         }
