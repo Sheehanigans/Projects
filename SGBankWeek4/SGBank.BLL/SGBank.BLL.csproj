@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A56B431B-F17E-4C2C-82FD-0A5705C26F87}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>RyanSheehanPowerball._2</RootNamespace>
-    <AssemblyName>RyanSheehanPowerball.2</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <ProjectGuid>{49C11F6A-F6CF-4023-B6F2-9461665ACCC2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SGBank.BLL</RootNamespace>
+    <AssemblyName>SGBank.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,26 +41,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\PickID.cs" />
-    <Compile Include="Data\PickInMemoryRepo.cs" />
-    <Compile Include="Data\PickRepository.cs" />
-    <Compile Include="Data\PickRepoFactory.cs" />
-    <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Data\IPickRepository.cs" />
-    <Compile Include="LottoManager.cs" />
-    <Compile Include="MainMenu.cs" />
-    <Compile Include="Models\Pick.cs" />
-    <Compile Include="Models\RNG.cs" />
-    <Compile Include="Models\Winner.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="AccountManager.cs" />
+    <Compile Include="AccountManagerFactory.cs" />
+    <Compile Include="DepositRules\DepositRulesFactory.cs" />
+    <Compile Include="DepositRules\FreeAccountDepositRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ConsoleIO.cs" />
-    <Compile Include="Workflows\AddPickWorkflow.cs" />
-    <Compile Include="Workflows\DrawWorkflow.cs" />
-    <Compile Include="Workflows\LookupPickWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\SGBank.Data\SGBank.Data.csproj">
+      <Project>{49146bed-ea62-48b9-b001-d7b7f1048249}</Project>
+      <Name>SGBank.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGBank.Models\SGBank.Models.csproj">
+      <Project>{60c5b274-a890-4957-8b41-9dee7f3a89b2}</Project>
+      <Name>SGBank.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

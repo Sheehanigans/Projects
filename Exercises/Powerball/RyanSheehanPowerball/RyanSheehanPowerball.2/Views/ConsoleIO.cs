@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RyanSheehanPowerball._2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,33 @@ namespace RyanSheehanPowerball._2.Views
                     return input;
                 }
             }
+        }
+
+        internal static int[] Draw()
+        {
+            int[] drawing = new int[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                bool isValid = false;
+                while (!isValid)
+                {
+                    drawing[i] = 0;
+                    int num = RNG.NextInt(0, 69);
+
+                    if (drawing.Contains(num))
+                    {
+                        i--;
+                    }
+                    else
+                    {
+                        drawing[i] = num;
+                        isValid = true;
+                    }
+                }
+            }
+
+            return drawing;
         }
 
         internal static int GetIDFromUser(string prompt)
@@ -169,5 +197,7 @@ namespace RyanSheehanPowerball._2.Views
             }
 
         }
+
+
     }
 }

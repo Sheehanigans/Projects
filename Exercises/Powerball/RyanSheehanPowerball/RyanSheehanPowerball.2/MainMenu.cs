@@ -38,7 +38,8 @@ namespace RyanSheehanPowerball
                     lookupPick.Execute();
                     break;
                 case "3":
-                    //Draw!
+                    DrawWorkflow drawWorkflow = new DrawWorkflow();
+                    drawWorkflow.Execute();
                     break;
                 case "Q":
                     return false;

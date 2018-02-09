@@ -1,38 +1,38 @@
-﻿using SGBank.Models;
-using SGBank.Models.Interfaces;
-using SGBank.Models.Responses;
+﻿using SGBank.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SGBank.Models;
+using SGBank.Models.Responses;
 
-namespace SGBank.BLL.DepositeRules
+namespace SGBank.BLL.DepositRules
 {
-    public class FreeAccountDepositeRule : IDeposite
+    public class FreeAccountDepositRule : IDeposit
     {
-        public AccountDepositeResponse Deposite(Account account, decimal amount)
+        public AccountDepositResponse Deposit(Account account, decimal amount)
         {
-            AccountDepositeResponse response = new AccountDepositeResponse();
+            AccountDepositResponse response = new AccountDepositResponse();
 
-            if (account.Type != AccountType.Free)
+            if(account.Type != AccountType.Free)
             {
                 response.Success = false;
-                response.Message = "Error: a non free account his the free deposite rule.";
+                response.Message = "Error: a non free account hit the Free Deposit Rule.  Contact IT";
                 return response;
             }
-            
+
             if(amount > 100)
             {
                 response.Success = false;
-                response.Message = "Free accounts cannot deposite more than $100 at a time.";
+                response.Message = "Free accounts cannot deposit more than $100 at a time";
                 return response;
             }
 
-            if(amount <= 0)
+            if (amount <= 0)
             {
                 response.Success = false;
-                response.Message = "Deposite amiunts must be greater than $0";
+                response.Message = "Deposit amounts must be greater than zero.";
                 return response;
             }
 
