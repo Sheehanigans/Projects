@@ -32,7 +32,7 @@ namespace SGBank.BLL.DepositeRules
             if(amount <= 0)
             {
                 response.Success = false;
-                response.Message = "Deposite amiunts must be greater than $0";
+                response.Message = "Deposite amounts must be greater than $0";
                 return response;
             }
 
