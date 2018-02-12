@@ -62,15 +62,33 @@ namespace SGBank.Data
 
             Account account = new Account();
 
-            foreach (Account acct in accounts)
+            bool searching = true;
+
+            while (searching)
             {
-                if (acct.AccountNumber == AccountNumber)
+                foreach (Account acct in accounts)
                 {
-                    account = acct;
+                    int loops = 0;
+
+                    if (acct.AccountNumber == AccountNumber)
+                    {
+                        account = acct;
+                        searching = false;
+                        return account;
+                    }
+                    else if (accounts.Count() > loops)
+                    {
+                        searching = false;
+                    }
+                    else
+                    {
+                        loops++;
+                    }
                 }
             }
 
-            return account;
+            return null;
+
         }
 
         public void SaveAccount(Account account)
@@ -85,7 +103,6 @@ namespace SGBank.Data
                     }
                 }
                 CreateAccountsFile(accounts);
-
             }
         }
 
