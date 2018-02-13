@@ -44,9 +44,9 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Taxes.cs" />
-    <Compile Include="ProductType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\OrderDisplayResponse.cs" />
+    <Compile Include="Responses\OrderNumberResponse.cs" />
     <Compile Include="Responses\Response.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -35,5 +35,16 @@ namespace FOS.BLL
             }
             return response;
         }
+
+        public OrderNumberResponse GetOrderNumber()
+        {
+            OrderNumberResponse response = new OrderNumberResponse();
+
+            response.Orders = _orderRepository.ListOrders();
+
+            response.Success = true;
+
+            return response;
+        }
     }
 }

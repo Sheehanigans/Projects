@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FOS.MODELS
+namespace FOS.MODELS.Responses
 {
-    public enum ProductType
+    public class OrderNumberResponse : Response
     {
-        Carpet=1,
-        Laminate,
-        Tile,
-        Wood
+        public List<Order> Orders { get; set; }
     }
 }

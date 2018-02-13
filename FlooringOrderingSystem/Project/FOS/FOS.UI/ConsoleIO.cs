@@ -22,5 +22,39 @@ namespace FOS.UI
             Console.WriteLine($"Total: {order.Total}");
             Console.WriteLine($"**************************************");
         }
+
+        public static string GetDate(string prompt)
+        {
+            bool isValid = false;
+            DateTime date = DateTime.Now;
+            while (!isValid)
+            {
+                Console.WriteLine(prompt);
+
+                string orderDate = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(orderDate))
+                {
+                    Console.WriteLine("Enter a valid order date!");
+                }
+                else
+                {
+                    if (!DateTime.TryParse(orderDate, out date))
+                    {
+                        Console.WriteLine("Enter a valid order date!");
+                    }
+                    else if (date < DateTime.Now)
+                    {
+                        Console.WriteLine($"The date entered must be greater than {DateTime.Now.ToString("MM/dd/yyyy")}");
+                    }
+                    else
+                    {
+                        isValid = true;
+                    }
+                }
+            }
+
+            return date.ToString("MMddyyyy");
+        }
     }
 }

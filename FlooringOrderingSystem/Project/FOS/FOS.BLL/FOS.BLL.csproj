@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\OrderNumber.cs" />
     <Compile Include="OrderManager.cs" />
     <Compile Include="OrderManagerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,5 +56,6 @@
       <Name>FOS.MODELS</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

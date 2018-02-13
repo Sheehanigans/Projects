@@ -11,7 +11,7 @@ namespace FOS.DATA
     public class TestOrderRepository : IOrderRepository
     {
 
-        public List<Order> List()
+        public List<Order> ListOrders()
         {
             List<Order> orders = new List<Order>();
 
@@ -52,7 +52,6 @@ namespace FOS.DATA
             orders.Add(_order1);
             orders.Add(_order2);
 
-
             return orders;
         }
 
@@ -60,7 +59,7 @@ namespace FOS.DATA
         {
             List<Order> ordersForDate = new List<Order>();
 
-            var allOrders = List();
+            var allOrders = ListOrders();
 
             foreach(Order ord in allOrders)
             {

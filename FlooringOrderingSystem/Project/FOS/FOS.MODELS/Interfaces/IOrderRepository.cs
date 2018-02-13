@@ -10,6 +10,8 @@ namespace FOS.MODELS.Interfaces
     {
         List<Order> DisplayOrders(string date);
 
+        List<Order> ListOrders();
+
         void Add(Order order);
 
         void Edit(Order order, string date);

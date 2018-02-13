@@ -32,7 +32,8 @@ namespace FOS.UI
                         displayWorkflow.Execute();
                         break;
                     case "2":
-                        //add an order
+                        AddOrderWorkflow addWorkflow = new AddOrderWorkflow();
+                        addWorkflow.Execute();
                         break;
                     case "3":
                         //Edit an order

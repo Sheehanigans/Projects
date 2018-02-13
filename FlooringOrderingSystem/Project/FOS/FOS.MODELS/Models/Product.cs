@@ -8,7 +8,7 @@ namespace FOS.MODELS.Models
 {
     public class Product
     {
-        public ProductType ProductType { get; set; }
+        public string ProductType { get; set; }
         public decimal CostPerSquareFoot { get; set; }
         public decimal LaborCostPerSquareFoot { get; set; }
     }
