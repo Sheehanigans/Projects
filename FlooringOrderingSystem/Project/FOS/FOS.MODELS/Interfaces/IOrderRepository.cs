@@ -13,8 +13,6 @@ namespace FOS.MODELS.Interfaces
 
         List<Order> ListOrders();
 
-        StateTax GetState(string stateAbbr);
-
         void Add(Order order);
 
         void Edit(Order order, string date);

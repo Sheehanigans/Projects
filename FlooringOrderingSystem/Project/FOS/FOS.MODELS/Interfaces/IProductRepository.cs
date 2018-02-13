@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace FOS.MODELS.Interfaces
 {
-    public interface IStateTaxRepository
+    public interface IProductRepository
     {
-        StateTax GetState(string stateAbbr);
+        List<Product> GetProductList();
     }
 }

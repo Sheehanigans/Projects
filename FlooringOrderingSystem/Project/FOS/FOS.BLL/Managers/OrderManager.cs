@@ -19,25 +19,6 @@ namespace FOS.BLL
             _orderRepository = orderRepository;
         }
 
-        public StateTaxResponse GetStateTax(string stateAbbreviation)
-        {
-            StateTaxResponse response = new StateTaxResponse();
-
-            response.State = _orderRepository.GetState(stateAbbreviation);
-
-            if(response.State == null)
-            {
-                response.Success = false;
-                response.Message = $"State {stateAbbreviation} does not exist.";
-            }
-            else
-            {
-                response.Success = true;
-            }
-
-            return response;
-        }
-
         public OrderDisplayResponse DisplayOrders (string date)
         {
             OrderDisplayResponse response = new OrderDisplayResponse();
@@ -62,6 +43,7 @@ namespace FOS.BLL
 
             response.Orders = _orderRepository.ListOrders();
 
+            // hmmm might need to add validation if null, what if there are no orders yet?
             response.Success = true;
 
             return response;

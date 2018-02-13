@@ -22,10 +22,6 @@ namespace FOS.DATA
             Area = 100.00M,
             CostPerSquareFoot = 5.15M,
             LaborCostPerSquareFoot = 4.75M,
-            MaterialCost = 515M,
-            LaberCost = 24.47M,
-            Tax = 33.71M,
-            Total = 573.18M
         };
 
         private static Order _order2 = new Order
@@ -39,26 +35,7 @@ namespace FOS.DATA
             Area = 100.00M,
             CostPerSquareFoot = 5.15M,
             LaborCostPerSquareFoot = 4.75M,
-            MaterialCost = 515M,
-            LaberCost = 24.47M,
-            Tax = 33.71M,
-            Total = 573.18M
         };
-
-        private static StateTax _stateTax1 = new StateTax
-        {
-            StateAbbreviation = "OH",
-            StateName = "Ohio",
-            TaxRate = 6.00M
-        };
-
-        private static StateTax _stateTax2 = new StateTax
-        {
-            StateAbbreviation = "MI",
-            StateName = "Michigan",
-            TaxRate = 6.25M
-        };
-
 
         public List<Order> ListOrders()
         {
@@ -68,26 +45,6 @@ namespace FOS.DATA
             orders.Add(_order2);
 
             return orders;
-        }
-
-        public StateTax GetState(string stateAbbr)
-        {
-            List<StateTax> stateTaxes = new List<StateTax>();
-
-            stateTaxes.Add(_stateTax1);
-            stateTaxes.Add(_stateTax2);
-
-            StateTax state = null; 
-
-            foreach(StateTax st in stateTaxes)
-            {
-                if (stateAbbr == st.StateAbbreviation)
-                {
-                    state = st;
-                }
-            }
-
-            return state;
         }
 
         public List<Order> DisplayOrders(string date)

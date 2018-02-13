@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FOS.MODELS.Interfaces
+namespace FOS.MODELS.Responses
 {
-    public interface IStateTaxRepository
+    public class ProductListResponse : Response
     {
-        StateTax GetState(string stateAbbr);
+        public List<Product> Products { get; set; }
     }
 }

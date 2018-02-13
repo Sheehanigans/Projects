@@ -1,4 +1,6 @@
-﻿using FOS.MODELS.Models;
+﻿using FOS.BLL.Factories;
+using FOS.BLL.Managers;
+using FOS.MODELS.Models;
 using FOS.MODELS.Responses;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace FOS.BLL.DataValidations
     {
         public static StateTax CreateStateTax(string stateAbbreviation)
         {
-            OrderManager manager = OrderManagerFactory.Create();
+            StateTaxManager manager = StateTaxManagerFactory.Create();
 
             StateTaxResponse stResponse = manager.GetStateTax(stateAbbreviation);
 

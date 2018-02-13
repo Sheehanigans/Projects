@@ -42,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataVaidations\OrderNumberVaidation.cs" />
+    <Compile Include="DataVaidations\ProductListValidation.cs" />
     <Compile Include="DataVaidations\StateTaxValidation.cs" />
+    <Compile Include="Factories\ProductManagerFactory.cs" />
     <Compile Include="Factories\StateTaxManagerFactory.cs" />
     <Compile Include="Managers\OrderManager.cs" />
     <Compile Include="Factories\OrderManagerFactory.cs" />
+    <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Managers\StateTaxManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

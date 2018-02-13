@@ -17,9 +17,9 @@ namespace FOS.MODELS
         public decimal Area { get; set; } 
         public decimal CostPerSquareFoot { get; set; } 
         public decimal LaborCostPerSquareFoot { get; set; }
-        public decimal MaterialCost { get; set; } //calc
-        public decimal LaberCost { get; set; } //calc
-        public decimal Tax { get; set; } //calc
-        public decimal Total { get; set; } //calc
+        public decimal MaterialCost => Area * CostPerSquareFoot;
+        public decimal LaborCost => Area * LaborCostPerSquareFoot;
+        public decimal Tax => ((MaterialCost + LaborCost) * (TaxRate / 100));
+        public decimal Total => MaterialCost + LaborCost + Tax;
     }
 }

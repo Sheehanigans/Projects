@@ -25,24 +25,24 @@ namespace FOS.DATA
             TaxRate = 6.25M
         };
 
-        public void Add(Order order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Edit(Order order, string date)
-        {
-            throw new NotImplementedException();
-        }
-
         public StateTax GetState(string stateAbbr)
         {
-            throw new NotImplementedException();
-        }
+            List<StateTax> stateTaxes = new List<StateTax>();
 
-        public void Remove(Order order, string date)
-        {
-            throw new NotImplementedException();
+            stateTaxes.Add(_stateTax1);
+            stateTaxes.Add(_stateTax2);
+
+            StateTax state = null;
+
+            foreach (StateTax st in stateTaxes)
+            {
+                if (stateAbbr == st.StateAbbreviation)
+                {
+                    state = st;
+                }
+            }
+
+            return state;
         }
     }
 }
