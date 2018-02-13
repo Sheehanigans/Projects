@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\OrderNumber.cs" />
-    <Compile Include="OrderManager.cs" />
-    <Compile Include="OrderManagerFactory.cs" />
+    <Compile Include="DataVaidations\OrderNumberVaidation.cs" />
+    <Compile Include="DataVaidations\StateTaxValidation.cs" />
+    <Compile Include="Factories\StateTaxManagerFactory.cs" />
+    <Compile Include="Managers\OrderManager.cs" />
+    <Compile Include="Factories\OrderManagerFactory.cs" />
+    <Compile Include="Managers\StateTaxManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

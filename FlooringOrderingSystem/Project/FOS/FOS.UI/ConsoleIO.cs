@@ -56,5 +56,60 @@ namespace FOS.UI
 
             return date.ToString("MMddyyyy");
         }
+
+        public static string GetStateInputFromUser()
+        {
+            bool isValidState = false;
+            string state = "";
+
+            while (!isValidState)
+            {
+                Console.WriteLine("Please enter a state in the following format: OH, MN, etc.");
+                string tempState = Console.ReadLine().ToUpper();
+                if (string.IsNullOrEmpty(tempState))
+                {
+                    Console.WriteLine("State input blank.");
+                }
+                else if (tempState.Length > 2 || tempState.Length < 2)
+                {
+                    Console.WriteLine("State input incorrect length.");
+                }
+                else if (tempState.Any(char.IsNumber))
+                {
+                    Console.WriteLine("State input cannot contain numbers.");
+                }
+                else
+                {
+                    state = tempState;
+                    isValidState = true;
+                }
+            }
+
+            return state;
+        }
+
+        public static string GetCustomerName()
+        {
+            bool validName = false;
+            string name = "";
+
+            while (!validName)
+            {
+                Console.WriteLine("Please enter the customer name:");
+                string tempName = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(tempName))
+                {
+                    Console.WriteLine("Enter a valid order date!");
+                }
+                else
+                {
+                    validName = true;
+                    return tempName;
+                }
+
+            }
+            return name;
+        }
     }
 }

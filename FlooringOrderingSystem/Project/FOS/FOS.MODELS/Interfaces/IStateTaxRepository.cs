@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace FOS.MODELS.Interfaces
 {
-    public interface IOrderRepository
+    public interface IStateTaxRepository
     {
-        List<Order> DisplayOrders(string date);
-
-        List<Order> ListOrders();
-
         StateTax GetState(string stateAbbr);
 
         void Add(Order order);

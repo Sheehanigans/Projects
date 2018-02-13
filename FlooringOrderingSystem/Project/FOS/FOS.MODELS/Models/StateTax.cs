@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FOS.MODELS.Models
 {
-    public class Taxes
+    public class StateTax
     {
         public string StateAbbreviation { get; set; }
         public string StateName { get; set; }

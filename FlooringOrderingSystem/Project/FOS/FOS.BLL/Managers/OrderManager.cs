@@ -1,5 +1,6 @@
 ﻿using FOS.MODELS;
 using FOS.MODELS.Interfaces;
+using FOS.MODELS.Models;
 using FOS.MODELS.Responses;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,25 @@ namespace FOS.BLL
         public OrderManager (IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
+        }
+
+        public StateTaxResponse GetStateTax(string stateAbbreviation)
+        {
+            StateTaxResponse response = new StateTaxResponse();
+
+            response.State = _orderRepository.GetState(stateAbbreviation);
+
+            if(response.State == null)
+            {
+                response.Success = false;
+                response.Message = $"State {stateAbbreviation} does not exist.";
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
         }
 
         public OrderDisplayResponse DisplayOrders (string date)

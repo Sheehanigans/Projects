@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FOS.BLL.Helpers
+namespace FOS.BLL.DataValidations
 {
-    public class OrderNumber
+    public class OrderNumberVaidation
     {
         public static int CreateOrderNumber()
         {
