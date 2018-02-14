@@ -27,7 +27,7 @@ namespace FOS.UI.Workflows
             Headers.EditOrderHeader();
 
             //get date
-            string date = ConsoleIO.GetExistingOrderDate("Enter the date of the order you would like to edit (MM/DD/YYYY): ");
+            DateTime date = ConsoleIO.GetExistingOrderDate("Enter the date of the order you would like to edit (MM/DD/YYYY): ");
 
             Console.Clear();
             Headers.EditOrderHeader();
@@ -76,10 +76,12 @@ namespace FOS.UI.Workflows
             List<Product> products = productManager.GetProductList().Products;
             Product product = ConsoleIO.DisplayProducts(products, "edit");
 
-            Console.WriteLine(product.ProductType);
-            Console.ReadLine();
-
             //edit area 
+
+            decimal area = ConsoleIO.GetArea("edit");
+
+            Console.WriteLine(area);
+            Console.ReadLine();
         }
     }
 }

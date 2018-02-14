@@ -19,7 +19,7 @@ namespace FOS.UI.Workflows
             Headers.DisplayOrderHeader();
 
             //date verification should happen at the order manager or repository level
-            string date = ConsoleIO.GetExistingOrderDate("Enter a date to display orders (MM/DD/YYYY):");
+            DateTime date = ConsoleIO.GetExistingOrderDate("Enter a date to display orders (MM/DD/YYYY):");
 
             OrderDisplayListResponse response = manager.DisplayOrders(date);
 

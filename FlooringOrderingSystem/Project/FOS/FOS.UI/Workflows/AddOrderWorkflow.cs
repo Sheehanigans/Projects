@@ -75,7 +75,7 @@ namespace FOS.UI.Workflows
             Headers.AddOrderHeader();
 
             //get area
-            newOrder.Area = ConsoleIO.GetArea();
+            newOrder.Area = ConsoleIO.GetArea("edit");
 
             Console.Clear();
             Headers.AddOrderHeader();

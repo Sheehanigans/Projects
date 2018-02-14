@@ -10,7 +10,7 @@ namespace FOS.UI
 {
     public class ConsoleIO
     {
-        public static string GetNewOrderDate(string prompt)
+        public static DateTime GetNewOrderDate(string prompt)
         {
             bool isValid = false;
             DateTime date = DateTime.Now;
@@ -41,7 +41,7 @@ namespace FOS.UI
                 }
             }
 
-            return date.ToString("MMddyyyy");
+            return date;
         }
 
         internal static int GetOrderNumberFromUser(string prompt)
@@ -79,7 +79,7 @@ namespace FOS.UI
             return choice;            
         }
 
-        public static string GetExistingOrderDate(string prompt)
+        public static DateTime GetExistingOrderDate(string prompt)
         {
             bool isValid = false;
             DateTime date = DateTime.Now;
@@ -106,10 +106,10 @@ namespace FOS.UI
                 }
             }
 
-            return date.ToString("MMddyyyy");
+            return date;
         }
 
-        public static decimal GetArea()
+        public static decimal GetArea(string workflow)
         {
             bool validInput = false;
             decimal area = 0;
@@ -120,7 +120,11 @@ namespace FOS.UI
 
                 Console.WriteLine("Enter the area amount in square feet:");
                 string input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input))
+                if(string.IsNullOrEmpty(input) && workflow == "edit")
+                {
+                    validInput = true;
+                }
+                else if (string.IsNullOrEmpty(input))
                 {
                     Console.WriteLine("Input is blank");
                 }

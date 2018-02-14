@@ -19,7 +19,7 @@ namespace FOS.BLL
             _orderRepository = orderRepository;
         }
 
-        public OrderDisplayListResponse DisplayOrders(string date)
+        public OrderDisplayListResponse DisplayOrders(DateTime date)
         {
             OrderDisplayListResponse response = new OrderDisplayListResponse();
 
@@ -63,16 +63,19 @@ namespace FOS.BLL
             return response;
         }
 
-        public OrderDisplaySingleResponse DisplaySingleOrder(string date, int orderNumber)
+        public OrderDisplaySingleResponse DisplaySingleOrder(DateTime date, int orderNumber)
         {
             OrderDisplaySingleResponse response = new OrderDisplaySingleResponse();
+
+            //put response into a variable and look at the contents 
+            //need to get order numbers BY DATE too
 
             if (DisplayOrders(date).Orders == null)
             {
                 response.Message = "Order date does not exist";
                 response.Success = false;
             }
-            else if (orderNumber > GetOrderNumber().Orders.Count)
+            else if (GetOrderNumber().Orders.Any(a => a.OrderNumber != orderNumber))
             {
                 response.Message = "Order number does not exist";
                 response.Success = false;

@@ -9,7 +9,8 @@ namespace FOS.MODELS
 {
     public class Order
     {
-        public string Date { get; set; }
+        //needs to be a datetime 
+        public DateTime Date { get; set; }
         public int OrderNumber { get; set; }
         public string CustomerName { get; set; }
         public string State { get; set; }

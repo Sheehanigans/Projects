@@ -13,7 +13,7 @@ namespace FOS.DATA
     {
         private static Order _order1 = new Order
         {
-            Date = "02022018",
+            Date = new DateTime(2018,02,02),
             OrderNumber = 1,
             CustomerName = "Ryan",
             State = "OH",
@@ -26,7 +26,7 @@ namespace FOS.DATA
 
         private static Order _order2 = new Order
         {
-            Date = "03032018",
+            Date = new DateTime(2018,03,03),
             OrderNumber = 2,
             CustomerName = "Ryan",
             State = "OH",
@@ -51,7 +51,7 @@ namespace FOS.DATA
             return orders;
         }
 
-        public List<Order> DisplayOrders(string date)
+        public List<Order> DisplayOrders(DateTime date)
         {
             List<Order> ordersForDate = new List<Order>();
 
@@ -80,7 +80,7 @@ namespace FOS.DATA
             return true;            
         }
 
-        public Order DisplaySingleOrder(string date, int orderNumber)
+        public Order DisplaySingleOrder(DateTime date, int orderNumber)
         {           
             var order = ListOrders()
                 .Where(w => w.Date == date)
@@ -91,12 +91,12 @@ namespace FOS.DATA
             return order;
         }
 
-        public void Edit(Order order, string date)
+        public void Edit(Order order, DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(Order order, string date)
+        public void Remove(Order order, DateTime date)
         {
             throw new NotImplementedException();
         }
