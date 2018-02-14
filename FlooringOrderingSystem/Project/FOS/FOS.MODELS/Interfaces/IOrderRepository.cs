@@ -13,7 +13,7 @@ namespace FOS.MODELS.Interfaces
 
         List<Order> ListOrders();
 
-        void Add(Order order);
+        bool Add(Order order);
 
         void Edit(Order order, string date);
 

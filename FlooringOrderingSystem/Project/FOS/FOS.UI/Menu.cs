@@ -14,8 +14,8 @@ namespace FOS.UI
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Weclcome to the SWC Corp Flooring Ordering System");
-                Console.WriteLine("-----------------------------------------------------");
+                Console.WriteLine("\nWeclcome to the SWC Corp Flooring Ordering System");
+                Console.WriteLine("--------------------------------------------------");
                 Console.WriteLine("1. Display Orders");
                 Console.WriteLine("2. Add an Order");
                 Console.WriteLine("3. Edit an Order");

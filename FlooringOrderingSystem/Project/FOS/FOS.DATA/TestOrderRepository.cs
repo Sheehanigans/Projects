@@ -37,12 +37,16 @@ namespace FOS.DATA
             LaborCostPerSquareFoot = 4.75M,
         };
 
+        //Empty order to save in mem
+        private static Order _order3 = new Order();
+
         public List<Order> ListOrders()
         {
             List<Order> orders = new List<Order>();
 
             orders.Add(_order1);
             orders.Add(_order2);
+            orders.Add(_order3);
 
             return orders;
         }
@@ -69,9 +73,11 @@ namespace FOS.DATA
             return ordersForDate;
         }
 
-        public void Add(Order order)
+        public bool Add(Order order)
         {
-            throw new NotImplementedException();
+            _order3 = order;
+
+            return true;            
         }
 
         public void Edit(Order order, string date)

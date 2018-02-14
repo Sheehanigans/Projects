@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataVaidations\OrderAddValidation.cs" />
     <Compile Include="DataVaidations\OrderNumberVaidation.cs" />
     <Compile Include="DataVaidations\ProductListValidation.cs" />
     <Compile Include="DataVaidations\StateTaxValidation.cs" />

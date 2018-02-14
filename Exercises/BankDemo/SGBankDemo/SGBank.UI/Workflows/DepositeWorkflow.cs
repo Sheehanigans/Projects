@@ -21,20 +21,6 @@ namespace SGBank.UI.Workflows
 
             Console.Write("Enter a deposite amount: ");
 
-            //start validation
-
-            //bool validEntry = false;
-            //int ouput;
-            //int amount;
-
-            //while (!validEntry)
-            //{
-            //    decimal input = decimal.Parse(Console.ReadLine());
-
-            //    if(input == )
-            //}
-
-            //end validation
 
             decimal amount = decimal.Parse(Console.ReadLine());
 

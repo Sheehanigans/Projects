@@ -27,7 +27,6 @@ namespace FOS.BLL.DataValidations
                 Console.WriteLine("An error occured: ");
                 Console.WriteLine(stResponse.Message);
             }
-            //StateTax state = manager.GetStateTax(stateAbbreviation).State;
 
             return stResponse.State;
         }

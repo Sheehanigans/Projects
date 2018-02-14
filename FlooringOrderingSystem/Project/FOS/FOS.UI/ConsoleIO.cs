@@ -10,21 +10,7 @@ namespace FOS.UI
 {
     public class ConsoleIO
     {
-        public static void DisplayOrderDetails(Order order)
-        {
-            Console.WriteLine($"**************************************");
-            Console.WriteLine($"{order.OrderNumber} | {order.Date}");
-            Console.WriteLine($"{order.CustomerName}");
-            Console.WriteLine($"{order.State}");
-            Console.WriteLine($"Product: {order.ProductType}");
-            Console.WriteLine($"Materials: {order.MaterialCost}");
-            Console.WriteLine($"Labor: {order.LaborCost}");
-            Console.WriteLine($"Tax: {order.Tax}");
-            Console.WriteLine($"Total: {order.Total}");
-            Console.WriteLine($"**************************************");
-        }
-
-        public static string GetDate(string prompt)
+        public static string GetNewOrderDate(string prompt)
         {
             bool isValid = false;
             DateTime date = DateTime.Now;
@@ -58,6 +44,36 @@ namespace FOS.UI
             return date.ToString("MMddyyyy");
         }
 
+        public static string GetExistingOrderDate(string prompt)
+        {
+            bool isValid = false;
+            DateTime date = DateTime.Now;
+            while (!isValid)
+            {
+                Console.WriteLine(prompt);
+
+                string orderDate = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(orderDate))
+                {
+                    Console.WriteLine("Enter a valid order date!");
+                }
+                else
+                {
+                    if (!DateTime.TryParse(orderDate, out date))
+                    {
+                        Console.WriteLine("Enter a valid order date!");
+                    }
+                    else
+                    {
+                        isValid = true;
+                    }
+                }
+            }
+
+            return date.ToString("MMddyyyy");
+        }
+
         public static decimal GetArea()
         {
             bool validInput = false;
@@ -67,7 +83,7 @@ namespace FOS.UI
             {
                 decimal output = 0;
 
-                Console.WriteLine("Enter an area.");
+                Console.WriteLine("Enter the area amount in square feet:");
                 string input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input))
                 {
@@ -104,11 +120,11 @@ namespace FOS.UI
                 int listNumber = 1;
                 foreach (Product prod in products)
                 {
-                    Console.WriteLine($"{listNumber}: {prod.ProductType}. ${prod.CostPerSquareFoot} per sq ft. ${prod.LaborCostPerSquareFoot} labor cost per sq ft.");
+                    Console.WriteLine($"#{listNumber} **{prod.ProductType}** ${prod.CostPerSquareFoot} per sq ft. ${prod.LaborCostPerSquareFoot} labor cost per sq ft.");
                     listNumber++;
                 }
 
-                Console.WriteLine("Choose a product by number");
+                Console.WriteLine("\nType the number that corresponds to the product you would like to select:");
 
                 string userInput = Console.ReadLine();
 
@@ -144,7 +160,7 @@ namespace FOS.UI
 
             while (!isValidState)
             {
-                Console.WriteLine("Please enter a state in the following format: OH, MN, etc.");
+                Console.WriteLine("Please enter a two letter state code:");
                 string tempState = Console.ReadLine().ToUpper();
                 if (string.IsNullOrEmpty(tempState))
                 {

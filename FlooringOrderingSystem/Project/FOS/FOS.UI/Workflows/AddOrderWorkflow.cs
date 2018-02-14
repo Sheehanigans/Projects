@@ -4,6 +4,7 @@ using FOS.BLL.DataValidations;
 using FOS.MODELS;
 using FOS.MODELS.Models;
 using FOS.MODELS.Responses;
+using FOS.UI.UI_Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +20,23 @@ namespace FOS.UI.Workflows
             OrderManager orderManager = OrderManagerFactory.Create();
 
             Console.Clear();
-            Console.WriteLine("Add an order:");
-            Console.WriteLine("---------------------------------------");
-            Console.WriteLine();
+
+            Headers.AddOrderHeader();
 
             //create order object
             Order newOrder = new Order();
 
-            newOrder.Date = ConsoleIO.GetDate("Please enter a date in the following format: 01/01/2020");
+            //get date
+            newOrder.Date = ConsoleIO.GetNewOrderDate("Enter a date (MM/DD/YYYY):");
+
+            Console.Clear();
+            Headers.AddOrderHeader();
 
             newOrder.OrderNumber = OrderNumberVaidation.CreateOrderNumber();
             newOrder.CustomerName = ConsoleIO.GetCustomerName();
+
+            Console.Clear();
+            Headers.AddOrderHeader();
 
             //get state tax
             bool validState = false;
@@ -49,6 +56,9 @@ namespace FOS.UI.Workflows
                 }
             }
 
+            Console.Clear();
+            Headers.AddOrderHeader();
+
             //set state
             newOrder.State = stateTax.StateAbbreviation;
             newOrder.TaxRate = stateTax.TaxRate;
@@ -60,22 +70,29 @@ namespace FOS.UI.Workflows
             newOrder.CostPerSquareFoot = product.CostPerSquareFoot;
             newOrder.LaborCostPerSquareFoot = product.LaborCostPerSquareFoot;
 
+            Console.Clear();
+            Headers.AddOrderHeader();
+
             //get area
             newOrder.Area = ConsoleIO.GetArea();
 
+            Console.Clear();
+            Headers.AddOrderHeader();
+
             //display new order
-            ConsoleIO.DisplayOrderDetails(newOrder);
+            ShowDetails.DisplayOrderDetails(newOrder);
 
             if (ConsoleIO.GetYesOrNo("Add order? ") == "Y")
             {
-                //add it
+                OrderAddValidation.AddOrder(newOrder);
+                Console.WriteLine("Order added! Press any key to continue...");
+                Console.ReadKey();
             }
             else
             {
-                Console.WriteLine("Order cancelled");
+                Console.WriteLine("Order cancelled :(");
                 Console.ReadLine();
             }
-
         }
     }
 }

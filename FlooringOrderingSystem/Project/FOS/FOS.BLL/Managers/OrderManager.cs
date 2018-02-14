@@ -48,5 +48,19 @@ namespace FOS.BLL
 
             return response;
         }
+
+        public OrderAddResponse AddOrderToRepository(Order order)
+        {
+            OrderAddResponse response = new OrderAddResponse();
+
+            response.Success = _orderRepository.Add(order);
+
+            if (!response.Success)
+            {
+                response.Message = "Add failed";
+            }
+
+            return response;
+        }
     }
 }
