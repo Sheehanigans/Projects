@@ -22,5 +22,18 @@ namespace FOS.MODELS
         public decimal LaborCost => Area * LaborCostPerSquareFoot;
         public decimal Tax => ((MaterialCost + LaborCost) * (TaxRate / 100));
         public decimal Total => MaterialCost + LaborCost + Tax;
+
+        //public Order (Order oldOrder) //copy constructor
+        //{
+        //    Date = oldOrder.Date;
+        //    OrderNumber = oldOrder.OrderNumber;
+        //    CustomerName = oldOrder.CustomerName;
+        //    State = oldOrder.State;
+        //    TaxRate = oldOrder.TaxRate;
+        //    ProductType = oldOrder.ProductType;
+        //    Area = oldOrder.Area;
+        //    CostPerSquareFoot = oldOrder.CostPerSquareFoot;
+        //    LaborCostPerSquareFoot = oldOrder.LaborCostPerSquareFoot;
+        //}
     }
 }

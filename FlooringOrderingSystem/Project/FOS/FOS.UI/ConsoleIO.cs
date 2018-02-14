@@ -44,6 +44,41 @@ namespace FOS.UI
             return date.ToString("MMddyyyy");
         }
 
+        internal static int GetOrderNumberFromUser(string prompt)
+        {
+            bool validInput = false;
+            int choice = 0;
+
+            while (!validInput)
+            {
+                Console.WriteLine($"{prompt}");
+
+                string userInput = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(userInput))
+                {
+                    Console.WriteLine("Blank input.");
+                }
+                else
+                {
+                    if (!int.TryParse(userInput, out choice))
+                    {
+                        Console.WriteLine("Invalid choice: not a number.");
+                    }
+                    else if (choice < 0)
+                    {
+                        Console.WriteLine("Invalid choice: cannot be negative");
+
+                    }
+                    else
+                    {
+                        validInput = true;
+                    }
+                }
+            }
+            return choice;            
+        }
+
         public static string GetExistingOrderDate(string prompt)
         {
             bool isValid = false;
@@ -109,7 +144,7 @@ namespace FOS.UI
             return area;
         }
 
-        public static Product DisplayProducts(List<Product> products)
+        public static Product DisplayProducts(List<Product> products, string workflow)
         {
             bool validInput = false;
             Product product = null;
@@ -128,8 +163,11 @@ namespace FOS.UI
 
                 string userInput = Console.ReadLine();
 
-
-                if (string.IsNullOrEmpty(userInput))
+                if (workflow == "edit" && string.IsNullOrEmpty(userInput))
+                {
+                    validInput = true;
+                }
+                else if(string.IsNullOrEmpty(userInput))
                 {
                     Console.WriteLine("Blank input.");
                 }
@@ -139,7 +177,7 @@ namespace FOS.UI
                     {
                         Console.WriteLine("Invalid choice: not a number.");
                     }
-                    else if (choice > listNumber)
+                    else if (choice > listNumber - 1)
                     {
                         Console.WriteLine("Invalid choice: number too high.");
                     }
@@ -153,7 +191,7 @@ namespace FOS.UI
             return product;
         }
 
-        public static string GetStateInputFromUser()
+        public static string GetStateInputFromUser(string workflow)
         {
             bool isValidState = false;
             string state = "";
@@ -162,7 +200,11 @@ namespace FOS.UI
             {
                 Console.WriteLine("Please enter a two letter state code:");
                 string tempState = Console.ReadLine().ToUpper();
-                if (string.IsNullOrEmpty(tempState))
+                if(workflow == "edit" && tempState == "")
+                {
+                    isValidState = true;
+                }
+                else if (string.IsNullOrEmpty(tempState))
                 {
                     Console.WriteLine("State input blank.");
                 }
@@ -184,7 +226,7 @@ namespace FOS.UI
             return state;
         }
 
-        public static string GetCustomerName()
+        public static string GetCustomerName(string workflow)
         {
             bool validName = false;
             string name = "";
@@ -194,9 +236,9 @@ namespace FOS.UI
                 Console.WriteLine("Please enter the customer name:");
                 string tempName = Console.ReadLine();
 
-                if (string.IsNullOrEmpty(tempName))
+                if (string.IsNullOrEmpty(tempName) && workflow != "edit")
                 {
-                    Console.WriteLine("Enter a valid order date!");
+                    Console.WriteLine("Enter a valid name!");
                 }
                 else
                 {

@@ -80,6 +80,17 @@ namespace FOS.DATA
             return true;            
         }
 
+        public Order DisplaySingleOrder(string date, int orderNumber)
+        {           
+            var order = ListOrders()
+                .Where(w => w.Date == date)
+                .Where(w => w.OrderNumber == orderNumber)
+                .OfType<Order>()
+                .First();
+
+            return order;
+        }
+
         public void Edit(Order order, string date)
         {
             throw new NotImplementedException();
@@ -89,5 +100,6 @@ namespace FOS.DATA
         {
             throw new NotImplementedException();
         }
+
     }
 }

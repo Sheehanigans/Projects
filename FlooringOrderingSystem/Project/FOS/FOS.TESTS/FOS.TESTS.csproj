@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateTaxResponse.cs" />
     <Compile Include="TestOrderTests.cs" />
   </ItemGroup>
   <ItemGroup>

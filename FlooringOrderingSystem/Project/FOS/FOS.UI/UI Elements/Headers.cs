@@ -27,5 +27,14 @@ namespace FOS.UI.UI_Elements
             Console.WriteLine(SeperatorBar);
             Console.WriteLine();
         }
+
+        public static void EditOrderHeader()
+        {
+            Console.WriteLine();
+            Console.WriteLine(SeperatorBar);
+            Console.WriteLine("         Edit An Order:       ");
+            Console.WriteLine(SeperatorBar);
+            Console.WriteLine();
+        }
     }
 }

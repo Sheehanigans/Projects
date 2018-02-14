@@ -12,7 +12,7 @@ namespace FOS.BLL.DataValidations
 {
     public class StateTaxValidation
     {
-        public static StateTax CreateStateTax(string stateAbbreviation)
+        public static StateTaxResponse CreateStateTax(string stateAbbreviation)
         {
             StateTaxManager manager = StateTaxManagerFactory.Create();
 
@@ -20,7 +20,7 @@ namespace FOS.BLL.DataValidations
 
             if (stResponse.Success)
             {
-                return stResponse.State;
+                return stResponse;
             }
             else
             {
@@ -28,7 +28,7 @@ namespace FOS.BLL.DataValidations
                 Console.WriteLine(stResponse.Message);
             }
 
-            return stResponse.State;
+            return stResponse;
         }
     }
 }

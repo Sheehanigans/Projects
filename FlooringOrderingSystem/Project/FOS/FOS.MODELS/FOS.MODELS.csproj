@@ -48,8 +48,9 @@
     <Compile Include="Models\StateTax.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\OrderAddResponse.cs" />
-    <Compile Include="Responses\OrderDisplayResponse.cs" />
+    <Compile Include="Responses\OrderDisplayListResponse.cs" />
     <Compile Include="Responses\OrderNumberResponse.cs" />
+    <Compile Include="Responses\OrderDisplaySingleResponse.cs" />
     <Compile Include="Responses\ProductListResponse.cs" />
     <Compile Include="Responses\Response.cs" />
     <Compile Include="Responses\StateTaxResponse.cs" />

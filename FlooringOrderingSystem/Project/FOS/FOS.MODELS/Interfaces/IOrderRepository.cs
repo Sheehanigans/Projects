@@ -9,6 +9,8 @@ namespace FOS.MODELS.Interfaces
 {
     public interface IOrderRepository
     {
+        Order DisplaySingleOrder(string date, int orderNumber);
+
         List<Order> DisplayOrders(string date);
 
         List<Order> ListOrders();

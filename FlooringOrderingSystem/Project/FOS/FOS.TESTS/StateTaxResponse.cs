@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FOS.MODELS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace FOS.MODELS.Responses
 {
-    public class Response
+    public class StateTaxResponse : Response
     {
-        public bool Success { get; set; }
-        public string Message { get; set; }
+        public StateTax State { get; set; }
     }
 }

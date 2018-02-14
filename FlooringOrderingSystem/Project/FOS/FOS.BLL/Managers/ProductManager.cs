@@ -17,7 +17,7 @@ namespace FOS.BLL.Managers
             _productRepository = productRepository;
         }
 
-        internal ProductListResponse GetProductList()
+        public ProductListResponse GetProductList()
         {
             ProductListResponse response = new ProductListResponse();
 

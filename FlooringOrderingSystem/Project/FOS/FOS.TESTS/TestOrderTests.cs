@@ -18,7 +18,7 @@ namespace FOS.TESTS
         {
             OrderManager manager = OrderManagerFactory.Create();
 
-            OrderDisplayResponse response = manager.DisplayOrders("02022018");
+            OrderDisplayListResponse response = manager.DisplayOrders("02022018");
 
             Assert.IsNotNull(response.Orders);
             Assert.IsTrue(response.Success);

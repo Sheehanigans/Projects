@@ -14,18 +14,18 @@ namespace FOS.BLL
     {
         private IOrderRepository _orderRepository;
 
-        public OrderManager (IOrderRepository orderRepository)
+        public OrderManager(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
         }
 
-        public OrderDisplayResponse DisplayOrders (string date)
+        public OrderDisplayListResponse DisplayOrders(string date)
         {
-            OrderDisplayResponse response = new OrderDisplayResponse();
+            OrderDisplayListResponse response = new OrderDisplayListResponse();
 
             response.Orders = _orderRepository.DisplayOrders(date);
 
-            if(response.Orders == null)
+            if (response.Orders == null)
             {
                 response.Success = false;
                 response.Message = $"There were no files for {date}.";
@@ -62,5 +62,36 @@ namespace FOS.BLL
 
             return response;
         }
-    }
+
+        public OrderDisplaySingleResponse DisplaySingleOrder(string date, int orderNumber)
+        {
+            OrderDisplaySingleResponse response = new OrderDisplaySingleResponse();
+
+            if (DisplayOrders(date).Orders == null)
+            {
+                response.Message = "Order date does not exist";
+                response.Success = false;
+            }
+            else if (orderNumber > GetOrderNumber().Orders.Count)
+            {
+                response.Message = "Order number does not exist";
+                response.Success = false;
+            }
+            else
+            {
+                response.Order = _orderRepository.DisplaySingleOrder(date, orderNumber);
+
+                if (response.Order == null)
+                {
+                    response.Success = false;
+                    response.Message = "Could not find order";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }
+            return response;
+        }
+    } 
 }

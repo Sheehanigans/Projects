@@ -18,6 +18,7 @@ namespace FOS.UI.Workflows
         public void Execute()
         {
             OrderManager orderManager = OrderManagerFactory.Create();
+            string workflow = "add";
 
             Console.Clear();
 
@@ -33,7 +34,7 @@ namespace FOS.UI.Workflows
             Headers.AddOrderHeader();
 
             newOrder.OrderNumber = OrderNumberVaidation.CreateOrderNumber();
-            newOrder.CustomerName = ConsoleIO.GetCustomerName();
+            newOrder.CustomerName = ConsoleIO.GetCustomerName("add");
 
             Console.Clear();
             Headers.AddOrderHeader();
@@ -43,8 +44,8 @@ namespace FOS.UI.Workflows
             StateTax stateTax = null;
             while (!validState)
             {
-                string stateAbbratiavtion = ConsoleIO.GetStateInputFromUser();
-                StateTax tempStateTax = StateTaxValidation.CreateStateTax(stateAbbratiavtion);
+                string stateAbbratiavtion = ConsoleIO.GetStateInputFromUser("add");
+                StateTax tempStateTax = StateTaxValidation.CreateStateTax(stateAbbratiavtion).State;
                 if(tempStateTax == null)
                 {
                     validState = false;
@@ -65,7 +66,7 @@ namespace FOS.UI.Workflows
 
             //get product
             List<Product> products = ProductListValidation.CreateProductList();
-            Product product = ConsoleIO.DisplayProducts(products);
+            Product product = ConsoleIO.DisplayProducts(products, "add");
             newOrder.ProductType = product.ProductType;
             newOrder.CostPerSquareFoot = product.CostPerSquareFoot;
             newOrder.LaborCostPerSquareFoot = product.LaborCostPerSquareFoot;
@@ -82,6 +83,7 @@ namespace FOS.UI.Workflows
             //display new order
             ShowDetails.DisplayOrderDetails(newOrder);
 
+            //--show message if add failed--
             if (ConsoleIO.GetYesOrNo("Add order? ") == "Y")
             {
                 OrderAddValidation.AddOrder(newOrder);

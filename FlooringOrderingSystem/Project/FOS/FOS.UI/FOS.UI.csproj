@@ -50,6 +50,7 @@
     <Compile Include="UI Elements\ShowDetails.cs" />
     <Compile Include="Workflows\AddOrderWorkflow.cs" />
     <Compile Include="Workflows\DisplayOrdersWorkflow.cs" />
+    <Compile Include="Workflows\EditOrderWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
