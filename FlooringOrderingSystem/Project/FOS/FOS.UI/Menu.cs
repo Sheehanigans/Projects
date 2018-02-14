@@ -9,12 +9,12 @@ namespace FOS.UI
 {
     public class Menu
     {
-        public static void Start()
+        public static int Start()
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("\nWeclcome to the SWC Corp Flooring Ordering System");
+                Console.WriteLine("\nWelcome to the SWC Corp Flooring Ordering System");
                 Console.WriteLine("--------------------------------------------------");
                 Console.WriteLine("1. Display Orders");
                 Console.WriteLine("2. Add an Order");
@@ -43,7 +43,7 @@ namespace FOS.UI
                         //Remove an order
                         break;
                     case "Q":
-                        return;
+                        return 1;
                 }
             }
         }

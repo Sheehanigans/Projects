@@ -70,12 +70,14 @@ namespace FOS.BLL
             //put response into a variable and look at the contents 
             //need to get order numbers BY DATE too
 
+            //Order order = GetOrderNumber().Orders.Where(w => w.OrderNumber == orderNumber).Where(w => w.Date == date).First();
+
             if (DisplayOrders(date).Orders == null)
             {
                 response.Message = "Order date does not exist";
                 response.Success = false;
             }
-            else if (GetOrderNumber().Orders.Any(a => a.OrderNumber != orderNumber))
+            else if (GetOrderNumber().Orders.Where(w => w.OrderNumber == orderNumber).Where(w => w.Date == date).First() == null)
             {
                 response.Message = "Order number does not exist";
                 response.Success = false;
