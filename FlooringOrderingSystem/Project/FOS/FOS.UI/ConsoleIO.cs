@@ -120,7 +120,7 @@ namespace FOS.UI
 
                 Console.WriteLine("Enter the area amount in square feet:");
                 string input = Console.ReadLine();
-                if(string.IsNullOrEmpty(input) && workflow == "edit")
+                if(string.IsNullOrEmpty(input) && workflow == "Edit")
                 {
                     validInput = true;
                     area = int.MaxValue;
@@ -172,7 +172,7 @@ namespace FOS.UI
 
                 string userInput = Console.ReadLine();
 
-                if (workflow == "edit" && string.IsNullOrEmpty(userInput))
+                if (workflow == "Edit" && string.IsNullOrEmpty(userInput))
                 {
                     validInput = true;
                 }
@@ -209,7 +209,7 @@ namespace FOS.UI
             {
                 Console.WriteLine("Please enter a two letter state code:");
                 string tempState = Console.ReadLine().ToUpper();
-                if(workflow == "edit" && tempState == "")
+                if(workflow == "Edit" && tempState == "")
                 {
                     isValidState = true;
                 }
@@ -242,7 +242,7 @@ namespace FOS.UI
 
             while (!validName)
             {
-                if(workflow == "edit")
+                if(workflow == "Edit")
                 {
                     Console.WriteLine($"Please enter the customer name ({name}):");
                 }
@@ -252,7 +252,7 @@ namespace FOS.UI
                 }
                 string tempName = Console.ReadLine();
 
-                if (string.IsNullOrEmpty(tempName) && workflow != "edit")
+                if (string.IsNullOrEmpty(tempName) && workflow != "Edit")
                 {
                     Console.WriteLine("Enter a valid name!");
                 }

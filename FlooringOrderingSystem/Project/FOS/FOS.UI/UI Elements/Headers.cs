@@ -10,29 +10,12 @@ namespace FOS.UI.UI_Elements
     {
         public static string SeperatorBar = "=================================";
 
-        public static void AddOrderHeader()
+        public static void DisplayHeader(string workflow)
         {
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine(SeperatorBar);
-            Console.WriteLine("         Add An Order:       ");
-            Console.WriteLine(SeperatorBar);
-            Console.WriteLine();
-        }
-
-        public static void DisplayOrderHeader()
-        {
-            Console.WriteLine();
-            Console.WriteLine(SeperatorBar);
-            Console.WriteLine("         Display an Order       ");
-            Console.WriteLine(SeperatorBar);
-            Console.WriteLine();
-        }
-
-        public static void EditOrderHeader()
-        {
-            Console.WriteLine();
-            Console.WriteLine(SeperatorBar);
-            Console.WriteLine("         Edit An Order:       ");
+            Console.WriteLine($"         {workflow} An Order:       ");
             Console.WriteLine(SeperatorBar);
             Console.WriteLine();
         }

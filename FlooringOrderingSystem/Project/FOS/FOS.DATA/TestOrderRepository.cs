@@ -67,7 +67,8 @@ namespace FOS.DATA
                 .Where(w => w.OrderNumber == order.OrderNumber)
                 .First();
 
-            oldOrder = order;
+            orders.Remove(oldOrder);
+            orders.Add(order);
 
             var editedOrder = ListOrders()
                 .Where(w => w.OrderNumber == order.OrderNumber)
@@ -83,9 +84,22 @@ namespace FOS.DATA
             }
         }
 
-        public void Remove(Order order, DateTime date)
+        public bool Remove(Order order)
         {
-            throw new NotImplementedException();
+            var orderToRemove = ListOrders()
+                .Where(w => w.OrderNumber == order.OrderNumber)
+                .First();
+
+            orders.Remove(orderToRemove);
+
+            if (!orders.Contains(order))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

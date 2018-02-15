@@ -17,12 +17,11 @@ namespace FOS.UI.Workflows
     {
         public void Execute()
         {
+            string workflow = "Add";
+
             OrderManager orderManager = OrderManagerFactory.Create();
-            string workflow = "add";
 
-            Console.Clear();
-
-            Headers.AddOrderHeader();
+            Headers.DisplayHeader(workflow);
 
             //create order object
             Order newOrder = new Order();
@@ -30,21 +29,20 @@ namespace FOS.UI.Workflows
             //get date
             newOrder.Date = ConsoleIO.GetNewOrderDate("Enter a date (MM/DD/YYYY):");
 
-            Console.Clear();
-            Headers.AddOrderHeader();
+            Headers.DisplayHeader(workflow);
+
 
             newOrder.OrderNumber = OrderNumberVaidation.CreateOrderNumber();
-            newOrder.CustomerName = ConsoleIO.GetCustomerName("add","none");
+            newOrder.CustomerName = ConsoleIO.GetCustomerName("Add","none");
 
-            Console.Clear();
-            Headers.AddOrderHeader();
+            Headers.DisplayHeader(workflow);
 
             //get state tax
             bool validState = false;
             StateTax stateTax = null;
             while (!validState)
             {
-                string stateAbbratiavtion = ConsoleIO.GetStateInputFromUser("add");
+                string stateAbbratiavtion = ConsoleIO.GetStateInputFromUser("Add");
                 StateTax tempStateTax = StateTaxValidation.CreateStateTax(stateAbbratiavtion).State;
                 if(tempStateTax == null)
                 {
@@ -57,8 +55,7 @@ namespace FOS.UI.Workflows
                 }
             }
 
-            Console.Clear();
-            Headers.AddOrderHeader();
+            Headers.DisplayHeader(workflow);
 
             //set state
             newOrder.State = stateTax.StateAbbreviation;
@@ -66,19 +63,18 @@ namespace FOS.UI.Workflows
 
             //get product
             List<Product> products = ProductListValidation.CreateProductList();
-            Product product = ConsoleIO.DisplayProducts(products, "add");
+            Product product = ConsoleIO.DisplayProducts(products, "Add");
             newOrder.ProductType = product.ProductType;
             newOrder.CostPerSquareFoot = product.CostPerSquareFoot;
             newOrder.LaborCostPerSquareFoot = product.LaborCostPerSquareFoot;
 
-            Console.Clear();
-            Headers.AddOrderHeader();
+            Headers.DisplayHeader(workflow);
 
             //get area
-            newOrder.Area = ConsoleIO.GetArea("add");
+            newOrder.Area = ConsoleIO.GetArea("Add");
 
-            Console.Clear();
-            Headers.AddOrderHeader();
+            Headers.DisplayHeader(workflow);
+
 
             //display new order
             ShowDetails.DisplayOrderDetails(newOrder);

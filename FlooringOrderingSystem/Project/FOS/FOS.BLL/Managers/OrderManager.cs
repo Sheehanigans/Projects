@@ -19,9 +19,9 @@ namespace FOS.BLL
             _orderRepository = orderRepository;
         }
 
-        public OrderDisplayListResponse GetOrderList(DateTime date)
+        public OrderGetListResponse GetOrderList(DateTime date)
         {
-            OrderDisplayListResponse response = new OrderDisplayListResponse();
+            OrderGetListResponse response = new OrderGetListResponse();
 
             response.Orders = _orderRepository.DisplayOrders(date);
 
@@ -63,9 +63,9 @@ namespace FOS.BLL
             return response;
         }
 
-        public OrderDisplaySingleResponse DisplaySingleOrder(DateTime date, int orderNumber)
+        public OrderGetSingleResponse DisplaySingleOrder(DateTime date, int orderNumber)
         {
-            OrderDisplaySingleResponse response = new OrderDisplaySingleResponse();
+            OrderGetSingleResponse response = new OrderGetSingleResponse();
 
             var orders = GetOrderList(date).Orders;
 
@@ -95,15 +95,29 @@ namespace FOS.BLL
             return response;
         }
 
-        public OrderAddEditedResponse AddEditedOrderToRepository(Order editOrder)
+        public OrderAddEditedResponse AddEditedOrderToRepository(Order order)
         {
             OrderAddEditedResponse response = new OrderAddEditedResponse();
 
-            response.Success = _orderRepository.Edit(editOrder);
+            response.Success = _orderRepository.Edit(order);
 
             if (!response.Success)
             {
-                response.Message = "Edit unsuccessful";
+                response.Message = "Edit unsuccessful.";
+            }
+
+            return response;
+        }
+
+        public OrderRemoveResponse RemoveOrder(Order order)
+        {
+            OrderRemoveResponse response = new OrderRemoveResponse();
+
+            response.Success = _orderRepository.Remove(order);
+
+            if (!response.Success)
+            {
+                response.Message = "Remove unsuccessful";
             }
 
             return response;

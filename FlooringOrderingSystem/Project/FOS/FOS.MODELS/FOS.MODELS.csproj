@@ -49,9 +49,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\OrderAddEditedResponse.cs" />
     <Compile Include="Responses\OrderAddResponse.cs" />
-    <Compile Include="Responses\OrderDisplayListResponse.cs" />
+    <Compile Include="Responses\OrderGetListResponse.cs" />
     <Compile Include="Responses\OrderNumberResponse.cs" />
-    <Compile Include="Responses\OrderDisplaySingleResponse.cs" />
+    <Compile Include="Responses\OrderGetSingleResponse.cs" />
+    <Compile Include="Responses\OrderRemoveResponse.cs" />
     <Compile Include="Responses\ProductListResponse.cs" />
     <Compile Include="Responses\Response.cs" />
     <Compile Include="Responses\StateTaxResponse.cs" />

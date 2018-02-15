@@ -19,6 +19,6 @@ namespace FOS.MODELS.Interfaces
 
         bool Edit(Order order);
 
-        void Remove(Order order, DateTime date);
+        bool Remove(Order order);
     }
 }

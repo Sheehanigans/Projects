@@ -40,7 +40,8 @@ namespace FOS.UI
                         editWorkflow.Execute();
                         break;
                     case "4":
-                        //Remove an order
+                        RemoveOrderWorkflow removeWorkflow = new RemoveOrderWorkflow();
+                        removeWorkflow.Execute();
                         break;
                     case "Q":
                         return 1;

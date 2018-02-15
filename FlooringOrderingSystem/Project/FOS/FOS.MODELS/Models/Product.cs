@@ -11,5 +11,12 @@ namespace FOS.MODELS.Models
         public string ProductType { get; set; }
         public decimal CostPerSquareFoot { get; set; }
         public decimal LaborCostPerSquareFoot { get; set; }
+
+        public Product(string productType, decimal costPerSquareFoot, decimal laborCostPerSquareFoot)
+        {
+            ProductType = productType;
+            CostPerSquareFoot = costPerSquareFoot;
+            LaborCostPerSquareFoot = laborCostPerSquareFoot;
+        }
     }
 }

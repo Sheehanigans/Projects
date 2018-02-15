@@ -11,30 +11,20 @@ namespace FOS.DATA
 {
     public class TestStateTaxRepository : IStateTaxRepository
     {
-        private static StateTax _stateTax1 = new StateTax
-        {
-            StateAbbreviation = "OH",
-            StateName = "Ohio",
-            TaxRate = 6.00M
-        };
 
-        private static StateTax _stateTax2 = new StateTax
+        private static List<StateTax> states = new List<StateTax>()
         {
-            StateAbbreviation = "MI",
-            StateName = "Michigan",
-            TaxRate = 6.25M
+            new StateTax("OH","Ohio",6.00M),
+            new StateTax("MI","Michigan",5.75M),
+            new StateTax("PA","Pennsylvania",6.75M),
+            new StateTax("IN","Indiana",6.00M),
         };
 
         public StateTax GetState(string stateAbbr)
         {
-            List<StateTax> stateTaxes = new List<StateTax>();
-
-            stateTaxes.Add(_stateTax1);
-            stateTaxes.Add(_stateTax2);
-
             StateTax state = null;
 
-            foreach (StateTax st in stateTaxes)
+            foreach (StateTax st in states)
             {
                 if (stateAbbr == st.StateAbbreviation)
                 {

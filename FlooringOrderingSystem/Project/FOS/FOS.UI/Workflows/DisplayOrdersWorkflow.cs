@@ -13,18 +13,18 @@ namespace FOS.UI.Workflows
     {
         public void Execute()
         {
+            string workflow = "Display";
+
             OrderManager manager = OrderManagerFactory.Create();
 
-            Console.Clear();
-            Headers.DisplayOrderHeader();
+            Headers.DisplayHeader(workflow);
 
             //date verification should happen at the order manager or repository level
             DateTime date = ConsoleIO.GetExistingOrderDate("Enter a date to display orders (MM/DD/YYYY):");
 
-            OrderDisplayListResponse response = manager.GetOrderList(date);
+            OrderGetListResponse response = manager.GetOrderList(date);
 
-            Console.Clear();
-            Headers.DisplayOrderHeader();
+            Headers.DisplayHeader(workflow);
 
             if (response.Success)
             {

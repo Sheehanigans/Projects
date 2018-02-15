@@ -10,27 +10,16 @@ namespace FOS.DATA
 {
     public class TestProductRepository : IProductRepository
     {
-        private static Product _product1 = new Product
+        public static List<Product> products = new List<Product>()
         {
-            ProductType = "Carpet",
-            CostPerSquareFoot = 2.25M,
-            LaborCostPerSquareFoot = 2.10M
-        };
-
-        private static Product _product2 = new Product
-        {
-            ProductType = "Wood",
-            CostPerSquareFoot = 2.15M,
-            LaborCostPerSquareFoot = 4.75M
+            new Product("Wood",2.15M,4.75M),
+            new Product("Carpet",2.25M,2.10M),
+            new Product("Tile",3.50M,4.15M),
+            new Product("Laminate",1.75M,2.10M),
         };
 
         public List<Product> GetProductList()
         {
-            List<Product> products = new List<Product>();
-
-            products.Add(_product1);
-            products.Add(_product2);
-
             return products;
         }
     }

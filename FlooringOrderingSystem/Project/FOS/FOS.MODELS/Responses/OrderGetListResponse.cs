@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace FOS.MODELS.Responses
 {
-    public class OrderAddEditedResponse : Response
+    public class OrderGetListResponse : Response
     {
-        public Order Order { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FOS.MODELS.Interfaces;
+using FOS.MODELS.Models;
 using FOS.MODELS.Responses;
 using System;
 using System.Collections.Generic;

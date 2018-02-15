@@ -17,27 +17,29 @@ namespace FOS.UI.Workflows
     {
         public void Execute()
         {
+            string workflow = "Edit";
+
             OrderManager orderManager = OrderManagerFactory.Create();
             StateTaxManager stateTaxManager = StateTaxManagerFactory.Create();
             ProductManager productManager = ProductManagerFactory.Create();
 
-            string workflow = "edit";
-
-            Console.Clear();
-            Headers.EditOrderHeader();
+            Headers.DisplayHeader(workflow);
 
             //get date
             DateTime date = ConsoleIO.GetExistingOrderDate("Enter the date of the order you would like to edit (MM/DD/YYYY): ");
 
-            Console.Clear();
-            Headers.EditOrderHeader();
+            Headers.DisplayHeader(workflow);
 
+            //get order number
             int orderNumber = ConsoleIO.GetOrderNumberFromUser("Enter the order number: ");
 
-            OrderDisplaySingleResponse orderResponse = orderManager.DisplaySingleOrder(date, orderNumber);
+            OrderGetSingleResponse orderResponse = orderManager.DisplaySingleOrder(date, orderNumber);
             if (orderResponse.Success)
             {
+                Headers.DisplayHeader(workflow);
                 ShowDetails.DisplayOrderDetails(orderResponse.Order);
+                Console.WriteLine("Press any key to begin editing...");
+                Console.ReadKey();
             }
             else
             {
@@ -48,15 +50,20 @@ namespace FOS.UI.Workflows
                 Menu.Start();
             }
 
+            Headers.DisplayHeader(workflow);
+
+
             //edit name
-            string editName = ConsoleIO.GetCustomerName("edit", orderResponse.Order.CustomerName);
+            string editName = ConsoleIO.GetCustomerName("Edit", orderResponse.Order.CustomerName);
+
+            Headers.DisplayHeader(workflow);
 
             //edit state
             bool validInput = false;
             StateTax editStateTax = null;
             while (!validInput)
             {
-                string editState = ConsoleIO.GetStateInputFromUser("edit");
+                string editState = ConsoleIO.GetStateInputFromUser("Edit");
                 if (editState == "")
                 {
                     validInput = true;
@@ -72,19 +79,26 @@ namespace FOS.UI.Workflows
                 }
             }
 
+            Headers.DisplayHeader(workflow);
+
+
             //edit product type
             List<Product> products = productManager.GetProductList().Products;
-            Product editProduct = ConsoleIO.DisplayProducts(products, "edit");
+            Product editProduct = ConsoleIO.DisplayProducts(products, "Edit");
+
+            Headers.DisplayHeader(workflow);
 
             //edit area 
 
-            decimal editArea = ConsoleIO.GetArea("edit");
+            decimal editArea = ConsoleIO.GetArea("Edit");
+
+            Headers.DisplayHeader(workflow);
 
             //display order changes
 
             Order editOrder = new Order(orderResponse.Order);
 
-            if(editName != null)
+            if(editName != "")
             {
                 editOrder.CustomerName = editName;
             }
@@ -104,19 +118,20 @@ namespace FOS.UI.Workflows
                 editOrder.Area = editArea;
             }
 
+            //send it!
             ShowDetails.DisplayOrderDetails(editOrder);
 
-            if(ConsoleIO.GetYesOrNo("Edit this order?") == "Y")
+            if(ConsoleIO.GetYesOrNo("Submit changes to order?") == "Y")
             {
                 OrderAddEditedResponse response = orderManager.AddEditedOrderToRepository(editOrder);
                 if (!response.Success)
                 {
-                    Console.WriteLine("There was an error adding the edited order");
+                    Console.WriteLine("There was an error adding the order:");
                     Console.WriteLine(response.Message);
                 }
                 else
                 {
-                    Console.WriteLine("Order added! Press any key to continue...");
+                    Console.WriteLine("Order added! Press any key to return to main menu...");
                     Console.ReadKey();
                 }
             }

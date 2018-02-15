@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FOS.MODELS.Responses
 {
-    public class OrderDisplaySingleResponse : Response
+    public class OrderGetSingleResponse : Response
     {
         public Order Order { get; set; }
     }
