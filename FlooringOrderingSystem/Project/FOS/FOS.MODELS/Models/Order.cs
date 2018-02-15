@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace FOS.MODELS
 {
     public class Order
-    {
-        //needs to be a datetime 
+    { 
+
         public DateTime Date { get; set; }
         public int OrderNumber { get; set; }
         public string CustomerName { get; set; }
@@ -24,17 +24,32 @@ namespace FOS.MODELS
         public decimal Tax => ((MaterialCost + LaborCost) * (TaxRate / 100));
         public decimal Total => MaterialCost + LaborCost + Tax;
 
-        //public Order (Order oldOrder) //copy constructor
-        //{
-        //    Date = oldOrder.Date;
-        //    OrderNumber = oldOrder.OrderNumber;
-        //    CustomerName = oldOrder.CustomerName;
-        //    State = oldOrder.State;
-        //    TaxRate = oldOrder.TaxRate;
-        //    ProductType = oldOrder.ProductType;
-        //    Area = oldOrder.Area;
-        //    CostPerSquareFoot = oldOrder.CostPerSquareFoot;
-        //    LaborCostPerSquareFoot = oldOrder.LaborCostPerSquareFoot;
-        //}
+        public Order() { }
+
+        public Order(Order that) //copy constructor
+        {
+            Date = that.Date;
+            OrderNumber = that.OrderNumber;
+            CustomerName = that.CustomerName;
+            State = that.State;
+            TaxRate = that.TaxRate;
+            ProductType = that.ProductType;
+            Area = that.Area;
+            CostPerSquareFoot = that.CostPerSquareFoot;
+            LaborCostPerSquareFoot = that.LaborCostPerSquareFoot;
+        }
+
+        public Order(DateTime dateTime, int orderNumber, string customerName, string state, decimal taxRate, string productType, decimal area, decimal costPerSquareFoot, decimal laborCostPerSquareFoot)
+        {
+            Date = dateTime;
+            OrderNumber = orderNumber;
+            CustomerName = customerName;
+            State = state;
+            TaxRate = taxRate;
+            ProductType = productType;
+            Area = area;
+            CostPerSquareFoot = costPerSquareFoot;
+            LaborCostPerSquareFoot = laborCostPerSquareFoot;
+        }
     }
 }

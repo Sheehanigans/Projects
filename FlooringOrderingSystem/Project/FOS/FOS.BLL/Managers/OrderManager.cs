@@ -19,7 +19,7 @@ namespace FOS.BLL
             _orderRepository = orderRepository;
         }
 
-        public OrderDisplayListResponse DisplayOrders(DateTime date)
+        public OrderDisplayListResponse GetOrderList(DateTime date)
         {
             OrderDisplayListResponse response = new OrderDisplayListResponse();
 
@@ -67,25 +67,21 @@ namespace FOS.BLL
         {
             OrderDisplaySingleResponse response = new OrderDisplaySingleResponse();
 
-            //put response into a variable and look at the contents 
-            //need to get order numbers BY DATE too
+            var orders = GetOrderList(date).Orders;
 
-            //Order order = GetOrderNumber().Orders.Where(w => w.OrderNumber == orderNumber).Where(w => w.Date == date).First();
-
-            if (DisplayOrders(date).Orders == null)
+            if(orders == null)
             {
                 response.Message = "Order date does not exist";
                 response.Success = false;
             }
-            else if (GetOrderNumber().Orders.Where(w => w.OrderNumber == orderNumber).Where(w => w.Date == date).First() == null)
+            else if (orders.Where(w => w.OrderNumber != orderNumber).Any())
             {
                 response.Message = "Order number does not exist";
                 response.Success = false;
             }
             else
             {
-                response.Order = _orderRepository.DisplaySingleOrder(date, orderNumber);
-
+                response.Order = _orderRepository.GetSingleOrder(date, orderNumber);
                 if (response.Order == null)
                 {
                     response.Success = false;
@@ -96,6 +92,20 @@ namespace FOS.BLL
                     response.Success = true;
                 }
             }
+            return response;
+        }
+
+        public OrderAddEditedResponse AddEditedOrderToRepository(Order editOrder)
+        {
+            OrderAddEditedResponse response = new OrderAddEditedResponse();
+
+            response.Success = _orderRepository.Edit(editOrder);
+
+            if (!response.Success)
+            {
+                response.Message = "Edit unsuccessful";
+            }
+
             return response;
         }
     } 

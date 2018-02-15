@@ -9,7 +9,7 @@ namespace FOS.MODELS.Interfaces
 {
     public interface IOrderRepository
     {
-        Order DisplaySingleOrder(DateTime date, int orderNumber);
+        Order GetSingleOrder(DateTime date, int orderNumber);
 
         List<Order> DisplayOrders(DateTime date);
 
@@ -17,7 +17,7 @@ namespace FOS.MODELS.Interfaces
 
         bool Add(Order order);
 
-        void Edit(Order order, DateTime date);
+        bool Edit(Order order);
 
         void Remove(Order order, DateTime date);
     }

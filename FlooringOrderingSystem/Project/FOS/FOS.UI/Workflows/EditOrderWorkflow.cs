@@ -49,11 +49,11 @@ namespace FOS.UI.Workflows
             }
 
             //edit name
-            string editName = ConsoleIO.GetCustomerName("edit");
+            string editName = ConsoleIO.GetCustomerName("edit", orderResponse.Order.CustomerName);
 
             //edit state
             bool validInput = false;
-            StateTax stateTax = null;
+            StateTax editStateTax = null;
             while (!validInput)
             {
                 string editState = ConsoleIO.GetStateInputFromUser("edit");
@@ -66,7 +66,7 @@ namespace FOS.UI.Workflows
                     StateTaxResponse stateTaxResponse = stateTaxManager.GetStateTax(editState);
                     if (stateTaxResponse.Success == true)
                     {
-                        stateTax = stateTaxResponse.State;
+                        editStateTax = stateTaxResponse.State;
                         validInput = true;
                     }
                 }
@@ -74,14 +74,57 @@ namespace FOS.UI.Workflows
 
             //edit product type
             List<Product> products = productManager.GetProductList().Products;
-            Product product = ConsoleIO.DisplayProducts(products, "edit");
+            Product editProduct = ConsoleIO.DisplayProducts(products, "edit");
 
             //edit area 
 
-            decimal area = ConsoleIO.GetArea("edit");
+            decimal editArea = ConsoleIO.GetArea("edit");
 
-            Console.WriteLine(area);
-            Console.ReadLine();
+            //display order changes
+
+            Order editOrder = new Order(orderResponse.Order);
+
+            if(editName != null)
+            {
+                editOrder.CustomerName = editName;
+            }
+            if(editStateTax != null)
+            {
+                editOrder.State = editStateTax.StateName;
+                editOrder.TaxRate = editStateTax.TaxRate;
+            }
+            if(editProduct != null)
+            {
+                editOrder.ProductType = editProduct.ProductType;
+                editOrder.LaborCostPerSquareFoot = editProduct.LaborCostPerSquareFoot;
+                editOrder.CostPerSquareFoot = editProduct.CostPerSquareFoot;
+            }
+            if(editArea != int.MaxValue)
+            {
+                editOrder.Area = editArea;
+            }
+
+            ShowDetails.DisplayOrderDetails(editOrder);
+
+            if(ConsoleIO.GetYesOrNo("Edit this order?") == "Y")
+            {
+                OrderAddEditedResponse response = orderManager.AddEditedOrderToRepository(editOrder);
+                if (!response.Success)
+                {
+                    Console.WriteLine("There was an error adding the edited order");
+                    Console.WriteLine(response.Message);
+                }
+                else
+                {
+                    Console.WriteLine("Order added! Press any key to continue...");
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Edit order cancelled :( Press any key to continue...");
+                Console.ReadKey();
+            }
         }
     }
 }

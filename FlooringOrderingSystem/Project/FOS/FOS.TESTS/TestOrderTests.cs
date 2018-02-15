@@ -18,7 +18,7 @@ namespace FOS.TESTS
         {
             OrderManager manager = OrderManagerFactory.Create();
 
-            OrderDisplayListResponse response = manager.DisplayOrders(new DateTime (2018,02,02));
+            OrderDisplayListResponse response = manager.GetOrderList(new DateTime (2018,02,02));
 
             Assert.IsNotNull(response.Orders);
             Assert.IsTrue(response.Success);

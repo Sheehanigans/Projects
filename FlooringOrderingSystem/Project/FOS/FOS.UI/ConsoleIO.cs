@@ -123,6 +123,7 @@ namespace FOS.UI
                 if(string.IsNullOrEmpty(input) && workflow == "edit")
                 {
                     validInput = true;
+                    area = int.MaxValue;
                 }
                 else if (string.IsNullOrEmpty(input))
                 {
@@ -136,7 +137,11 @@ namespace FOS.UI
                     }
                     else if (output < 0)
                     {
-                        Console.WriteLine("Are must be positive.");
+                        Console.WriteLine("Area must be positive.");
+                    }
+                    else if (output < 100)
+                    {
+                        Console.WriteLine("Minimum area 100sq ft.");
                     }
                     else
                     {
@@ -230,14 +235,21 @@ namespace FOS.UI
             return state;
         }
 
-        public static string GetCustomerName(string workflow)
+        public static string GetCustomerName(string workflow, string name)
         {
             bool validName = false;
-            string name = "";
+            string nameToReturn = "";
 
             while (!validName)
             {
-                Console.WriteLine("Please enter the customer name:");
+                if(workflow == "edit")
+                {
+                    Console.WriteLine($"Please enter the customer name ({name}):");
+                }
+                else
+                {
+                    Console.WriteLine("Please enter the customer name:");
+                }
                 string tempName = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(tempName) && workflow != "edit")
@@ -250,7 +262,7 @@ namespace FOS.UI
                     return tempName;
                 }
             }
-            return name;
+            return nameToReturn;
         }
 
         public static string GetYesOrNo(string prompt)

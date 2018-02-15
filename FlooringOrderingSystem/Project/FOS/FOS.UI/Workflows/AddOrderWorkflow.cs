@@ -34,7 +34,7 @@ namespace FOS.UI.Workflows
             Headers.AddOrderHeader();
 
             newOrder.OrderNumber = OrderNumberVaidation.CreateOrderNumber();
-            newOrder.CustomerName = ConsoleIO.GetCustomerName("add");
+            newOrder.CustomerName = ConsoleIO.GetCustomerName("add","none");
 
             Console.Clear();
             Headers.AddOrderHeader();
@@ -75,7 +75,7 @@ namespace FOS.UI.Workflows
             Headers.AddOrderHeader();
 
             //get area
-            newOrder.Area = ConsoleIO.GetArea("edit");
+            newOrder.Area = ConsoleIO.GetArea("add");
 
             Console.Clear();
             Headers.AddOrderHeader();
