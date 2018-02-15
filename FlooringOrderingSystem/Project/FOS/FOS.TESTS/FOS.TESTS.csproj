@@ -46,9 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MockRepos\AlwaysReturnsOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StateTaxResponse.cs" />
-    <Compile Include="TestOrderTests.cs" />
+    <Compile Include="ManagerTests\TestOrderManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -68,5 +68,6 @@
       <Name>FOS.MODELS</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

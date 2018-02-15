@@ -9,7 +9,7 @@ namespace FOS.UI
 {
     public class Menu
     {
-        public static int Start()
+        public static void Start()
         {
             while (true)
             {
@@ -44,7 +44,7 @@ namespace FOS.UI
                         removeWorkflow.Execute();
                         break;
                     case "Q":
-                        return 1;
+                        return;
                 }
             }
         }

@@ -14,7 +14,7 @@ namespace FOS.DATA
         private static List<Order> orders = new List<Order>()
         {
             new Order(new DateTime(2018,02,02),1,"Ryan","OH",6.25M,"Wood",100.00M,5.15M,4.75M),
-            new Order(new DateTime(2018,03,03),1,"Adam","MI",6.25M,"Carpet",100.00M,5.15M,4.75M)
+            new Order(new DateTime(2018,03,03),2,"Adam","MI",6.25M,"Carpet",100.00M,5.15M,4.75M)
 
         };
 
@@ -47,7 +47,14 @@ namespace FOS.DATA
         {
             orders.Add(order);
 
-            return true;            
+            if (orders.Contains(order))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public Order GetSingleOrder(DateTime date, int orderNumber)

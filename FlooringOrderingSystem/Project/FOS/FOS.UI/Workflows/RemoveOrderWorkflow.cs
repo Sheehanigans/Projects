@@ -60,7 +60,7 @@ namespace FOS.UI.Workflows
                 Console.WriteLine(getOrderResponse.Message);
                 Console.WriteLine("Press any key to return to main menu...");
                 Console.ReadKey();
-                Menu.Start();
+                return;
             }
         }
     }
