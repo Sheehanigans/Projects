@@ -47,6 +47,7 @@
     <Compile Include="InMemoryRepositories\TestOrderRepository.cs" />
     <Compile Include="InMemoryRepositories\TestProductRepository.cs" />
     <Compile Include="InMemoryRepositories\TestStateTaxRepository.cs" />
+    <Compile Include="Settings\FilePaths.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FOS.MODELS\FOS.MODELS.csproj">

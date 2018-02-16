@@ -11,13 +11,18 @@ namespace FOS.DATA.FileRepositories
 {
     public class FileOrderRepository : IOrderRepository
     {
-        private const string ordersFilePath = @"C:\Repos\ryan-sheehan-individual-work\FlooringOrderingSystem\Data\Orders\Orders_";
+        private string _ordersFilePath = @"C:\Repos\ryan-sheehan-individual-work\FlooringOrderingSystem\Data\Orders\Orders_";
+
+        public FileOrderRepository(string ordersFilePath)
+        {
+            _ordersFilePath = ordersFilePath;
+        }
 
         public bool Add(Order order)
         {
             bool added = false;
             string orderDate = order.Date.ToString("MMddyyyy");
-            string orderPath = ordersFilePath + orderDate + ".txt";
+            string orderPath = _ordersFilePath + orderDate + ".txt";
 
             if (File.Exists(orderPath))
             {
@@ -69,7 +74,11 @@ namespace FOS.DATA.FileRepositories
 
         public Order GetSingleOrder(DateTime date, int orderNumber)
         {
-            throw new NotImplementedException();
+            Order singleOrder = ListOrdersForDate(date)
+                .Where(w => w.OrderNumber == orderNumber)
+                .First();
+
+            return singleOrder;
         }
 
         public List<Order> ListOrders()
@@ -80,12 +89,15 @@ namespace FOS.DATA.FileRepositories
         public List<Order> ListOrdersForDate(DateTime date)
         {
             string fileDate = date.ToString("MMddyyyy");
+            int month = int.Parse(fileDate.Substring(0, 2));
+            int day = int.Parse(fileDate.Substring(2, 2));
+            int year = int.Parse(fileDate.Substring(4, 4));
 
             List<Order> orders = new List<Order>();
 
-            if (File.Exists(ordersFilePath + fileDate + ".txt"))
+            if (File.Exists(_ordersFilePath + fileDate + ".txt"))
             {
-                using (StreamReader sr = new StreamReader(ordersFilePath + fileDate + ".txt"))
+                using (StreamReader sr = new StreamReader(_ordersFilePath + fileDate + ".txt"))
                 {
                     sr.ReadLine();
                     string line;
@@ -104,6 +116,7 @@ namespace FOS.DATA.FileRepositories
                         orderInFile.Area = decimal.Parse(columns[5]);
                         orderInFile.CostPerSquareFoot = decimal.Parse(columns[6]);
                         orderInFile.LaborCostPerSquareFoot = decimal.Parse(columns[7]);
+                        orderInFile.Date = new DateTime(year,month,day);
 
                         orders.Add(orderInFile);
                     }

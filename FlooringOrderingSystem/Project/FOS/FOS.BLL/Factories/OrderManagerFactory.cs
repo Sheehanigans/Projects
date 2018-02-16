@@ -1,5 +1,6 @@
 ﻿using FOS.DATA;
 using FOS.DATA.FileRepositories;
+using FOS.DATA.Settings;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,7 +21,7 @@ namespace FOS.BLL
                 case "Test":
                     return new OrderManager(new TestOrderRepository());
                 case "Prod":
-                    return new OrderManager(new FileOrderRepository());
+                    return new OrderManager(new FileOrderRepository(FilePaths.OrdersFilePath));
                 default:
                     throw new Exception("Mode value in app.config file is invalid");
             }

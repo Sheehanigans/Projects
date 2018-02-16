@@ -11,15 +11,20 @@ namespace FOS.DATA.FileRepositories
 {
     public class FileProductRepository : IProductRepository
     {
-        private const string productFilePath = @"C:\Repos\ryan-sheehan-individual-work\FlooringOrderingSystem\Data\Products.txt";
+        private string _productFilePath = @"C:\Repos\ryan-sheehan-individual-work\FlooringOrderingSystem\Data\Products.txt";
+
+        public FileProductRepository(string productFilePath)
+        {
+            _productFilePath = productFilePath;
+        }
 
         public List<Product> GetProductList()
         {
             List<Product> products = new List<Product>();
 
-            if (File.Exists(productFilePath))
+            if (File.Exists(_productFilePath))
             {
-                using (StreamReader sr = new StreamReader(productFilePath, true))
+                using (StreamReader sr = new StreamReader(_productFilePath, true))
                 {
                     sr.ReadLine();
                     string line;

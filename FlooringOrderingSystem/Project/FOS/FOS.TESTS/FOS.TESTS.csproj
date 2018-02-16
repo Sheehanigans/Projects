@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileRepos\FileOrderRepositoryTests.cs" />
+    <Compile Include="FileRepos\FileProductRepositoryTests.cs" />
+    <Compile Include="FileRepos\FileStateTaxRepositoryTests.cs" />
     <Compile Include="ManagerTests\ProductManagerTests.cs" />
     <Compile Include="ManagerTests\StateTaxManagerTests.cs" />
     <Compile Include="MockRepos\AlwaysReturnsNullOrder.cs" />

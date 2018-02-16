@@ -41,18 +41,18 @@ namespace FOS.TESTS
             Assert.IsNull(test.Orders);
         }
 
-        [TestCase(2020, 02, 02, 2,true)]
-        [TestCase(2050, 02, 02, 2, false)]
-        public static void GetSingleOrderWithOrder(int year, int month, int day, int orderNumber, bool expectedResult)
-        {
-            OrderManager manager = new OrderManager(new AlwaysReturnsOrder());
+        //[TestCase(2020, 02, 02, 2,true)]
+        //[TestCase(2050, 02, 02, 2, false)]
+        //public static void GetSingleOrderWithOrder(int year, int month, int day, int orderNumber, bool expectedResult)
+        //{
+        //    OrderManager manager = new OrderManager(new AlwaysReturnsOrder());
 
-            DateTime date = new DateTime(year, month, day);
-            var test = manager.GetSingleOrder(date, orderNumber);
+        //    DateTime date = new DateTime(year, month, day);
+        //    var test = manager.GetSingleOrder(date, orderNumber);
 
-            Assert.IsTrue(test.Success);
-            Assert.IsNotEmpty(test.Order.CustomerName);
-        }
+        //    Assert.IsTrue(test.Success);
+        //    Assert.IsNotEmpty(test.Order.CustomerName);
+        //}
 
         [TestCase(2050, 02, 02, 2, false)]
         public static void GetSingleOrderWithNull(int year, int month, int day, int orderNumber, bool expectedResult)

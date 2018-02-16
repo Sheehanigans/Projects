@@ -11,7 +11,12 @@ namespace FOS.DATA.FileRepositories
 {
     public class FileStateTaxRepository : IStateTaxRepository
     {
-        private const string stateTaxFilePath = @"C:\Repos\ryan-sheehan-individual-work\FlooringOrderingSystem\Data\Taxes.txt";
+        private string _stateTaxFilePath = @"C:\Repos\ryan-sheehan-individual-work\FlooringOrderingSystem\Data\Taxes.txt";
+
+        public FileStateTaxRepository(string stateTaxFilePath)
+        {
+            _stateTaxFilePath = stateTaxFilePath;
+        }
 
         public StateTax GetState(string stateAbbr)
         {
@@ -19,9 +24,9 @@ namespace FOS.DATA.FileRepositories
 
             StateTax stateToReturn = null;
 
-            if (File.Exists(stateTaxFilePath))
+            if (File.Exists(_stateTaxFilePath))
             {
-                using (StreamReader sr = new StreamReader(stateTaxFilePath, true))
+                using (StreamReader sr = new StreamReader(_stateTaxFilePath, true))
                 {
                     sr.ReadLine();
                     string line;
@@ -38,13 +43,13 @@ namespace FOS.DATA.FileRepositories
 
                         states.Add(stateInFile);
                     }
-                }
 
-                if (states != null)
-                {
-                    stateToReturn = states
-                        .Where(w => w.StateAbbreviation == stateAbbr)
-                        .First();
+                    if (states.Any(a => a.StateAbbreviation == stateAbbr))
+                    {
+                        stateToReturn = states
+                            .Where(w => w.StateAbbreviation == stateAbbr)
+                            .First();
+                    }
                 }
             }
 
