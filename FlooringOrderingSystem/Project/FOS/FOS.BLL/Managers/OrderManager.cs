@@ -37,19 +37,6 @@ namespace FOS.BLL
             return response;
         }
 
-        ////might need to change to only look at a date or make another for order number that 
-        ////just looks for order numbers for a date...
-        //public OrderNumberResponse GetOrderNumber(DateTime date)
-        //{
-        //    OrderNumberResponse response = new OrderNumberResponse();
-
-        //    response.Orders = _orderRepository.ListOrdersForDate(date);
-
-        //    response.Success = true;
-
-        //    return response;
-        //}
-
         public OrderAddResponse AddOrderToRepository(Order order)
         {
             OrderAddResponse response = new OrderAddResponse();

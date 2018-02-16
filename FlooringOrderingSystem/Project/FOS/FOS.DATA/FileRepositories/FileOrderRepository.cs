@@ -33,7 +33,7 @@ namespace FOS.DATA.FileRepositories
                     added = true;
                 }
             }
-            else if(!File.Exists(orderPath))
+            else if (!File.Exists(orderPath))
             {
                 using (File.Create(orderPath)) { }
 
@@ -53,8 +53,8 @@ namespace FOS.DATA.FileRepositories
 
         private string CreateHeaderForOrderFile()
         {
-            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}", "OrderNumber", "CustomerName", "State", 
-                "TaxRate", "ProductType", "Area", "CostPerSquareFoot","LaborCostPerSquareFoot", "MaterialCost", "LaborCost", 
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}", "OrderNumber", "CustomerName", "State",
+                "TaxRate", "ProductType", "Area", "CostPerSquareFoot", "LaborCostPerSquareFoot", "MaterialCost", "LaborCost",
                 "Tax", "Total");
         }
 
@@ -69,7 +69,37 @@ namespace FOS.DATA.FileRepositories
 
         public bool Edit(Order order)
         {
-            throw new NotImplementedException();
+            bool edited = false;
+            string orderDate = order.Date.ToString("MMddyyyy");
+            string orderPath = _ordersFilePath + orderDate + ".txt";
+
+            var oldOrders = ListOrdersForDate(order.Date);
+
+            //build list of correct information
+            //print it in file
+            List<Order> updatedOrderList = new List<Order>();
+
+            foreach (Order ord in oldOrders)
+            {
+                if (ord.OrderNumber == order.OrderNumber)
+                {
+                    ord.CustomerName = order.CustomerName;
+                    ord.State = order.State;
+                    ord.ProductType = order.ProductType;
+                    ord.Area = order.Area;
+                    updatedOrderList.Add(ord);
+                    edited = true;
+                }
+                else
+                {
+                    updatedOrderList.Add(ord);
+                }
+            }
+
+            CreateOrderFile(updatedOrderList, orderPath);
+
+            //not catching false
+            return edited;            
         }
 
         public Order GetSingleOrder(DateTime date, int orderNumber)
@@ -133,6 +163,21 @@ namespace FOS.DATA.FileRepositories
         public bool Remove(Order order)
         {
             throw new NotImplementedException();
+        }
+
+        public void CreateOrderFile(List<Order> orders, string filePath)
+        {
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+
+            using(StreamWriter sr = new StreamWriter(filePath))
+            {
+                sr.WriteLine(CreateHeaderForOrderFile());
+                foreach(var order in orders)
+                {
+                    sr.WriteLine(CreateCSVForOrder(order));
+                }
+            }
         }
     }
 }
