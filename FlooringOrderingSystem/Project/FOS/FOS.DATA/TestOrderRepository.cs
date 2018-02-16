@@ -13,9 +13,10 @@ namespace FOS.DATA
     {
         private static List<Order> orders = new List<Order>()
         {
-            new Order(new DateTime(2018,02,02),1,"Ryan","OH",6.25M,"Wood",100.00M,5.15M,4.75M),
-            new Order(new DateTime(2018,03,03),2,"Adam","MI",6.25M,"Carpet",100.00M,5.15M,4.75M)
-
+            new Order(new DateTime(2019,02,02),1,"Ryan","OH",6.25M,"Wood",100.00M,5.15M,4.75M),
+            new Order(new DateTime(2019,02,02),2,"Sam","PA",6.25M,"Laminate",100.00M,5.15M,4.75M),
+            new Order(new DateTime(2019,02,02),3,"Bert","IN",6.25M,"Tile",100.00M,5.15M,4.75M),
+            new Order(new DateTime(2019,03,03),1,"Adam","MI",6.25M,"Carpet",100.00M,5.15M,4.75M)
         };
 
         public List<Order> ListOrders()
@@ -23,7 +24,7 @@ namespace FOS.DATA
             return orders;
         }
 
-        public List<Order> DisplayOrders(DateTime date)
+        public List<Order> ListOrdersForDate(DateTime date)
         {
             List<Order> ordersForDate = new List<Order>();            
 
@@ -39,6 +40,10 @@ namespace FOS.DATA
             {
                 return null;
             }
+
+            //List<Order> orderList = ListOrders()
+            //    .Where(w => w.Date == date)
+            //    .ToList();
 
             return ordersForDate;
         }
@@ -108,6 +113,5 @@ namespace FOS.DATA
                 return false;
             }
         }
-
     }
 }

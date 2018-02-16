@@ -18,5 +18,9 @@ namespace FOS.MODELS.Models
             StateName = stateName;
             TaxRate = taxRate;
         }
+
+        public StateTax()
+        {
+        }
     }
 }

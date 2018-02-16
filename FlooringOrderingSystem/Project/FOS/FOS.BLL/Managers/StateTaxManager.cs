@@ -22,7 +22,7 @@ namespace FOS.BLL.Managers
             StateTaxResponse response = new StateTaxResponse();
 
             response.State = _stateTaxRepository.GetState(stateAbbreviation);
-
+            
             if (response.State == null)
             {
                 response.Success = false;

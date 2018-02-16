@@ -9,23 +9,28 @@ namespace FOS.BLL.DataValidations
 {
     public class OrderNumberVaidation
     {
-        public static int CreateOrderNumber()
+        public static int CreateOrderNumber(DateTime date)
         {
             OrderManager manager = OrderManagerFactory.Create();
 
-            List<Order> ordNums = manager.GetOrderNumber().Orders;
+            List<Order> orders = manager.GetOrderNumber(date).Orders;
 
-            int largest = ordNums.Count();
+            int newOrderNumber = 1;
 
-            foreach (var ord in ordNums)
-            {                
-                if(ord.OrderNumber <= largest)
+            if (orders != null)
+            {
+                newOrderNumber = orders.Count() + 1;
+
+                foreach (var ord in orders)
                 {
-                    ord.OrderNumber = largest;
+                    if (ord.OrderNumber <= newOrderNumber)
+                    {
+                        ord.OrderNumber = newOrderNumber;
+                    }
                 }
             }
 
-            return largest + 1;
+            return newOrderNumber;
         }
     }
 }

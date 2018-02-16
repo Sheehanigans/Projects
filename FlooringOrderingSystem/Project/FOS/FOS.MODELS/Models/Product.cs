@@ -18,5 +18,7 @@ namespace FOS.MODELS.Models
             CostPerSquareFoot = costPerSquareFoot;
             LaborCostPerSquareFoot = laborCostPerSquareFoot;
         }
+
+        public Product() { }
     }
 }

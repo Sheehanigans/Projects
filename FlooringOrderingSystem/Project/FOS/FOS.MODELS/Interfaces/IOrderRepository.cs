@@ -11,7 +11,7 @@ namespace FOS.MODELS.Interfaces
     {
         Order GetSingleOrder(DateTime date, int orderNumber);
 
-        List<Order> DisplayOrders(DateTime date);
+        List<Order> ListOrdersForDate(DateTime date);
 
         List<Order> ListOrders();
 

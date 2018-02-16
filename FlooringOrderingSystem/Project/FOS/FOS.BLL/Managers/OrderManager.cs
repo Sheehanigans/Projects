@@ -23,7 +23,7 @@ namespace FOS.BLL
         {
             OrderGetListResponse response = new OrderGetListResponse();
 
-            response.Orders = _orderRepository.DisplayOrders(date);
+            response.Orders = _orderRepository.ListOrdersForDate(date);
 
             if (response.Orders == null)
             {
@@ -37,13 +37,14 @@ namespace FOS.BLL
             return response;
         }
 
-        public OrderNumberResponse GetOrderNumber()
+        //might need to change to only look at a date or make another for order number that 
+        //just looks for order numbers for a date...
+        public OrderNumberResponse GetOrderNumber(DateTime date)
         {
             OrderNumberResponse response = new OrderNumberResponse();
 
-            response.Orders = _orderRepository.ListOrders();
+            response.Orders = _orderRepository.ListOrdersForDate(date);
 
-            // hmmm might need to add validation if null, what if there are no orders yet?
             response.Success = true;
 
             return response;

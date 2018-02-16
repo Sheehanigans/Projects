@@ -21,7 +21,7 @@ namespace FOS.TESTS.MockRepos
                     new Order
                     {
                         Date = new DateTime(2020, 02, 02),
-                        OrderNumber = 3,
+                        OrderNumber = 2,
                         CustomerName = "Ryan",
                         State = "Ohio",
                         TaxRate = 6.25M,
@@ -65,7 +65,7 @@ namespace FOS.TESTS.MockRepos
             return true;
         }
 
-        public List<Order> DisplayOrders(DateTime date)
+        public List<Order> ListOrdersForDate(DateTime date)
         {
             var ordersForDate = ListOrders()
                 .Where(w => w.Date == date)

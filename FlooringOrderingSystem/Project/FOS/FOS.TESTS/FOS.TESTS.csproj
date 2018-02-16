@@ -46,9 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManagerTests\ProductManagerTests.cs" />
+    <Compile Include="ManagerTests\StateTaxManagerTests.cs" />
+    <Compile Include="MockRepos\AlwaysReturnsNullOrder.cs" />
+    <Compile Include="MockRepos\AlwaysReturnsNullProduct.cs" />
+    <Compile Include="MockRepos\AlwaysReturnsNullStateTax.cs" />
     <Compile Include="MockRepos\AlwaysReturnsOrder.cs" />
+    <Compile Include="MockRepos\AlwaysReturnsProduct.cs" />
+    <Compile Include="MockRepos\AlwaysReturnsStateTax.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ManagerTests\TestOrderManagerTests.cs" />
+    <Compile Include="ManagerTests\OrderManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

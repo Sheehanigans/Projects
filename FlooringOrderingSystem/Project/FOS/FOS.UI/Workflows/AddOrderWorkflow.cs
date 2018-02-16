@@ -29,10 +29,12 @@ namespace FOS.UI.Workflows
             //get date
             newOrder.Date = ConsoleIO.GetNewOrderDate("Enter a date (MM/DD/YYYY):");
 
+            //get order number 
+            newOrder.OrderNumber = OrderNumberVaidation.CreateOrderNumber(newOrder.Date);
+
             Headers.DisplayHeader(workflow);
 
-
-            newOrder.OrderNumber = OrderNumberVaidation.CreateOrderNumber();
+            //get customer name
             newOrder.CustomerName = ConsoleIO.GetCustomerName("Add","none");
 
             Headers.DisplayHeader(workflow);
@@ -74,7 +76,6 @@ namespace FOS.UI.Workflows
             newOrder.Area = ConsoleIO.GetArea("Add");
 
             Headers.DisplayHeader(workflow);
-
 
             //display new order
             ShowDetails.DisplayOrderDetails(newOrder);
