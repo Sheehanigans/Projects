@@ -33,7 +33,7 @@ namespace FOS.UI.Workflows
             //get order number
             int orderNumber = ConsoleIO.GetOrderNumberFromUser("Enter the order number: ");
 
-            OrderGetSingleResponse orderResponse = orderManager.DisplaySingleOrder(date, orderNumber);
+            OrderGetSingleResponse orderResponse = orderManager.GetSingleOrder(date, orderNumber);
             if (orderResponse.Success)
             {
                 Headers.DisplayHeader(workflow);

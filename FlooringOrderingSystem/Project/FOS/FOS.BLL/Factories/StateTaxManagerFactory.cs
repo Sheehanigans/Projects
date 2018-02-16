@@ -1,5 +1,6 @@
 ﻿using FOS.BLL.Managers;
 using FOS.DATA;
+using FOS.DATA.FileRepositories;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,7 +21,7 @@ namespace FOS.BLL.Factories
                 case "Test":
                     return new StateTaxManager(new TestStateTaxRepository());
                 case "Prod":
-                //return new OrderManager(new ProdOrderRepository());
+                    return new StateTaxManager(new FileStateTaxRepository());
                 default:
                     throw new Exception("Mode value in app.config file is invalid");
             }

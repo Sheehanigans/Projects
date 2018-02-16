@@ -7,30 +7,27 @@ using System.Threading.Tasks;
 
 namespace FOS.BLL.DataValidations
 {
-    public class OrderNumberVaidation
+    public class OrderNumberValidation
     {
         public static int CreateOrderNumber(DateTime date)
         {
             OrderManager manager = OrderManagerFactory.Create();
 
-            List<Order> orders = manager.GetOrderNumber(date).Orders;
+            List<Order> orders = manager.GetOrderList(date).Orders;
 
-            int newOrderNumber = 1;
+            int newOrderNumber = 0;
 
             if (orders != null)
             {
-                newOrderNumber = orders.Count() + 1;
+                newOrderNumber = orders.Count();
 
                 foreach (var ord in orders)
                 {
-                    if (ord.OrderNumber <= newOrderNumber)
-                    {
-                        ord.OrderNumber = newOrderNumber;
-                    }
+                    newOrderNumber = Math.Max(newOrderNumber, ord.OrderNumber);
                 }
             }
 
-            return newOrderNumber;
+            return newOrderNumber + 1;
         }
     }
 }

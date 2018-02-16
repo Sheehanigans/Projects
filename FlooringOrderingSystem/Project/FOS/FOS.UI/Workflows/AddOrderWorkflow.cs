@@ -30,7 +30,7 @@ namespace FOS.UI.Workflows
             newOrder.Date = ConsoleIO.GetNewOrderDate("Enter a date (MM/DD/YYYY):");
 
             //get order number 
-            newOrder.OrderNumber = OrderNumberVaidation.CreateOrderNumber(newOrder.Date);
+            newOrder.OrderNumber = OrderNumberValidation.CreateOrderNumber(newOrder.Date);
 
             Headers.DisplayHeader(workflow);
 

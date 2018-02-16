@@ -37,18 +37,18 @@ namespace FOS.BLL
             return response;
         }
 
-        //might need to change to only look at a date or make another for order number that 
-        //just looks for order numbers for a date...
-        public OrderNumberResponse GetOrderNumber(DateTime date)
-        {
-            OrderNumberResponse response = new OrderNumberResponse();
+        ////might need to change to only look at a date or make another for order number that 
+        ////just looks for order numbers for a date...
+        //public OrderNumberResponse GetOrderNumber(DateTime date)
+        //{
+        //    OrderNumberResponse response = new OrderNumberResponse();
 
-            response.Orders = _orderRepository.ListOrdersForDate(date);
+        //    response.Orders = _orderRepository.ListOrdersForDate(date);
 
-            response.Success = true;
+        //    response.Success = true;
 
-            return response;
-        }
+        //    return response;
+        //}
 
         public OrderAddResponse AddOrderToRepository(Order order)
         {
@@ -64,7 +64,7 @@ namespace FOS.BLL
             return response;
         }
 
-        public OrderGetSingleResponse DisplaySingleOrder(DateTime date, int orderNumber)
+        public OrderGetSingleResponse GetSingleOrder(DateTime date, int orderNumber)
         {
             OrderGetSingleResponse response = new OrderGetSingleResponse();
 
@@ -75,7 +75,7 @@ namespace FOS.BLL
                 response.Message = "Order date does not exist";
                 response.Success = false;
             }
-            else if (orders.Where(w => w.OrderNumber != orderNumber).Any())
+            else if (!orders.Any(w => w.OrderNumber == orderNumber))
             {
                 response.Message = "Order number does not exist";
                 response.Success = false;
