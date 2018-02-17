@@ -22,7 +22,7 @@ namespace FOS.BLL.Factories
                 case "Test":
                     return new ProductManager(new TestProductRepository());
                 case "Prod":
-                return new ProductManager(new FileProductRepository(FilePaths.ProductsFilePath));
+                    return new ProductManager(new FileProductRepository(FilePaths.ProductsFilePath));
                 default:
                     throw new Exception("Mode value in app.config file is invalid");
             }

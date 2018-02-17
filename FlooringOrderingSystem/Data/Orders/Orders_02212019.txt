@@ -1,3 +1,4 @@
 OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax
-1,ryan,Ohio,5.75,Laminate,300,2.25,2.10,675.00,630.00,75.037500
 2,edit man returns,Michigan,5.75,Carpet,200,5.15,4.75,1030.00,950.00,113.850000
+3,ayyyy,Pennsylvania,5.75,Laminate,400,5.15,4.75,2060.00,1900.00,227.700000
+4,BRIAN,MI,5.75,Laminate,300,1.75,2.10,525.00,630.00,66.412500

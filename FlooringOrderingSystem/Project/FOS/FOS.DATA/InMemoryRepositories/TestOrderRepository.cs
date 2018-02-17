@@ -40,11 +40,6 @@ namespace FOS.DATA
             {
                 return null;
             }
-
-            //List<Order> orderList = ListOrders()
-            //    .Where(w => w.Date == date)
-            //    .ToList();
-
             return ordersForDate;
         }
 

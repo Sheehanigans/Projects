@@ -13,8 +13,6 @@ namespace FOS.MODELS.Interfaces
 
         List<Order> ListOrdersForDate(DateTime date);
 
-        List<Order> ListOrders();
-
         bool Add(Order order);
 
         bool Edit(Order order);

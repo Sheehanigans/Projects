@@ -75,8 +75,6 @@ namespace FOS.DATA.FileRepositories
 
             var oldOrders = ListOrdersForDate(order.Date);
 
-            //build list of correct information
-            //print it in file
             List<Order> updatedOrderList = new List<Order>();
 
             foreach (Order ord in oldOrders)
@@ -98,8 +96,7 @@ namespace FOS.DATA.FileRepositories
 
             CreateOrderFile(updatedOrderList, orderPath);
 
-            //not catching false
-            return edited;            
+            return edited;
         }
 
         public Order GetSingleOrder(DateTime date, int orderNumber)
@@ -111,17 +108,9 @@ namespace FOS.DATA.FileRepositories
             return singleOrder;
         }
 
-        public List<Order> ListOrders()
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Order> ListOrdersForDate(DateTime date)
         {
             string fileDate = date.ToString("MMddyyyy");
-            int month = int.Parse(fileDate.Substring(0, 2));
-            int day = int.Parse(fileDate.Substring(2, 2));
-            int year = int.Parse(fileDate.Substring(4, 4));
 
             List<Order> orders = new List<Order>();
 
@@ -146,7 +135,7 @@ namespace FOS.DATA.FileRepositories
                         orderInFile.Area = decimal.Parse(columns[5]);
                         orderInFile.CostPerSquareFoot = decimal.Parse(columns[6]);
                         orderInFile.LaborCostPerSquareFoot = decimal.Parse(columns[7]);
-                        orderInFile.Date = new DateTime(year,month,day);
+                        orderInFile.Date = date;
 
                         orders.Add(orderInFile);
                     }
@@ -162,7 +151,23 @@ namespace FOS.DATA.FileRepositories
 
         public bool Remove(Order order)
         {
-            throw new NotImplementedException();
+            bool removed = false;
+            string orderDate = order.Date.ToString("MMddyyyy");
+            string orderPath = _ordersFilePath + orderDate + ".txt";
+
+            var orders = ListOrdersForDate(order.Date);
+            var orderToRemove = orders
+                .Where(w => w.OrderNumber == order.OrderNumber)
+                .First();
+
+            if(!orders.Contains(order))
+            {
+                orders.Remove(orderToRemove);
+                CreateOrderFile(orders, orderPath);
+                removed = true;
+            }
+
+            return removed;
         }
 
         public void CreateOrderFile(List<Order> orders, string filePath)
