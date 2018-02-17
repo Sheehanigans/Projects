@@ -1,4 +1,5 @@
-﻿using FOS.UI.Workflows;
+﻿using FOS.UI.UI_Elements;
+using FOS.UI.Workflows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,13 @@ namespace FOS.UI
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("\nWelcome to the SWC Corp Flooring Ordering System");
-                Console.WriteLine("--------------------------------------------------");
-                Console.WriteLine("1. Display Orders");
-                Console.WriteLine("2. Add an Order");
-                Console.WriteLine("3. Edit an Order");
-                Console.WriteLine("4. Remove an Order");
-                Console.WriteLine("\nQ to Quit");
-                Console.WriteLine("\nEnter a selection:");
+                Headers.MainMenuHeader();
+                Console.WriteLine(" 1. Display Orders");
+                Console.WriteLine(" 2. Add an Order");
+                Console.WriteLine(" 3. Edit an Order");
+                Console.WriteLine(" 4. Remove an Order");
+                Console.WriteLine("\n Q to Quit");
+                Console.WriteLine("\n Enter a selection:");
 
                 string userInput = Console.ReadLine().ToUpper();
 

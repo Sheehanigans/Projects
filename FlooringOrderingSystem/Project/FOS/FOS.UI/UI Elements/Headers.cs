@@ -19,5 +19,18 @@ namespace FOS.UI.UI_Elements
             Console.WriteLine(SeperatorBar);
             Console.WriteLine();
         }
+
+        public static void MainMenuHeader()
+        {
+            Console.WriteLine();
+            Console.WriteLine(" **********************************************");
+            Console.WriteLine(" *                                            *");
+            Console.WriteLine(" *     DOES THE CARPET MATCH THE DRAPES Inc.  *");
+            Console.WriteLine(" *                                            *");
+            Console.WriteLine(" *        Floor Order Management System       *");
+            Console.WriteLine(" *                                            *");
+            Console.WriteLine(" **********************************************");
+            Console.WriteLine();
+        }
     }
 }

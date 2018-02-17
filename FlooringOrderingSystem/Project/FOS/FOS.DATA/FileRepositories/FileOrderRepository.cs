@@ -85,7 +85,9 @@ namespace FOS.DATA.FileRepositories
                     ord.State = order.State;
                     ord.ProductType = order.ProductType;
                     ord.Area = order.Area;
+
                     updatedOrderList.Add(ord);
+
                     edited = true;
                 }
                 else
@@ -156,6 +158,7 @@ namespace FOS.DATA.FileRepositories
             string orderPath = _ordersFilePath + orderDate + ".txt";
 
             var orders = ListOrdersForDate(order.Date);
+
             var orderToRemove = orders
                 .Where(w => w.OrderNumber == order.OrderNumber)
                 .First();
@@ -165,6 +168,12 @@ namespace FOS.DATA.FileRepositories
                 orders.Remove(orderToRemove);
                 CreateOrderFile(orders, orderPath);
                 removed = true;
+            }
+
+            if(orders.Count() == 0)
+            {
+                if (File.Exists(orderPath))
+                    File.Delete(orderPath);
             }
 
             return removed;
