@@ -25,7 +25,7 @@ namespace FOS.UI.UI_Elements
             Console.WriteLine();
             Console.WriteLine(" **********************************************");
             Console.WriteLine(" *                                            *");
-            Console.WriteLine(" *     DOES THE CARPET MATCH THE DRAPES Inc.  *");
+            Console.WriteLine(" *              FLOOR: RUGNAROK               *");
             Console.WriteLine(" *                                            *");
             Console.WriteLine(" *        Floor Order Management System       *");
             Console.WriteLine(" *                                            *");
