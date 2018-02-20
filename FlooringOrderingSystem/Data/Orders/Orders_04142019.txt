@@ -1,2 +1,2 @@
 OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
-1,Ryan,OH,6.25,Wood,100.00,5.15,4.75,515.0000,475.0000,61.87500000,1051.87500000
+1,bob,OH,6.25,Laminate,300,1.75,2.10,525.00,630.00,72.187500,1227.187500

@@ -15,14 +15,11 @@ namespace FOS.TESTS.FileRepos
         private const string filePath = @"C:\Repos\ryan-sheehan-individual-work\FlooringOrderingSystem\Data\TestFiles\StateTaxes\TestTaxes.txt";
 
         [TestCase("OH", "Ohio")]
-        //[TestCase("MN", null)]
         public void CanGetStateTaxList(string stateAbbreviation, string expectedValue)
         {
             FileStateTaxRepository repo = new FileStateTaxRepository(filePath);
 
             StateTax actualValue = repo.GetState(stateAbbreviation);
-
-            //Assert.AreEqual(expectedValue, actualValue.StateName);
 
             Assert.IsNotNull(actualValue);
         }

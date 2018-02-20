@@ -1,3 +1,3 @@
-OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax
-3,ayyyy,Pennsylvania,5.75,Laminate,400,5.15,4.75,2060.00,1900.00,227.700000
-4,BRIAN,MI,5.75,Laminate,300,1.75,2.10,525.00,630.00,66.412500
+OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+2,nikki,IN,6.00,Wood,100,5.15,4.75,515.00,475.00,59.4000,1049.4000
+3,roger,OH,6.25,Laminate,200,1.75,2.10,350.00,420.00,48.125000,818.125000

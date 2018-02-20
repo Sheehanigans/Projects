@@ -41,8 +41,8 @@ namespace FOS.TESTS
             Assert.IsNull(test.Orders);
         }
 
-        //[TestCase(2020, 02, 02, 2,true)]
-        //[TestCase(2050, 02, 02, 2, false)]
+        //[TestCase(2019, 02, 21, 2, true)]
+        ////[TestCase(2050, 02, 02, 2, false)]
         //public static void GetSingleOrderWithOrder(int year, int month, int day, int orderNumber, bool expectedResult)
         //{
         //    OrderManager manager = new OrderManager(new AlwaysReturnsOrder());
@@ -50,8 +50,7 @@ namespace FOS.TESTS
         //    DateTime date = new DateTime(year, month, day);
         //    var test = manager.GetSingleOrder(date, orderNumber);
 
-        //    Assert.IsTrue(test.Success);
-        //    Assert.IsNotEmpty(test.Order.CustomerName);
+        //    Assert.AreEqual(expectedResult, test.Success);
         //}
 
         [TestCase(2050, 02, 02, 2, false)]
@@ -115,21 +114,6 @@ namespace FOS.TESTS
 
             Assert.IsFalse(test.Success);
         }
-
-        //[TestCase(2020, 02, 02, true, 3)]
-        //[TestCase(2050, 02, 02, false, 5)]
-        //public static void GetOrderNumberWithOrders(int year, int month, int day, bool expectedValue, int expectedOrderNumber)
-        //{
-        //    DateTime date = new DateTime(year, month, day);
-
-        //    OrderManager manager = new OrderManager(new AlwaysReturnsOrder());
-
-        //    var test = manager.GetOrderNumber(date);
-
-        //    Assert.IsTrue(test.Success);
-        //    Assert.AreEqual(expectedOrderNumber, test.Orders.Where(w => w.OrderNumber == expectedOrderNumber + 1));
-        //}
-
 
         [TestCase(2060, 06, 06, 6, "ryan", "OH", 6.25, "Wood", 10, 5.15, 4.75, true)]
         public static void AddEditedOrderToRepositoryWithOrders(int year, int month, int day, int orderNumber, string customerName, string state, decimal taxRate, string productType, decimal area, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expectedResult)

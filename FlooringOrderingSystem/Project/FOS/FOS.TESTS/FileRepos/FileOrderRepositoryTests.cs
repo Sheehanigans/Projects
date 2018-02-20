@@ -44,7 +44,7 @@ namespace FOS.TESTS.FileRepos
                 orders.Add(ord);
             }
 
-            Assert.AreEqual(1, orders.Count());
+            Assert.AreEqual(2, orders.Count());
             Assert.IsTrue(expetctedValue);
         }
 
@@ -70,6 +70,62 @@ namespace FOS.TESTS.FileRepos
             bool actual = repo.Add(order);
 
             Assert.AreEqual(expectedResult, actual);
+        }
+
+        [TestCase(2019,06,06,"Nikki","Carpet","MI",120.00,true)]
+        public void CanEditOrder(int year, int month, int day, string name, string productType, string stateAbrr, decimal area, bool expectedValue)
+        {
+            FileOrderRepository repo = new FileOrderRepository(filePath);
+            DateTime date = new DateTime(year, month, day);
+
+            List<Order> orders = repo.ListOrdersForDate(date);
+
+            Order editedOrder = orders[0];
+
+            editedOrder.CustomerName = name;
+            editedOrder.ProductType = productType;
+            editedOrder.State = stateAbrr;
+            editedOrder.Area = area;
+
+            repo.Edit(editedOrder);
+
+            repo.ListOrdersForDate(date);
+            Order check = orders[0];
+
+            Assert.AreEqual("Nikki", check.CustomerName);
+            Assert.AreEqual("Carpet", check.ProductType);
+            Assert.AreEqual("MI", check.State);
+            Assert.AreEqual(120.00, check.Area);
+        }
+
+        [TestCase(2019, 06, 06, 2, "bob", "OH", 6.25, "Laminate", 300, 1.75, 2.10, true)]
+        public void CanRemoveOrder(int year, int month, int day, int orderNumber, string customerName, string state, decimal taxRate, string productType, decimal area, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expectedResult)
+        {
+            FileOrderRepository repo = new FileOrderRepository(filePath);
+
+            Order order = new Order();
+
+            DateTime date = new DateTime(year, month, day);
+
+            order.Date = date;
+            order.OrderNumber = orderNumber;
+            order.CustomerName = customerName;
+            order.State = state;
+            order.TaxRate = taxRate;
+            order.ProductType = productType;
+            order.Area = area;
+            order.CostPerSquareFoot = costPerSquareFoot;
+            order.LaborCostPerSquareFoot = laborCostPerSquareFoot;
+
+            repo.Remove(order);
+
+            List <Order> orders = repo.ListOrdersForDate(date);
+
+            Order check = orders[0];
+
+            Assert.AreEqual("Ryan", check.CustomerName);
+            Assert.AreEqual("OH", check.State);
+            Assert.AreEqual(1, orders.Count());
         }
     }
 }

@@ -104,7 +104,7 @@ namespace FOS.UI.Workflows
             }
             if(editStateTax != null)
             {
-                editOrder.State = editStateTax.StateName;
+                editOrder.State = editStateTax.StateAbbreviation;
                 editOrder.TaxRate = editStateTax.TaxRate;
             }
             if(editProduct != null)

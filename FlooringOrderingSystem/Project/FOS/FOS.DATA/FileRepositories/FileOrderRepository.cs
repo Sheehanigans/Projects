@@ -53,14 +53,14 @@ namespace FOS.DATA.FileRepositories
 
         private string CreateHeaderForOrderFile()
         {
-            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}", "OrderNumber", "CustomerName", "State",
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11}", "OrderNumber", "CustomerName", "State",
                 "TaxRate", "ProductType", "Area", "CostPerSquareFoot", "LaborCostPerSquareFoot", "MaterialCost", "LaborCost",
                 "Tax", "Total");
         }
 
         private string CreateCSVForOrder(Order order)
         {
-            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}",
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11}",
                 order.OrderNumber, order.CustomerName, order.State, order.TaxRate.ToString(),
                 order.ProductType, order.Area.ToString(), order.CostPerSquareFoot.ToString(),
                 order.LaborCostPerSquareFoot.ToString(), order.MaterialCost.ToString(), order.LaborCost.ToString(),
@@ -114,11 +114,13 @@ namespace FOS.DATA.FileRepositories
         {
             string fileDate = date.ToString("MMddyyyy");
 
+            string orderPath = _ordersFilePath + fileDate + ".txt";
+
             List<Order> orders = new List<Order>();
 
             if (File.Exists(_ordersFilePath + fileDate + ".txt"))
             {
-                using (StreamReader sr = new StreamReader(_ordersFilePath + fileDate + ".txt"))
+                using (StreamReader sr = new StreamReader(orderPath))
                 {
                     sr.ReadLine();
                     string line;
@@ -153,7 +155,6 @@ namespace FOS.DATA.FileRepositories
 
         public bool Remove(Order order)
         {
-            bool removed = false;
             string orderDate = order.Date.ToString("MMddyyyy");
             string orderPath = _ordersFilePath + orderDate + ".txt";
 
@@ -163,12 +164,8 @@ namespace FOS.DATA.FileRepositories
                 .Where(w => w.OrderNumber == order.OrderNumber)
                 .First();
 
-            if(!orders.Contains(order))
-            {
-                orders.Remove(orderToRemove);
-                CreateOrderFile(orders, orderPath);
-                removed = true;
-            }
+            orders.Remove(orderToRemove);
+            CreateOrderFile(orders, orderPath);
 
             if(orders.Count() == 0)
             {
@@ -176,7 +173,7 @@ namespace FOS.DATA.FileRepositories
                     File.Delete(orderPath);
             }
 
-            return removed;
+            return true;
         }
 
         public void CreateOrderFile(List<Order> orders, string filePath)

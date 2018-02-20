@@ -70,6 +70,7 @@ namespace FOS.BLL
             else
             {
                 response.Order = _orderRepository.GetSingleOrder(date, orderNumber);
+
                 if (response.Order == null)
                 {
                     response.Success = false;
