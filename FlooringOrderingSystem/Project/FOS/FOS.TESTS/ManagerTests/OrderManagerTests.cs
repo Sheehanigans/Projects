@@ -64,8 +64,7 @@ namespace FOS.TESTS
             Assert.IsNull(test.Order);
         }
 
-        [TestCase(2020, 09, 09, 5, "ryan", "OH", 6.25, "Wood", 10, 5.15, 4.75, true)]
-        [TestCase(2003, 09, 09, 5, "ryan", "MI", 6.25, "METH", 10, 5.15, 4.75, false)]
+        [TestCase(2020, 09, 09, 5, "ryan", "OH", 6.25, "Wood", 100, 5.15, 4.75, true)]
         public static void CanAddOrderWithOrders(int year, int month, int day, int orderNumber, string customerName, string state, decimal taxRate, string productType, decimal area, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expectedResult)
         {
             DateTime date = new DateTime(year, month, day);
@@ -82,12 +81,108 @@ namespace FOS.TESTS
             order.CostPerSquareFoot = costPerSquareFoot;
             order.LaborCostPerSquareFoot = laborCostPerSquareFoot;
 
-            OrderManager manager = new OrderManager(new AlwaysReturnsOrder());
+            OrderManager manager = new OrderManager(new AlwaysReturnsOrder(), new AlwaysReturnsProduct(), new AlwaysReturnsStateTax());
 
-            var test = manager.AddOrderToRepository(order);
+            var test = manager.AddOrder(order);
 
             Assert.IsTrue(test.Success);
+        }
 
+        [TestCase(2020, 09, 09, 5, "", "OH", 6.25, "Wood", 100, 5.15, 4.75, true)]
+        public static void CantAddOrderWithoutCustomerName(int year, int month, int day, int orderNumber, string customerName, string state, decimal taxRate, string productType, decimal area, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expectedResult)
+        {
+            DateTime date = new DateTime(year, month, day);
+
+            Order order = new Order();
+
+            order.Date = date;
+            order.OrderNumber = orderNumber;
+            order.CustomerName = customerName;
+            order.State = state;
+            order.TaxRate = taxRate;
+            order.ProductType = productType;
+            order.Area = area;
+            order.CostPerSquareFoot = costPerSquareFoot;
+            order.LaborCostPerSquareFoot = laborCostPerSquareFoot;
+
+            OrderManager manager = new OrderManager(new AlwaysReturnsOrder(), new AlwaysReturnsProduct(), new AlwaysReturnsStateTax());
+
+            var test = manager.AddOrder(order);
+
+            Assert.IsFalse(test.Success);
+        }
+
+        [TestCase(2020, 09, 09, 5, "ryan", "OH", 6.25, "Wood", 99, 5.15, 4.75, true)]
+        public static void CantAddOrderWithAreaLessThan100(int year, int month, int day, int orderNumber, string customerName, string state, decimal taxRate, string productType, decimal area, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expectedResult)
+        {
+            DateTime date = new DateTime(year, month, day);
+
+            Order order = new Order();
+
+            order.Date = date;
+            order.OrderNumber = orderNumber;
+            order.CustomerName = customerName;
+            order.State = state;
+            order.TaxRate = taxRate;
+            order.ProductType = productType;
+            order.Area = area;
+            order.CostPerSquareFoot = costPerSquareFoot;
+            order.LaborCostPerSquareFoot = laborCostPerSquareFoot;
+
+            OrderManager manager = new OrderManager(new AlwaysReturnsOrder(), new AlwaysReturnsProduct(), new AlwaysReturnsStateTax());
+
+            var test = manager.AddOrder(order);
+
+            Assert.IsFalse(test.Success);
+        }
+
+        //need state validation directly in the order manager 
+        [TestCase(2020, 09, 09, 5, "ryan", "MN", 6.25, "Wood", 100, 5.15, 4.75, true)]
+        public static void CantAddOrderWithInvalidState(int year, int month, int day, int orderNumber, string customerName, string state, decimal taxRate, string productType, decimal area, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expectedResult)
+        {
+            DateTime date = new DateTime(year, month, day);
+
+            Order order = new Order();
+
+            order.Date = date;
+            order.OrderNumber = orderNumber;
+            order.CustomerName = customerName;
+            order.State = state;
+            order.TaxRate = taxRate;
+            order.ProductType = productType;
+            order.Area = area;
+            order.CostPerSquareFoot = costPerSquareFoot;
+            order.LaborCostPerSquareFoot = laborCostPerSquareFoot;
+
+            OrderManager manager = new OrderManager(new AlwaysReturnsOrder(), new AlwaysReturnsProduct(), new AlwaysReturnsStateTax());
+
+            var test = manager.AddOrder(order);
+
+            Assert.IsFalse(test.Success);
+        }
+
+        [TestCase(2020, 09, 09, 5, "ryan", "MN", 6.25, "Blubber", 100, 5.15, 4.75, true)]
+        public static void CantAddOrderWithInvalidProduct(int year, int month, int day, int orderNumber, string customerName, string state, decimal taxRate, string productType, decimal area, decimal costPerSquareFoot, decimal laborCostPerSquareFoot, bool expectedResult)
+        {
+            DateTime date = new DateTime(year, month, day);
+
+            Order order = new Order();
+
+            order.Date = date;
+            order.OrderNumber = orderNumber;
+            order.CustomerName = customerName;
+            order.State = state;
+            order.TaxRate = taxRate;
+            order.ProductType = productType;
+            order.Area = area;
+            order.CostPerSquareFoot = costPerSquareFoot;
+            order.LaborCostPerSquareFoot = laborCostPerSquareFoot;
+
+            OrderManager manager = new OrderManager(new AlwaysReturnsOrder(), new AlwaysReturnsProduct(), new AlwaysReturnsStateTax());
+
+            var test = manager.AddOrder(order);
+
+            Assert.IsFalse(test.Success);
         }
 
         [TestCase(2020, 09, 09, 5, "ryan", "OH", 6.25, "Wood", 10, 5.15, 4.75, true)]
@@ -108,9 +203,9 @@ namespace FOS.TESTS
             order.CostPerSquareFoot = costPerSquareFoot;
             order.LaborCostPerSquareFoot = laborCostPerSquareFoot;
 
-            OrderManager manager = new OrderManager(new AlwaysReturnsNullOrder());
+            OrderManager manager = new OrderManager(new AlwaysReturnsNullOrder(), new AlwaysReturnsProduct(), new AlwaysReturnsStateTax());
 
-            var test = manager.AddOrderToRepository(order);
+            var test = manager.AddOrder(order);
 
             Assert.IsFalse(test.Success);
         }
@@ -134,7 +229,7 @@ namespace FOS.TESTS
 
             OrderManager manager = new OrderManager(new AlwaysReturnsOrder());
 
-            var test = manager.AddEditedOrderToRepository(order);
+            var test = manager.AddEditedOrder(order);
 
             Assert.IsTrue(test.Success);
         }
@@ -158,7 +253,7 @@ namespace FOS.TESTS
 
             OrderManager manager = new OrderManager(new AlwaysReturnsNullOrder());
 
-            var test = manager.AddEditedOrderToRepository(order);
+            var test = manager.AddEditedOrder(order);
 
             Assert.IsFalse(test.Success);
         }

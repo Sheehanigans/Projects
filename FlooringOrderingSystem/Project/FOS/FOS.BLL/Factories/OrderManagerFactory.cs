@@ -19,9 +19,9 @@ namespace FOS.BLL
             switch (mode)
             {
                 case "Test":
-                    return new OrderManager(new TestOrderRepository());
+                    return new OrderManager(new TestOrderRepository(), new TestProductRepository(), new TestStateTaxRepository());
                 case "Prod":
-                    return new OrderManager(new FileOrderRepository(FilePaths.OrdersFilePath));
+                    return new OrderManager(new FileOrderRepository(FilePaths.OrdersFilePath), new FileProductRepository(FilePaths.ProductsFilePath), new FileStateTaxRepository(FilePaths.StateTaxFilePath));
                 default:
                     throw new Exception("Mode value in app.config file is invalid");
             }

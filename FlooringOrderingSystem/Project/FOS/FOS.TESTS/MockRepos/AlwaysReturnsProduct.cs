@@ -10,30 +10,21 @@ namespace FOS.TESTS.MockRepos
 {
     public class AlwaysReturnsProduct : IProductRepository
     {
-        private static List<Product> _mockProducts = new List<Product>();
-
-        public void MockPproductRepository()
+        private static List<Product> _mockProducts = new List<Product>()
         {
-            if (!_mockProducts.Any())
+            new Product
             {
-                _mockProducts.AddRange(new List<Product>()
-                {
-                    new Product
-                    {
-                        ProductType = "Wood",
-                        CostPerSquareFoot = 2.00M,
-                        LaborCostPerSquareFoot = 3.00M,
-                    },
-                    new Product
-                    {
-                        ProductType = "Carpet",
-                        CostPerSquareFoot = 4.00M,
-                        LaborCostPerSquareFoot = 4.00M,
-                    },
-
-                });
-            }
-        }
+                ProductType = "Wood",
+                CostPerSquareFoot = 2.00M,
+                LaborCostPerSquareFoot = 3.00M,
+            },
+            new Product
+            {
+                ProductType = "Carpet",
+                CostPerSquareFoot = 4.00M,
+                LaborCostPerSquareFoot = 4.00M,
+            },
+        };
 
         public List<Product> GetProductList()
         {

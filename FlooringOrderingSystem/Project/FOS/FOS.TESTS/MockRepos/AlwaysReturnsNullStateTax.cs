@@ -14,5 +14,10 @@ namespace FOS.TESTS.MockRepos
         {
             return null;
         }
+
+        public List<StateTax> ListStates()
+        {
+            return null;
+        }
     }
 }

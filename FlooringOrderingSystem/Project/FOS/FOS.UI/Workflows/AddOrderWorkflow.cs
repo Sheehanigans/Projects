@@ -83,9 +83,17 @@ namespace FOS.UI.Workflows
             //--show message if add failed--
             if (ConsoleIO.GetYesOrNo("Add order? ") == "Y")
             {
-                OrderAddValidation.AddOrder(newOrder);
-                Console.WriteLine("Order added! Press any key to continue...");
-                Console.ReadKey();
+                OrderAddResponse response = orderManager.AddOrder(newOrder);
+                if (!response.Success)
+                {
+                    Console.WriteLine("There was an error adding the order:");
+                    Console.WriteLine(response.Message);
+                }
+                else
+                {
+                    Console.WriteLine("Order added! Press any key to continue...");
+                    Console.ReadKey();
+                }
             }
             else
             {

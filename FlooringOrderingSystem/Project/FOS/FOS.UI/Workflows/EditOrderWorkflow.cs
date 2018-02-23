@@ -123,7 +123,7 @@ namespace FOS.UI.Workflows
 
             if(ConsoleIO.GetYesOrNo("Submit changes to order?") == "Y")
             {
-                OrderAddEditedResponse response = orderManager.AddEditedOrderToRepository(editOrder);
+                OrderAddEditedResponse response = orderManager.AddEditedOrder(editOrder);
                 if (!response.Success)
                 {
                     Console.WriteLine("There was an error adding the order:");

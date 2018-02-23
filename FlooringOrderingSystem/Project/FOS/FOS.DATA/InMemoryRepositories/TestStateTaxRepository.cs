@@ -34,5 +34,10 @@ namespace FOS.DATA
 
             return state;
         }
+
+        public List<StateTax> ListStates()
+        {
+            return states;
+        }
     }
 }

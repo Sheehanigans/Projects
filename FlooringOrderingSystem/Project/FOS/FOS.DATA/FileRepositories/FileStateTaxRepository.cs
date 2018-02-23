@@ -55,5 +55,35 @@ namespace FOS.DATA.FileRepositories
 
             return stateToReturn;
         }
+
+        public List <StateTax> ListStates()
+        {
+            List<StateTax> states = new List<StateTax>();
+
+            if (File.Exists(_stateTaxFilePath))
+            {
+                using (StreamReader sr = new StreamReader(_stateTaxFilePath, true))
+                {
+                    sr.ReadLine();
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        StateTax stateInFile = new StateTax();
+
+                        string[] columns = line.Split(',');
+
+                        stateInFile.StateAbbreviation = columns[0];
+                        stateInFile.StateName = columns[1];
+                        stateInFile.TaxRate = decimal.Parse(columns[2]);
+
+                        states.Add(stateInFile);
+                    }
+                }
+            }
+
+            return states;
+
+        }
     }
 }

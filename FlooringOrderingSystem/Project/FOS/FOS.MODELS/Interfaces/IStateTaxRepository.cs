@@ -10,5 +10,7 @@ namespace FOS.MODELS.Interfaces
     public interface IStateTaxRepository
     {
         StateTax GetState(string stateAbbr);
+
+        List<StateTax> ListStates();
     }
 }

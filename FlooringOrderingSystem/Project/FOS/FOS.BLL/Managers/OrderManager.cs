@@ -1,4 +1,5 @@
-﻿using FOS.MODELS;
+﻿using FOS.BLL.Managers;
+using FOS.MODELS;
 using FOS.MODELS.Interfaces;
 using FOS.MODELS.Models;
 using FOS.MODELS.Responses;
@@ -13,10 +14,19 @@ namespace FOS.BLL
     public class OrderManager
     {
         private IOrderRepository _orderRepository;
+        private IProductRepository _productRepository;
+        private IStateTaxRepository _stateTaxRepository;
 
         public OrderManager(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
+        }
+
+        public OrderManager(IOrderRepository orderRepository, IProductRepository productRepository, IStateTaxRepository stateTaxRepository)
+        {
+            _orderRepository = orderRepository;
+            _productRepository = productRepository;
+            _stateTaxRepository = stateTaxRepository;
         }
 
         public OrderGetListResponse GetOrderList(DateTime date)
@@ -37,18 +47,78 @@ namespace FOS.BLL
             return response;
         }
 
-        public OrderAddResponse AddOrderToRepository(Order order)
+        public OrderAddResponse AddOrder(Order order)
         {
-            OrderAddResponse response = new OrderAddResponse();
+            OrderAddResponse orderResponse = new OrderAddResponse();
 
-            response.Success = _orderRepository.Add(order);
+            //valid order
+            bool validOrder = false;
 
-            if (!response.Success)
+            //validate name
+            bool validName = false;
+            if (string.IsNullOrEmpty(order.CustomerName))
             {
-                response.Message = "Add failed";
+                orderResponse.Message = "Name field is null";
+                orderResponse.Success = false;
+            }
+            else
+            {
+                validName = true;
             }
 
-            return response;
+            //validate area
+            bool validArea = false;
+            if (order.Area < 100)
+            {
+                orderResponse.Message = "Area cannot be less than 100 sq ft";
+                orderResponse.Success = false;
+            }
+            else
+            {
+                validArea = true;
+            }
+
+            //validate product 
+            bool validProduct = false;
+
+            List <Product> products = _productRepository.GetProductList();
+            foreach(Product prod in products)
+            {
+                if(prod.ProductType == order.ProductType)
+                {
+                    validProduct = true;
+                }
+            }
+
+            //validate state
+            bool validState = false;
+
+            List<StateTax> states = _stateTaxRepository.ListStates();
+            foreach(StateTax state in states)
+            {
+                if(state.StateAbbreviation == order.State)
+                {
+                    validState = true;
+                }
+            }
+
+
+            if (validName && validArea && validProduct && validState)
+            {
+                validOrder = true;
+            }
+
+            if (validOrder)
+            {
+                orderResponse.Success = _orderRepository.Add(order);
+
+                if (!orderResponse.Success)
+                {
+                    orderResponse.Message = "Add failed";
+                }
+            }
+
+            return orderResponse;
         }
 
         public OrderGetSingleResponse GetSingleOrder(DateTime date, int orderNumber)
@@ -84,7 +154,7 @@ namespace FOS.BLL
             return response;
         }
 
-        public OrderAddEditedResponse AddEditedOrderToRepository(Order order)
+        public OrderAddEditedResponse AddEditedOrder(Order order)
         {
             OrderAddEditedResponse response = new OrderAddEditedResponse();
 

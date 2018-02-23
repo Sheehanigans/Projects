@@ -21,5 +21,14 @@ namespace FOS.TESTS.MockRepos
         {
             return state;
         }
+
+        public List<StateTax> ListStates()
+        {
+            List<StateTax> states = new List<StateTax>();
+
+            states.Add(state);
+
+            return states;
+        }
     }
 }
