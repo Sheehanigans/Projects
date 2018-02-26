@@ -209,7 +209,6 @@ function displayConnectionError(){
 function resetForm(){
     $('#moneyDisplay').empty()
     moneyInSystem = 0;
-    displayMoney(0)
 
     $('#itemDisplay').empty()
     itemIdNumber = 0
