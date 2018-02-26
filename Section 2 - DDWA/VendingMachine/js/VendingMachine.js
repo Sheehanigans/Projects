@@ -1,7 +1,6 @@
 $(document).ready(function (){
 
     loadGoodies();
-    displayMoney(0)
     $('#returnChange').hide()
 })
 
