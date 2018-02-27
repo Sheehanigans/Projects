@@ -1,0 +1,13 @@
+﻿@model MVCCodeAlong.Models.Person
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h3>@Model.Name</h3>
+
+<div id="handle"></div>
+
+@Html.ActionLink("This is the link text", "Index", "Sweet")

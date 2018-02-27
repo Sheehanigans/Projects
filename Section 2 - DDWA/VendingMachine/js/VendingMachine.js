@@ -113,7 +113,8 @@ function getGoodie(itemId){
         },
         error: function(jqXHR, status, err){
             if(err == "Unprocessable Entity"){
-                var message = jqXHR.responseText.substr(12).replace('"','').replace('}','')
+                // var message = jqXHR.responseText.substr(12).replace('"','').replace('}','')
+                var message = jqXHR.responseJSON.message
                 displayMessage(message)
             }
             else{

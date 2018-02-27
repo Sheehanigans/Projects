@@ -1,0 +1,14 @@
+﻿@model RockPaperScissors.UI.Models.GameResult
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Choose wisely...</h3>
+<br/>
+
+<form action="/Home/Shoot" method="GET">
+    <button name="shoot" value="Rock" class="btn btn-default">Rock</button>
+    <button name="shoot" value="Paper" class="btn btn-default">Paper</button>
+    <button name="shoot" value="Scissors" class="btn btn-default">Scissors</button>
+</form>
+

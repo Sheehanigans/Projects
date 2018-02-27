@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Shoot";
+}
+
+<h2>@Model.ResultMessage</h2>
+<br/>
+
+<h5> Player 1 played: @Model.Player1Result</h5>
+<h5> Player 2 played: @Model.Player2Result</h5>
+<br/>
+
+<form action="/Home" method="GET">
+    <div class="form-group">
+        <button class="btn btn-dark">Play again?</button>
+    </div>
+</form>

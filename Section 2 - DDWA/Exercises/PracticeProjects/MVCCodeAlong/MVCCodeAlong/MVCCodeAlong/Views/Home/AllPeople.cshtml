@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MVCCodeAlong.Models.Person>
+
+@using MVCCodeAlong.Models;
+
+@{
+    ViewBag.Title = "AllPeople";
+}
+
+<h2>AllPeople</h2>
+
+@foreach(Person p in Model)
+{
+    <h3>@Html.Raw(p.Name)</h3>
+}
