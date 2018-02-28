@@ -1,0 +1,25 @@
+﻿@model TipCalculator.Bill
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tip Calc</h2>
+
+@using (Html.BeginForm("Bill", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="BillAmount">Bill Amount:</label>
+        <input type="number" name="BillAmount" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.BillAmount)</span>
+
+    </div>
+    <div class="form-group">
+        <label for="TipPercent">Tip %</label>
+        <input type="number" name="TipPercentage" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.TipPercentage)</span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Calculate Tip</button>
+    </div>
+}

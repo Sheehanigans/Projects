@@ -1,0 +1,15 @@
+﻿@model TipCalculator.Bill
+
+@{
+    ViewBag.Title = "Bill";
+}
+
+<h2>Bill</h2>
+
+<h3>Bill Amount: $@Html.DisplayFor(x => x.BillAmount)</h3>
+
+<h3>Tip Percent: @Html.DisplayFor(x => x.TipPercentage)%</h3>
+
+<h3>Tip Amount: $@Html.DisplayFor(x => x.TipAmount)</h3>
+
+

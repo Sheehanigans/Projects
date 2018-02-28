@@ -1,0 +1,5 @@
+PickID,FirstName,LastName,PickNumbers[0],PickNumbers[1],PickNumbers[2],PickNumbers[3],PickNumbers[4],Powerball
+101,Ryan,Sheehan,1,2,3,4,5,6
+102,Bill,Barr,7,8,9,10,11,12
+103,Jim,Johnson,13,14,15,16,17,18
+104,Mike,Smith,19,20,21,22,23,24

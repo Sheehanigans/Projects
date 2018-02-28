@@ -1,0 +1,38 @@
+﻿@model RyanSheehanPowerball.UI.Models.PickModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome to Powerball!</h2>
+
+@using (Html.BeginForm("AddPick", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="FirstName">Enter First Name</label>
+        <input type="text" name="FirstName" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.FirstName)</span>
+
+    </div>
+    <div class="form-group">
+        <label for="LastName">Enter Last Name</label>
+        <input type="text" name="LastName" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.LastName)</span>
+
+    </div>
+
+    for (int i = 0; i < 5; i++)
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.PickNumbers[i])
+            @Html.TextBoxFor(m => m.PickNumbers[i])
+        </div>
+    }
+    <div class="form-group">
+        <label for="Powerball">Choose your powerball</label>
+        <input type="number" name="Powerball" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit!</button>
+    </div>
+}
