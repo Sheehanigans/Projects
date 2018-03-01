@@ -6,15 +6,15 @@ using System.Web;
 
 namespace RyanSheehanPowerball.UI.Attributes
 {
-    public class PickNumbersAttribute : ValidationAttribute
+    public class PowerballAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
-            if(value is int)
+            if (value is int)
             {
                 int numberToCheck = (int)value;
 
-                if (numberToCheck < 70 && numberToCheck > 0)
+                if (numberToCheck < 27 && numberToCheck > 0)
                 {
                     return true;
                 }
