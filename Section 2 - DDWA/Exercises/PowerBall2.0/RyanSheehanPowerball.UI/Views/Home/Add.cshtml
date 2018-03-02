@@ -1,0 +1,14 @@
+﻿@model RyanSheehanPowerball.UI.Models.PickModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>AddPick</h2>
+
+<h3>@Model.FirstName</h3>
+<h3>@Model.LastName</h3>
+
+@for(int i = 0; i < 5; i++)
+{
+    <h4>@Model.PickNumbers[i]</h4>
+}

@@ -10,17 +10,28 @@ namespace RyanSheehanPowerball.UI.Attributes
     {
         public override bool IsValid(object value)
         {
-            if(value is int)
-            {
-                int numberToCheck = (int)value;
+            bool isValid = false;
+            int validNums = 0;
 
-                if (numberToCheck < 70 && numberToCheck > 0)
+            List<int> numbers = value as List<int>;
+
+            if(numbers != null)
+            {
+                foreach(int num in numbers)
                 {
-                    return true;
-                }
+                    if (num < 70 && num > 0)
+                    {
+                        validNums++;
+                    }
+                }                
             }
 
-            return false;
+            if(validNums == 5)
+            {
+                isValid = true;
+            }
+
+            return isValid;
         }
     }
 }

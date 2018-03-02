@@ -17,7 +17,7 @@ $(document).ready(function () {
         // if we made it here, there are no errors so make the ajax call
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/contact',
+            url: 'http://localhost:51066/contact',
             data: JSON.stringify({
                 firstName: $('#add-first-name').val(),
                 lastName: $('#add-last-name').val(),
@@ -65,7 +65,7 @@ $(document).ready(function () {
         // if we get to here, there were no errors, so make the Ajax call
         $.ajax({
            type: 'PUT',
-           url: 'http://localhost:8080/contact/' + $('#edit-contact-id').val(),
+           url: 'http://localhost:51066/contact/' + $('#edit-contact-id').val(),
            data: JSON.stringify({
              contactId: $('#edit-contact-id').val(),
              firstName: $('#edit-first-name').val(),
@@ -104,7 +104,7 @@ function loadContacts() {
 
     $.ajax ({
         type: 'GET',
-        url: 'http://localhost:8080/contacts',
+        url: 'http://localhost:51066/contacts',
         success: function (data, status) {
             $.each(data, function (index, contact) {
                 var name = contact.firstName + ' ' + contact.lastName;
@@ -140,7 +140,7 @@ function showEditForm(contactId) {
     // form on success
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/contact/' + contactId,
+        url: 'http://localhost:51066/contact/' + contactId,
         success: function(data, status) {
               $('#edit-first-name').val(data.firstName);
               $('#edit-last-name').val(data.lastName);
@@ -176,7 +176,7 @@ function hideEditForm() {
 function deleteContact(contactId) {
     $.ajax ({
         type: 'DELETE',
-        url: "http://localhost:8080/contact/" + contactId,
+        url: "http://localhost:51066/contact/" + contactId,
         success: function (status) {
             loadContacts();
         }

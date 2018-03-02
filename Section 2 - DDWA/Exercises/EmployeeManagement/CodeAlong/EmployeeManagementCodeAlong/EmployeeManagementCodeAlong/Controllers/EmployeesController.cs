@@ -30,13 +30,8 @@ namespace EmployeeManagementCodeAlong.Controllers
         {
             AddEmployeeViewModel model = new AddEmployeeViewModel();
 
-            model.Departments = (from department in DepartmentRepository.GetAll()
-                                 select new SelectListItem()
-                                 {
-                                     Text = department.DepartmentName,
-                                     Value = department.DepartmentId.ToString()
-                                 }).ToList();
-           
+            model.Departments = GetDepartmentsSelectList();
+
             return View(model);
         }
 
@@ -59,15 +54,70 @@ namespace EmployeeManagementCodeAlong.Controllers
             }
             else
             {
-                model.Departments = (from department in DepartmentRepository.GetAll()
-                                     select new SelectListItem()
-                                     {
-                                         Text = department.DepartmentName,
-                                         Value = department.DepartmentId.ToString()
-                                     }).ToList();
+                model.Departments = GetDepartmentsSelectList();
 
                 return View(model);
             }
+
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var employee = EmployeeRepository.Get(id);
+
+            var model = new EditEmployeeViewModel();
+
+            model.FirstName = employee.FirstName;
+            model.LastName = employee.LastName;
+            model.DepartmentId = employee.DepartmentId;
+            model.Phone = employee.Phone;
+            model.EmployeeId = employee.EmployeeId;
+
+            model.Departments = GetDepartmentsSelectList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditEmployeeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Employee employee = new Employee();
+                employee.EmployeeId = model.EmployeeId;
+                employee.FirstName = model.FirstName;
+                employee.LastName = model.LastName;
+                employee.Phone = model.Phone;
+                employee.DepartmentId = model.DepartmentId;
+
+                EmployeeRepository.Edit(employee);
+
+                return RedirectToAction("List");
+            }
+            else
+            {
+                model.Departments = GetDepartmentsSelectList();
+
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            EmployeeRepository.Delete(id);
+            return RedirectToAction("List");
+        }
+
+        private List<SelectListItem> GetDepartmentsSelectList()
+        {
+            return (from department in DepartmentRepository.GetAll()
+                    select new SelectListItem()
+                    {
+                        Text = department.DepartmentName,
+                        Value = department.DepartmentId.ToString()
+                    }).ToList();
         }
     }
 }

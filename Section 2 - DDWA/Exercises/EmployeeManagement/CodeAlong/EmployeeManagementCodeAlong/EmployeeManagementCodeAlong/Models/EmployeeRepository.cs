@@ -14,8 +14,8 @@ namespace EmployeeManagementCodeAlong.Models
             _employees = new List<Employee>()
             {
                 new Employee{EmployeeId=1, FirstName="Jenny",LastName="Jone",Phone="888-8888",DepartmentId=1},
-                new Employee{EmployeeId=1, FirstName="Bob",LastName="Ross",Phone="555-5555",DepartmentId=2},
-                new Employee{EmployeeId=1, FirstName="Bill",LastName="Johnson",Phone="666-6666",DepartmentId=3}
+                new Employee{EmployeeId=2, FirstName="Bob",LastName="Ross",Phone="555-5555",DepartmentId=2},
+                new Employee{EmployeeId=3, FirstName="Bill",LastName="Johnson",Phone="666-6666",DepartmentId=3}
 
             };
         }
@@ -36,8 +36,8 @@ namespace EmployeeManagementCodeAlong.Models
 
         public static void Edit(Employee employee)
         {
-            Employee found = _employees.First(e => employee.EmployeeId == e.EmployeeId);
-            found = employee;
+            _employees.RemoveAll(e => e.EmployeeId == employee.EmployeeId);
+            _employees.Add(employee);
         }
 
         public static void Delete(int employeeId)

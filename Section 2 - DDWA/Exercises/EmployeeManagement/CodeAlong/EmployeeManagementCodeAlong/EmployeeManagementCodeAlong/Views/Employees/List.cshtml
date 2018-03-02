@@ -39,10 +39,13 @@
                             <td>@employee.Phone</td>
                             <td>@employee.Deparment</td>
                             <td>
-                                Edit
+                                @Html.ActionLink("edit","Edit","Employees", new {id=employee.EmployeeID}, null)
                             </td>
                             <td>
-                                Delete
+                                @using (Html.BeginForm("Delete", "Employees", new {id=employee.EmployeeID}, FormMethod.Post))
+                                { 
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete @employee.Name?');">Delete</button>
+                                }
                             </td>
                         </tr>
                     }

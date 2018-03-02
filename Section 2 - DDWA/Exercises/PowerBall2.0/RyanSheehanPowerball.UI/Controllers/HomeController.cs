@@ -16,13 +16,13 @@ namespace RyanSheehanPowerball.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPick(PickModel pick)
+        public ActionResult Add(PickModel model)
         {
             if (ModelState.IsValid)
             {
-                return View(pick);
+                return View(model);
             }
-            return View("AddPick", pick);
+            return View(model);
         }
 
         public ActionResult Play()

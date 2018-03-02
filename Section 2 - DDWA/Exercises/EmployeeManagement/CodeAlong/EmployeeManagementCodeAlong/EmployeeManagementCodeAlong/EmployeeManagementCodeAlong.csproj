@@ -151,6 +151,7 @@
     <Compile Include="Models\AddEmployeeViewModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DepartmentRepository.cs" />
+    <Compile Include="Models\EditEmployeeViewModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeListViewModel.cs" />
     <Compile Include="Models\EmployeeRepository.cs" />
@@ -164,6 +165,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Employees\List.cshtml" />
     <Content Include="Views\Employees\Add.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
