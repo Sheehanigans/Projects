@@ -48,5 +48,18 @@ namespace Exercises.Controllers
 
             return RedirectToAction("List");
         }
+
+        [HttpGet]
+        public ActionResult EditStudent(int id)
+        {
+            var viewModel = new StudentVM();
+            viewModel.SetCourseItems(CourseRepository.GetAll());
+            viewModel.SetMajorItems(MajorRepository.GetAll());
+
+            viewModel.Student = StudentRepository.Get(id);
+            viewModel.Student.Major = MajorRepository.Get(viewModel.Student.Major.MajorId);
+
+            return View(viewModel);
+        }
     }
 }
