@@ -55,13 +55,33 @@ namespace Exercises.Controllers
             var viewModel = new StudentVM();
             viewModel.SetCourseItems(CourseRepository.GetAll());
             viewModel.SetMajorItems(MajorRepository.GetAll());
+            viewModel.SetStateItems(StateRepository.GetAll());
 
             viewModel.Student = StudentRepository.Get(id);
             viewModel.Student.Major = MajorRepository.Get(viewModel.Student.Major.MajorId);
 
-
-
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditStudent(StudentVM studentVM)
+        {
+            //set view model properties 
+            //get courses 
+            //get major 
+            //add student 
+            //redirect to list view
+
+            studentVM.Student.Courses = new List<Course>();
+
+            foreach (var id in studentVM.SelectedCourseIds)
+                studentVM.Student.Courses.Add(CourseRepository.Get(id));
+
+            studentVM.Student.Major = MajorRepository.Get(studentVM.Student.Major.MajorId);
+
+            StudentRepository.Edit(studentVM.Student);
+
+            return RedirectToAction("List");
         }
     }
 }
