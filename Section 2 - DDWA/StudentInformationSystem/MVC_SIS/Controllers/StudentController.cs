@@ -59,6 +59,8 @@ namespace Exercises.Controllers
             viewModel.Student = StudentRepository.Get(id);
             viewModel.Student.Major = MajorRepository.Get(viewModel.Student.Major.MajorId);
 
+
+
             return View(viewModel);
         }
     }
