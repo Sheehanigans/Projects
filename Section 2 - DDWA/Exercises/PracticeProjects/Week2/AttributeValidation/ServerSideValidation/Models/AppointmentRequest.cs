@@ -19,4 +19,3 @@ namespace ServerSideValidation.Models
         public bool TermsAccepted { get; set; }
     }
 }
-
