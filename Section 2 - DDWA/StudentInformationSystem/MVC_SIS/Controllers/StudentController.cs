@@ -70,6 +70,9 @@ namespace Exercises.Controllers
 
             viewModel.Student = StudentRepository.Get(id);
 
+            foreach (Course course in viewModel.Student.Courses)
+                viewModel.SelectedCourseIds.Add(course.CourseId);
+
             if (viewModel.Student.Address == null)
             {
                 viewModel.Student.Address = new Address()
