@@ -48,11 +48,6 @@ namespace Exercises.Controllers
 
                 studentVM.Student.StudentId = StudentRepository.GetStudentId();
 
-                studentVM.Student.Address = new Address
-                {
-                    AddressId = StudentRepository.GetAddressId()
-                };
-
                 StudentRepository.Add(studentVM.Student);
 
                 return RedirectToAction("List");
@@ -74,6 +69,14 @@ namespace Exercises.Controllers
             viewModel.SetStateItems(StateRepository.GetAll());
 
             viewModel.Student = StudentRepository.Get(id);
+
+            if (viewModel.Student.Address == null)
+            {
+                viewModel.Student.Address = new Address()
+                {
+                    AddressId = StudentRepository.GetAddressId()
+                };
+            }
 
             return View(viewModel);
         }

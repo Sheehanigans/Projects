@@ -46,9 +46,20 @@
                                         @Html.TextBoxFor(m => m.Student.GPA, new { @class = "form-control" })
                                         <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.GPA)</span>
                                     </div>
-                                    <h4>Courses</h4>
+                                    @if(Model.Student.Courses != null)
+                                    {
+                                        <div class="form-group">
+                                        <label>Current Courses:</label>
+                                        @foreach (var course in Model.Student.Courses)
+                                        {
+                                            <p style="color:gray">@course.CourseName</p>                            
+                                        }
+                                    </div>
+                                    }
+                                    <label>Add Courses:</label>
+                                    <p style="color:gray">Use the Ctrl key to select many</p>
                                     <div class="form-group">
-                                        @Html.ListBoxFor(m => m.SelectedCourseIds, Model.CourseItems, new { @class = "form-control" })
+                                        @Html.ListBoxFor(m => m.SelectedCourseIds, Model.CourseItems, new { @class = "form-control"})
                                     </div>
                                 </div>
                             </div>
