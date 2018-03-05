@@ -37,16 +37,32 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult Add(StudentVM studentVM)
         {
-            studentVM.Student.Courses = new List<Course>();
+            if (ModelState.IsValid)
+            {
+                studentVM.Student.Courses = new List<Course>();
 
-            foreach (var id in studentVM.SelectedCourseIds)
-                studentVM.Student.Courses.Add(CourseRepository.Get(id));
+                foreach (var id in studentVM.SelectedCourseIds)
+                    studentVM.Student.Courses.Add(CourseRepository.Get(id));
 
-            studentVM.Student.Major = MajorRepository.Get(studentVM.Student.Major.MajorId);
+                studentVM.Student.Major = MajorRepository.Get(studentVM.Student.Major.MajorId);
 
-            StudentRepository.Add(studentVM.Student);
+                studentVM.Student.StudentId = StudentRepository.GetStudentId();
 
-            return RedirectToAction("List");
+                studentVM.Student.Address = new Address
+                {
+                    AddressId = StudentRepository.GetAddressId()
+                };
+
+                StudentRepository.Add(studentVM.Student);
+
+                return RedirectToAction("List");
+            }
+            else
+            {
+                studentVM.SetMajorItems(MajorRepository.GetAll());
+                studentVM.SetCourseItems(CourseRepository.GetAll());
+                return View(studentVM);
+            }
         }
 
         [HttpGet]
@@ -58,12 +74,6 @@ namespace Exercises.Controllers
             viewModel.SetStateItems(StateRepository.GetAll());
 
             viewModel.Student = StudentRepository.Get(id);
-            //viewModel.Student.Major = MajorRepository.Get(viewModel.Student.Major.MajorId);
-
-            viewModel.Student.Courses = new List<Course>();
-
-            foreach (var course in viewModel.SelectedCourseIds)
-                viewModel.Student.Courses.Add(CourseRepository.Get(id));
 
             return View(viewModel);
         }
@@ -71,12 +81,6 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult EditStudent(StudentVM studentVM)
         {
-            //set view model properties 
-            //get courses 
-            //get major 
-            //add student 
-            //redirect to list view
-
             if (ModelState.IsValid)
             {
                 studentVM.Student.Courses = new List<Course>();
@@ -96,12 +100,9 @@ namespace Exercises.Controllers
             }
             else
             {
-                var viewModel = new StudentVM();
-                viewModel.SetCourseItems(CourseRepository.GetAll());
-                viewModel.SetMajorItems(MajorRepository.GetAll());
-                viewModel.SetStateItems(StateRepository.GetAll());
-
-                viewModel.Student = StudentRepository.Get(studentVM.Student.StudentId);
+                studentVM.SetCourseItems(CourseRepository.GetAll());
+                studentVM.SetMajorItems(MajorRepository.GetAll());
+                studentVM.SetStateItems(StateRepository.GetAll());
 
                 return View(studentVM);
             }

@@ -10,7 +10,7 @@ namespace Exercises.Models.Data
     {
         public int AddressId { get; set; }
 
-        [Required(ErrorMessage = "Address is required")]
+        [Required(ErrorMessage = "Street is required")]
         public string Street1 { get; set; }
         public string Street2 { get; set; }
 
@@ -20,7 +20,7 @@ namespace Exercises.Models.Data
         [Required(ErrorMessage = "State is required")]
         public State State { get; set; }
 
-        [Required(ErrorMessage = "Address is required")]
+        [Required(ErrorMessage = "Postal code is required")]
         public string PostalCode { get; set; }
     }
 }

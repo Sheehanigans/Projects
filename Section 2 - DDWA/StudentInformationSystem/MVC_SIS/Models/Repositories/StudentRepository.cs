@@ -104,5 +104,20 @@ namespace Exercises.Models.Repositories
             var selectedStudent = _students.First(s => s.StudentId == studentId);
             selectedStudent.Address = address;
         }
+
+        public static int GetStudentId()
+        {
+            int studentId = int.MinValue;
+            var allStudents = GetAll();
+            studentId = allStudents.Max(s => s.StudentId) + 1;
+            return studentId;
+        }
+        public static int GetAddressId()
+        {
+            int addressId = int.MinValue;
+            var allStudents = GetAll();
+            addressId = allStudents.Max(s => s.StudentId) + 1;
+            return addressId;
+        }
     }
 }
