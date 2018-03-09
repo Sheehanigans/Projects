@@ -70,6 +70,11 @@ namespace Exercises.Controllers
 
             viewModel.Student = StudentRepository.Get(id);
 
+            if (viewModel.Student.Courses == null)
+            {
+                viewModel.Student.Courses = new List<Course>();
+            }
+
             foreach (Course course in viewModel.Student.Courses)
                 viewModel.SelectedCourseIds.Add(course.CourseId);
 
