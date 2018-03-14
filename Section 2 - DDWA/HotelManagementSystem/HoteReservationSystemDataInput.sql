@@ -50,4 +50,7 @@ GO
 --('MEGA SUITE rate', 10000.00)
 
 --INSERT INTO TypeRate (RoomTypeID, RateID, StartDate, EndDate)
---VALUES (1,1,'11/11/2019','12/11/2019')
+--VALUES (1,2,'11/11/2019','12/11/2019'), 
+--(2,1,'11/11/2019','12/11/2019')
+
+
