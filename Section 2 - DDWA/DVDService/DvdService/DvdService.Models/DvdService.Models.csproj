@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\DirectorValidation.cs" />
+    <Compile Include="Attributes\NotesValidation.cs" />
+    <Compile Include="Attributes\RatingValidation.cs" />
+    <Compile Include="Attributes\ReleaseYearValidation.cs" />
+    <Compile Include="Attributes\TitleLengthVerification.cs" />
     <Compile Include="Dvd.cs" />
     <Compile Include="Interfaces\IDvdRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

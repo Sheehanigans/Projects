@@ -39,12 +39,27 @@ namespace DvdService.Data.EntityFrameworkRepos
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var dvd = context.Dvds.FirstOrDefault(d => d.DvdId == id);
+
+            if(dvd != null)
+            {
+                context.Dvds.Remove(dvd);
+                context.SaveChanges();
+            }
         }
 
         public void Edit(Dvd dvd)
         {
-            throw new NotImplementedException();
+            Dvd newDvd = new Dvd();
+            newDvd.DvdId = dvd.DvdId;
+            newDvd.Title = dvd.Title;
+            newDvd.Director = dvd.Director;
+            newDvd.ReleaseYear = dvd.ReleaseYear;
+            newDvd.Rating = dvd.Rating;
+            newDvd.Notes = dvd.Notes;
+
+            context.Entry(newDvd).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         public List<Dvd> GetAll()

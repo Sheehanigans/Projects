@@ -95,9 +95,12 @@ namespace DvdService.Data.ADORepos
 
             using (var connection = ADODatabaseConnection.GetOpenConnection())
             {
+                var parameters = new DynamicParameters();
+                parameters.Add("@DvdId", id);
+
                 dvdToReturn = connection.Query<Dvd>(
                     "GetById",
-                    id,
+                    parameters,
                     commandType: CommandType.StoredProcedure
                     ).SingleOrDefault();
             }

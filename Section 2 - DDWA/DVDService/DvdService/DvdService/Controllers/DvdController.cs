@@ -64,9 +64,16 @@ namespace DvdService.Controllers
         [AcceptVerbs("POST")]
         public IHttpActionResult AddDvd(Dvd dvd)
         {
-            IDvdRepository DvdRepo = DvdRepositoryFactory.Create();
-            DvdRepo.Add(dvd);
-            return Created($"/dvd{dvd.DvdId}", dvd);
+            if (ModelState.IsValid)
+            {
+                IDvdRepository DvdRepo = DvdRepositoryFactory.Create();
+                DvdRepo.Add(dvd);
+                return Created($"/dvd{dvd.DvdId}", dvd);
+            }
+            else
+            {
+                return Content(HttpStatusCode.BadRequest, "Model state invalid");
+            }
         }
 
         [Route("dvd/{id}")]
@@ -87,8 +94,15 @@ namespace DvdService.Controllers
         [AcceptVerbs("PUT")]
         public void EditDvd(int id, Dvd dvd)
         {
-            IDvdRepository DvdRepo = DvdRepositoryFactory.Create();
-            DvdRepo.Edit(dvd);
+            if (ModelState.IsValid)
+            {
+                IDvdRepository DvdRepo = DvdRepositoryFactory.Create();
+                DvdRepo.Edit(dvd);
+            }
+            else
+            {
+                Content(HttpStatusCode.BadRequest, "Model state invalid");
+            }
         }
 
         [Route("dvd/{id}")]
