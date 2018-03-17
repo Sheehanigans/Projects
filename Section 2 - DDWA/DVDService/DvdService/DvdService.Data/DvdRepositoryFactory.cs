@@ -1,4 +1,7 @@
 ﻿using DvdService.Data.ADORepos;
+using DvdService.Data.Connections;
+using DvdService.Data.Entities;
+using DvdService.Data.EntityFrameworkRepos;
 using DvdService.Data.Interfaces;
 using DvdService.Data.MemoryRepos;
 using System;
@@ -22,6 +25,8 @@ namespace DvdService.Data
                     return new InMemoryDvdRepo();
                 case "ADO":
                     return new ADODvdRepo();
+                case "EntityFramework":
+                    return new EFDvdRepo(new DvdLibraryEntities());
                 default:
                     throw new Exception("Mode value in app.config file is invalid");
             }

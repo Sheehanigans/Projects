@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DvdService.Data.Connections
 {
-    class ADODatabaseConnection
+    public class EFDatabaseConnection
     {
         public static SqlConnection GetOpenConnection()
         {
-            const string connectionString = "server=(local);database=DvdLibrary;User Id=DvdLibraryApp; Password=testing123;";
+            const string connectionString = "Server=localhost;Database=DvdLibraryEF;Trusted_Connection=True;";
 
             var connection = new SqlConnection(connectionString);
             connection.Open();
