@@ -1,8 +1,23 @@
 USE ShackUp 
 GO
+IF EXISTS (SELECT * FROM sys.tables WHERE name='Contacts')
+DROP TABLE Contacts
+GO
 
-IF EXISTS (SELECT * FROM sys.databases WHERE name='States')
+IF EXISTS (SELECT * FROM sys.tables WHERE name='Favorites')
+DROP TABLE Favorites
+GO
+
+IF EXISTS (SELECT * FROM sys.tables WHERE name='Listings')
+DROP TABLE Listings
+GO
+
+IF EXISTS (SELECT * FROM sys.tables WHERE name='States')
 DROP TABLE States
+GO
+
+IF EXISTS (SELECT * FROM sys.tables WHERE name='BathroomTypes')
+DROP TABLE BathroomTypes
 GO
 
 CREATE TABLE States(
@@ -10,18 +25,10 @@ CREATE TABLE States(
 	StateName varchar(15) not null
 )
 
-IF EXISTS (SELECT * FROM sys.databases WHERE name='BathroomTypes')
-DROP TABLE BathroomTypes
-GO
-
 CREATE TABLE BathroomTypes(
 	BathroomTypeId int identity (1,1) primary key,
 	BathroomtypeName varchar(15) not null
 )
-
-IF EXISTS (SELECT * FROM sys.databases WHERE name='Listings')
-DROP TABLE Listings
-GO
 
 CREATE TABLE Listings(
 	ListingId int identity(1,1) not null primary key, 
@@ -38,21 +45,13 @@ CREATE TABLE Listings(
 	CreatedDate datetime2 not null default (getdate())
 )
 
-IF EXISTS (SELECT * FROM sys.databases WHERE name='Favorites')
-DROP TABLE Favorites
-GO
-
-CREATE TABLE Favorites(
+CREATE TABLE Contacts(
 	ListingId int not null foreign key references Listings(ListingId), 
 	UserId nvarchar(128) not null,
 	primary key (ListingId, UserId)
 )
 
-IF EXISTS (SELECT * FROM sys.databases WHERE name='Contacts')
-DROP TABLE Contacts
-GO
-
-CREATE TABLE Contacts(
+CREATE TABLE Favorites(
 	ListingId int not null foreign key references Listings(ListingId), 
 	UserId nvarchar(128) not null,
 	primary key (ListingId, UserId)

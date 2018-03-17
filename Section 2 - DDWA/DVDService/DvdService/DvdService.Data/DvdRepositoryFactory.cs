@@ -1,4 +1,5 @@
-﻿using DvdService.Data.Interfaces;
+﻿using DvdService.Data.ADORepos;
+using DvdService.Data.Interfaces;
 using DvdService.Data.MemoryRepos;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace DvdService.Data
             {
                 case "SampleData":
                     return new InMemoryDvdRepo();
+                case "ADO":
+                    return new ADODvdRepo();
                 default:
                     throw new Exception("Mode value in app.config file is invalid");
             }
