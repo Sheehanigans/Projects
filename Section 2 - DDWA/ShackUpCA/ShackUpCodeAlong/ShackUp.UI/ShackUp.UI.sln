@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShackUp.Models", "ShackUp.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShackUp.Data", "ShackUp.Data\ShackUp.Data.csproj", "{9F21D058-83B6-443A-A518-7E4F33957222}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShackUp.Tests", "ShackUp.Tests\ShackUp.Tests.csproj", "{0AC1BFED-795E-46C4-83FF-EB2A61D8F5B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9F21D058-83B6-443A-A518-7E4F33957222}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F21D058-83B6-443A-A518-7E4F33957222}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F21D058-83B6-443A-A518-7E4F33957222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AC1BFED-795E-46C4-83FF-EB2A61D8F5B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AC1BFED-795E-46C4-83FF-EB2A61D8F5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AC1BFED-795E-46C4-83FF-EB2A61D8F5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AC1BFED-795E-46C4-83FF-EB2A61D8F5B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

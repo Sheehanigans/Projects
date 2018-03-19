@@ -38,7 +38,7 @@ CREATE TABLE Listings(
 	Nickname nvarchar(50) not null,
 	City nvarchar(50) not null,
 	Rate decimal(7,2) not null, 
-	SqaureFootage decimal (7,2) not null,
+	SquareFootage decimal (7,2) not null,
 	HasElectric bit not null, 
 	HasHeat bit not null,
 	ImageFileName varchar(50), 

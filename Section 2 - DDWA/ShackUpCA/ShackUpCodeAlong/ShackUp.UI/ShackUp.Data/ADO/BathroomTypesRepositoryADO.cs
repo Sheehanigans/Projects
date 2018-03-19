@@ -2,24 +2,24 @@
 using ShackUp.Models.Tables;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
 
 namespace ShackUp.Data.ADO
 {
-    public class StatesRepositoryADO : IStatesRepository
+    public class BathroomTypesRepositoryADO : IBathroomTypesRepository
     {
-        public List<State> GetAll()
+        public List<BathroomType> GetAll()
         {
-            List<State> states = new List<State>();
+            List<BathroomType> bathroomTypes = new List<BathroomType>();
 
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {
 
-                SqlCommand cmd = new SqlCommand("StatesSelectAll", cn);
+                SqlCommand cmd = new SqlCommand("BathroomTypesSelectAll", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
@@ -27,16 +27,16 @@ namespace ShackUp.Data.ADO
                 {
                     while (dr.Read())
                     {
-                        State currentRow = new State();
-                        currentRow.StateId = dr["StateId"].ToString();
-                        currentRow.StateName = dr["StateName"].ToString();
+                        BathroomType currentRow = new BathroomType();
+                        currentRow.BathroomTypeId = (int)dr["BathroomTypeId"];
+                        currentRow.BathroomTypeName = dr["BathroomTypeName"].ToString();
 
-                        states.Add(currentRow);
+                        bathroomTypes.Add(currentRow);
                     }
                 }
             }
 
-            return states;
+            return bathroomTypes;
         }
     }
 }
