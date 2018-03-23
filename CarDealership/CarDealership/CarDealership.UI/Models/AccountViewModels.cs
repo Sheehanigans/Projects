@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace CarDealership.UI.Models
 {
@@ -64,6 +65,17 @@ namespace CarDealership.UI.Models
 
     public class RegisterViewModel
     {
+
+        public string Id { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string EditedPassword { get; set; }
+
+        public string ConfirmEditedPassword { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -77,8 +89,12 @@ namespace CarDealership.UI.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Selected role")]
+        public string Role { get; set; }
+        public IEnumerable<SelectListItem> Roles { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -96,7 +112,7 @@ namespace CarDealership.UI.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

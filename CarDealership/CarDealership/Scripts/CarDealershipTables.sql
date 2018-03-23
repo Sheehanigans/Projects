@@ -51,7 +51,7 @@ create table Makes(
 create table Models(
 	ModelId int identity (1,1) not null primary key, 
 	MakeId int not null foreign key references Makes(MakeId),
-	ModelName nvarchar(50) not null, 
+	ModelName nvarchar(50) not null,	
 	ModelYear char (4) not null,
 	DateAdded datetime2 not null default(getdate()),
 	UserId nvarchar(128) not null foreign key references AspNetUsers(Id)
@@ -78,7 +78,7 @@ create table Listings(
 	BodyStyleId int not null foreign key references BodyStyles(BodyStyleId),
 	InteriorColorId int not null foreign key references InteriorColors(InteriorColorId),
 	ExteriorColorId int not null foreign key references ExteriorColors(ExteriorColorId),
-	[Type] int not null,
+	Condition int not null,
 	Transmission int not null, 
 	Mileage char(7) not null, 
 	VIN nvarchar (128) not null, 
@@ -87,6 +87,8 @@ create table Listings(
 	VehicleDescription nvarchar (max) null, 
 	ImageFileUrl nvarchar (max) null, 
 	IsFeatured bit not null,
+	IsSold bit not null,
+	DateAdded datetime2 not null default(getdate()),
 )
 
 create table States(
@@ -107,13 +109,14 @@ create table SaleInformation(
 	Street2 nvarchar (100) null, 
 	ZipCode char (5) not null, 
 	PurchasePrice decimal (10, 2) not null,
-	PaymentOption nvarchar(50) not null
+	PaymentOption nvarchar(50) not null,
+	DateAdded datetime2 not null default(getdate()),
 )
 
 create table Specials(
 	SpeicalId int identity (1,1) not null primary key, 
 	SpecialTitle nvarchar(50) not null, 
-	SpecialDescription nvarchar(max) not null, 	
+	SpecialMessage nvarchar(max) not null, 	
 )
 
 create table ContactForms(
@@ -121,5 +124,5 @@ create table ContactForms(
 	CustomerName nvarchar (50) not null, 
 	Email nvarchar (100) not null, 
 	Phone nvarchar(20) not null, 
-	FromMessage nvarchar(max) not null,
+	FormMessage nvarchar(max) not null,
 )

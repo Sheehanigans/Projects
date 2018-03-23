@@ -33,20 +33,49 @@ namespace CarDealership.UI.Migrations
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            if (roleManager.RoleExists("Admin"))
-                return;
+            // Create Admin Role
+            string adminRole = "Admin";
+            IdentityResult roleResult;
+            // Check to see if Role Exists, if not create it
+            if (!roleManager.RoleExists(adminRole))
+            {
+                roleResult = roleManager.Create(new IdentityRole(adminRole));
+            }
+            string salesRole = "Sales";
+            IdentityResult identityResult;
+            if (!roleManager.RoleExists(salesRole))
+            {
+                identityResult = roleManager.Create(new IdentityRole(salesRole));
+            }
+            string disabledRole = "Disabled";
+            IdentityResult identity;
+            if (!roleManager.RoleExists(disabledRole))
+            {
+                identity = roleManager.Create(new IdentityRole(disabledRole));
+            }
 
-            roleManager.Create(new IdentityRole() { Name = "Admin" });
-
-            var user = new ApplicationUser()
+            var adminUser = new ApplicationUser()
             {
                 UserName = "test@test.com",
                 Email = "test@test.com",
+                FirstName = "Ryan",
+                LastName = "Sheehan",
             };
+            userManager.Create(adminUser, "test123");
 
-            userManager.Create(user, "testing123");
+            userManager.AddToRole(adminUser.Id, "Admin");
 
-            userManager.AddToRole(user.Id, "Admin");
+            //var salesUser = new ApplicationUser()
+            //{
+            //    UserName = "sales@test.com",
+            //    Email = "sales@test.com",
+            //    FirstName = "Bill",
+            //    LastName = "Sheehan",
+            //};
+            //userManager.Create(salesUser, "test123");
+
+            //userManager.AddToRole(salesUser.Id, "Sales");
+
         }
     }
 }
