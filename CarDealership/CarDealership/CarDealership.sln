@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarDealership.Data", "CarDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarDealership.Tests", "CarDealership.Tests\CarDealership.Tests.csproj", "{F284046B-9E05-44DE-9F9B-0A6EDABD7C82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarDealership.BLL", "CarDealership.BLL\CarDealership.BLL.csproj", "{60BE398A-7511-495E-8121-634EBED45746}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F284046B-9E05-44DE-9F9B-0A6EDABD7C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F284046B-9E05-44DE-9F9B-0A6EDABD7C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F284046B-9E05-44DE-9F9B-0A6EDABD7C82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60BE398A-7511-495E-8121-634EBED45746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BE398A-7511-495E-8121-634EBED45746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BE398A-7511-495E-8121-634EBED45746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BE398A-7511-495E-8121-634EBED45746}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

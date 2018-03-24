@@ -171,6 +171,8 @@ namespace CarDealership.UI.Controllers
             //get new role from model, remove user from current role, add to new role
             var newRole = roles.Where(r => r.Id == model.Role).Select(r => r.Name).SingleOrDefault();
             UserManager.RemoveFromRole(user.Id, oldRole);
+            context.SaveChanges();
+
             UserManager.AddToRole(user.Id, newRole);
 
             UserManager.Update(user);
