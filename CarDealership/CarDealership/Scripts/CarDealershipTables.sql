@@ -80,7 +80,7 @@ create table Listings(
 	ExteriorColorId int not null foreign key references ExteriorColors(ExteriorColorId),
 	Condition int not null,
 	Transmission int not null, 
-	Mileage char(7) not null, 
+	Mileage int not null, 
 	VIN nvarchar (128) not null, 
 	MSRP decimal (10, 2) not null, 
 	SalePrice decimal (10,2) null, 
@@ -114,7 +114,7 @@ create table SaleInformation(
 )
 
 create table Specials(
-	SpeicalId int identity (1,1) not null primary key, 
+	SpecialId int identity (1,1) not null primary key, 
 	SpecialTitle nvarchar(50) not null, 
 	SpecialMessage nvarchar(max) not null, 	
 )

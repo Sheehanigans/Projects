@@ -38,10 +38,13 @@ GO
 
 CREATE PROCEDURE GetUsedListings AS
 BEGIN
-	SELECT ListingId, m.ModelId, BodyStyleId, InteriorColorId, ExteriorColorId, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
 	FROM Listings l 
-	inner join Models m on m.ModelId = l.ModelId
-	inner join Makes ma on ma.MakeId = m.ModelId
+	inner join Models mo on mo.ModelId = l.ModelId
+	inner join Makes ma on ma.MakeId = mo.MakeId
+	inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId
+	inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId
+	inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId
 	where  l.Condition = 2
 END
 
@@ -54,10 +57,10 @@ GO
 
 CREATE PROCEDURE GetNewListings AS
 BEGIN
-	SELECT ListingId, l.ModelId, l.BodyStyleId, l.InteriorColorId, l.ExteriorColorId, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
 	FROM Listings l 
-	inner join Models m on m.ModelId = l.ModelId
-	inner join Makes ma on ma.MakeId = m.ModelId
+	inner join Models mo on mo.ModelId = l.ModelId
+	inner join Makes ma on ma.MakeId = mo.MakeId
 	inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId
 	inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId
 	inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId
@@ -73,14 +76,51 @@ GO
 
 CREATE PROCEDURE GetFeaturedListings AS
 BEGIN
-	SELECT ListingId, m.ModelId, l.BodyStyleId, l.InteriorColorId, l.ExteriorColorId, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
 	FROM Listings l 
-	inner join Models m on m.ModelId = l.ModelId
-	inner join Makes ma on ma.MakeId = m.ModelId
+	inner join Models mo on mo.ModelId = l.ModelId
+	inner join Makes ma on ma.MakeId = mo.MakeId
 	inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId
 	inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId
 	inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId
 	where  l.IsFeatured = 1
+END
+
+GO
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'GetAllListings')
+      DROP PROCEDURE GetAllListings
+GO
+
+CREATE PROCEDURE GetAllListings AS
+BEGIN
+	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	FROM Listings l 
+	inner join Models mo on mo.ModelId = l.ModelId
+	inner join Makes ma on ma.MakeId = mo.MakeId
+	inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId
+	inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId
+	inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId
+END
+
+GO
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'GetSoldListings')
+      DROP PROCEDURE GetSoldListings
+GO
+
+CREATE PROCEDURE GetSoldListings AS
+BEGIN
+	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	FROM Listings l 
+	inner join Models mo on mo.ModelId = l.ModelId
+	inner join Makes ma on ma.MakeId = mo.MakeId
+	inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId
+	inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId
+	inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId
+	where  l.IsSold = 1;
 END
 
 GO
@@ -92,7 +132,7 @@ GO
 
 create procedure GetSpecials as 
 begin 
-	select SpeicalId, SpecialTitle, SpecialMessage
+	select SpecialId, SpecialTitle, SpecialMessage
 	from Specials s
 end
 
@@ -108,6 +148,7 @@ begin
 	Select MakeId, MakeName, DateAdded, UserId
 	From Makes 
 end 
+go
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'GetModels')
@@ -120,3 +161,16 @@ begin
 	From Models mo
 	inner join Makes ma on ma.MakeId = mo.MakeId
 end
+go
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'GetSpecials')
+      DROP PROCEDURE GetSpecials
+GO
+
+create procedure GetSpecials as 
+begin
+	Select SpecialId, SpecialTitle, SpecialMessage
+	From Specials
+end 
+go

@@ -163,17 +163,18 @@ namespace CarDealership.UI.Controllers
             user.Email = model.Email;
             user.UserName = model.Email;
 
-            //clear all roles from the user
-            var dbUser = context.Users.SingleOrDefault(u => u.Id == model.Id);
-            dbUser.Roles.Clear();
-            context.SaveChanges();
+            if(!user.Roles.Any(r => r.RoleId == model.Role))
+            {
+                //clear all roles from the user
+                var dbUser = context.Users.SingleOrDefault(u => u.Id == model.Id);
+                dbUser.Roles.Clear();
+                context.SaveChanges();
 
-            //get new role from model, remove user from current role, add to new role
-            var newRole = roles.Where(r => r.Id == model.Role).Select(r => r.Name).SingleOrDefault();
-            UserManager.RemoveFromRole(user.Id, oldRole);
-            context.SaveChanges();
-
-            UserManager.AddToRole(user.Id, newRole);
+                //get new role from model, remove user from current role, add to new role
+                var newRole = roles.Where(r => r.Id == model.Role).Select(r => r.Name).SingleOrDefault();
+                UserManager.RemoveFromRole(user.Id, oldRole);
+                UserManager.AddToRole(user.Id, newRole);
+            }
 
             UserManager.Update(user);
 

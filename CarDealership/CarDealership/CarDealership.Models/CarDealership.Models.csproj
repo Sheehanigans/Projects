@@ -42,7 +42,13 @@
   <ItemGroup>
     <Compile Include="Enums\PaymentOption.cs" />
     <Compile Include="Enums\Transmission.cs" />
+    <Compile Include="Interfaces\IListingRepository.cs" />
+    <Compile Include="Interfaces\ISpecialRepository.cs" />
+    <Compile Include="Interfaces\IStateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\ListingGetAllResponse.cs" />
+    <Compile Include="Responses\ListingFeaturedResponse.cs" />
+    <Compile Include="Responses\Response.cs" />
     <Compile Include="Tables\BodyStyle.cs" />
     <Compile Include="Enums\Condition.cs" />
     <Compile Include="Tables\ContactForm.cs" />
@@ -55,9 +61,6 @@
     <Compile Include="Tables\Special.cs" />
     <Compile Include="Tables\State.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Responses\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

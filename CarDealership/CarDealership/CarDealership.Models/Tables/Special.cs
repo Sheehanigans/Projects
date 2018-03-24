@@ -10,6 +10,6 @@ namespace CarDealership.Models.Tables
     {
         public int SpecialId { get; set; }
         public string SpecialTitle { get; set; }
-        public string SpecialDescription { get; set; }
+        public string SpecialMessage { get; set; }
     }
 }

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,6 +44,16 @@
     <Compile Include="Factories\InventoryManagerFactory.cs" />
     <Compile Include="Managers\InventoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CarDealership.Data\CarDealership.Data.csproj">
+      <Project>{513b1731-9d08-45d8-a0e3-a2dbf47a085e}</Project>
+      <Name>CarDealership.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarDealership.Models\CarDealership.Models.csproj">
+      <Project>{cb6f19ca-31e3-4fcd-9104-ec8cb67c30df}</Project>
+      <Name>CarDealership.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
