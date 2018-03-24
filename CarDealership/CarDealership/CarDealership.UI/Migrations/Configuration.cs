@@ -54,28 +54,20 @@ namespace CarDealership.UI.Migrations
                 identity = roleManager.Create(new IdentityRole(disabledRole));
             }
 
-            var adminUser = new ApplicationUser()
+
+            if(!context.Users.Any(a => a.UserName == "test@test.com"))
             {
-                UserName = "test@test.com",
-                Email = "test@test.com",
-                FirstName = "Ryan",
-                LastName = "Sheehan",
-            };
-            userManager.Create(adminUser, "test123");
+                var adminUser = new ApplicationUser()
+                {
+                    UserName = "test@test.com",
+                    Email = "test@test.com",
+                    FirstName = "Ryan",
+                    LastName = "Sheehan",
+                };
+                userManager.Create(adminUser, "test123");
 
-            userManager.AddToRole(adminUser.Id, "Admin");
-
-            //var salesUser = new ApplicationUser()
-            //{
-            //    UserName = "sales@test.com",
-            //    Email = "sales@test.com",
-            //    FirstName = "Bill",
-            //    LastName = "Sheehan",
-            //};
-            //userManager.Create(salesUser, "test123");
-
-            //userManager.AddToRole(salesUser.Id, "Sales");
-
+                userManager.AddToRole(adminUser.Id, "Admin");
+            }
         }
     }
 }

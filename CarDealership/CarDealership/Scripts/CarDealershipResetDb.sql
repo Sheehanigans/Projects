@@ -54,11 +54,8 @@ begin
 	INSERT INTO AspNetUsers(Id, EmailConfirmed, PhoneNumberConfirmed, Email, TwoFactorEnabled, LockoutEnabled, AccessFailedCount, UserName, FirstName, LastName)
 	VALUES('00000000-0000-0000-0000-111111111111', 0, 0, 'sales@test.com', 0, 0, 0, 'TestSales', 'Brian', 'Meehan')
 
-	insert into AspNetRoles(Id, [Name])
-	values('00000000-2222-2222-2222-000000000000', 'Sales')
-
 	insert into AspNetUserRoles(UserId, RoleId)
-	values ('00000000-0000-0000-0000-111111111111', '00000000-2222-2222-2222-000000000000')
+	values ('00000000-0000-0000-0000-111111111111', '1c719ce0-0249-458d-9934-ee35b12cbd01')
 
 	set identity_insert Makes on; 
 	insert into Makes(MakeId, MakeName, UserId)
