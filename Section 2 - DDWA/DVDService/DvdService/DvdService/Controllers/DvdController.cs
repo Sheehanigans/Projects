@@ -64,10 +64,13 @@ namespace DvdService.Controllers
         [AcceptVerbs("POST")]
         public IHttpActionResult AddDvd(Dvd dvd)
         {
+            //validate add 
             if (ModelState.IsValid)
             {
                 IDvdRepository DvdRepo = DvdRepositoryFactory.Create();
                 DvdRepo.Add(dvd);
+
+                //return route
                 return Created($"/dvd{dvd.DvdId}", dvd);
             }
             else
@@ -94,6 +97,7 @@ namespace DvdService.Controllers
         [AcceptVerbs("PUT")]
         public void EditDvd(int id, Dvd dvd)
         {
+            //validate edit 
             if (ModelState.IsValid)
             {
                 IDvdRepository DvdRepo = DvdRepositoryFactory.Create();

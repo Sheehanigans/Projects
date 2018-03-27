@@ -49,6 +49,8 @@
     <Compile Include="Responses\ListingGetAllResponse.cs" />
     <Compile Include="Responses\ListingFeaturedResponse.cs" />
     <Compile Include="Responses\Response.cs" />
+    <Compile Include="Responses\SpecialGetAllResponse.cs" />
+    <Compile Include="Responses\TResponse.cs" />
     <Compile Include="Tables\BodyStyle.cs" />
     <Compile Include="Enums\Condition.cs" />
     <Compile Include="Tables\ContactForm.cs" />

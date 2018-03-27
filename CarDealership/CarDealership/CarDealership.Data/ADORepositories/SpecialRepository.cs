@@ -1,4 +1,5 @@
 ﻿using CarDealership.Data.Settings;
+using CarDealership.Models.Interfaces;
 using CarDealership.Models.Tables;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CarDealership.Data.ADORepositories
 {
-    public class SpecialRepository
+    public class SpecialRepository : ISpecialRepository
     {
         public List<Special> GetSpecials()
         {

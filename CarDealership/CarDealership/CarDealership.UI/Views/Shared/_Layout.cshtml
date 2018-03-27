@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="Content/CarDealership.css" rel="stylesheet">
 
 </head>
 <body>
@@ -22,9 +23,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">                    
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("New Inventory", "About", "Admin")</li>
-                    <li>@Html.ActionLink("Used Inventory", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Specials", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("New Inventory", "New", "Inventory")</li>
+                    <li>@Html.ActionLink("Used Inventory", "Used", "Inventory")</li>
+                    <li>@Html.ActionLink("Specials", "Specials", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

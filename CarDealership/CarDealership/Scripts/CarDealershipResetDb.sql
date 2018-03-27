@@ -29,7 +29,7 @@ begin
 	set identity_insert States off;
 
 	set identity_insert Specials on; 
-	insert into Specials(SpeicalId, SpecialTitle, SpecialMessage)
+	insert into Specials(SpecialId, SpecialTitle, SpecialMessage)
 	values(1, 'MEGA SALE ON COOL CARS', 'THE COOLEST CARS have some MEGA SaLeS')
 	set identity_insert Specials off;
 

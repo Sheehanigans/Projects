@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\InventoryManagerFactory.cs" />
-    <Compile Include="Managers\InventoryManager.cs" />
+    <Compile Include="Factories\ListingManagerFactory.cs" />
+    <Compile Include="Factories\SpecialManagerFactory.cs" />
+    <Compile Include="Managers\ListingManager.cs" />
+    <Compile Include="Managers\SpecialManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

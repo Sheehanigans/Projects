@@ -1,0 +1,10 @@
+﻿.featuredListingBoarder {
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+}
+
+.specialsListBoarder {
+    border-style: solid;
+    border-color: black;
+}

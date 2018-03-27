@@ -21,7 +21,7 @@ namespace Exercises.Models.ViewModels
         {
             CourseItems = new List<SelectListItem>();
             MajorItems = new List<SelectListItem>();
-            StateItems = new List<SelectListItem>();
+            StateItems = new List<SelectListItem>();    
             SelectedCourseIds = new List<int>();
             Student = new Student();
         }

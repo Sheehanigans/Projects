@@ -14,6 +14,7 @@ namespace DvdService.Data.ADORepos
 {
     public class ADODvdRepo : IDvdRepository
     {
+        //add with sproc
         public Dvd Add(Dvd dvd)
         {
             using (var connection = ADODatabaseConnection.GetOpenConnection())
@@ -28,6 +29,7 @@ namespace DvdService.Data.ADORepos
             return dvd;
         }
 
+        //delete with sproc
         public void Delete(int id)
         {
             using (var connection = ADODatabaseConnection.GetOpenConnection())
@@ -43,6 +45,7 @@ namespace DvdService.Data.ADORepos
             }
         }
 
+        //edit with sproc 
         public void Edit(Dvd dvd)
         {
             using (var connection = ADODatabaseConnection.GetOpenConnection())
@@ -55,6 +58,7 @@ namespace DvdService.Data.ADORepos
             }
         }
 
+        //get all Dvds with sproc
         public List<Dvd> GetAll()
         {
             List<Dvd> dvds;
@@ -70,6 +74,7 @@ namespace DvdService.Data.ADORepos
             return dvds;
         }
 
+        //sproc takes director name, pupulates to list
         public List<Dvd> GetByDirector(string directorName)
         {
             List<Dvd> dvds;
@@ -89,6 +94,7 @@ namespace DvdService.Data.ADORepos
             return dvds;
         }
 
+        //sproc takes id, populate to list
         public Dvd GetById(int id)
         {
             Dvd dvdToReturn;
@@ -109,6 +115,7 @@ namespace DvdService.Data.ADORepos
 
         }
 
+        //sproc takes rating, populate to list
         public List<Dvd> GetByRating(string rating)
         {
             List<Dvd> dvds;
@@ -128,6 +135,7 @@ namespace DvdService.Data.ADORepos
             return dvds;
         }
 
+        //sproc takes year, populate to list
         public List<Dvd> GetByReleaseYear(int releaseYear)
         {
             List<Dvd> dvds;
@@ -147,6 +155,7 @@ namespace DvdService.Data.ADORepos
             return dvds;
         }
 
+        //sproc takes title, populate to list
         public List<Dvd> GetByTitle(string title)
         {
             List<Dvd> dvds;
