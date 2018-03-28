@@ -1,6 +1,7 @@
 ﻿using CarDealership.BLL.Factories;
 using CarDealership.BLL.Managers;
 using CarDealership.Models.Responses;
+using CarDealership.Models.Tables;
 using CarDealership.UI.Models;
 using System;
 using System.Collections.Generic;
@@ -50,10 +51,29 @@ namespace CarDealership.UI.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            return View(new ContactFormVM());
+        }
 
-
-            return View();
+        [HttpPost]
+        public ActionResult Contact(ContactFormVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                ContactFormManager manager = ContactFormManagerFactory.Create();
+                var response = manager.AddContactForm(model.ContactForm);
+                if (!response.Success)
+                {
+                    return new HttpStatusCodeResult(500, $"Error in cloud. {response.Message}");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                return View("Contact", model);
+            }
         }
 
         public ActionResult Specials()

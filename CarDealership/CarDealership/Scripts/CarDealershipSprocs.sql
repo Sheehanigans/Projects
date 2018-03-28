@@ -174,3 +174,25 @@ begin
 	From Specials
 end 
 go
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'AddContactForm')
+      DROP PROCEDURE AddContactForm
+GO
+
+create procedure AddContactForm (
+	@ContactFormId int output, 
+	@CustomerName nvarchar(50),
+	@Email nvarchar(100), 
+	@Phone nvarchar (20), 
+	@FormMessage nvarchar(max)
+)
+
+as 
+begin 
+	insert into ContactForms(CustomerName, Email, Phone, FormMessage)
+	values (@CustomerName, @Email, @Phone, @FormMessage)
+
+	set @ContactFormId = SCOPE_IDENTITY();
+end 
+go

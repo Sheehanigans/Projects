@@ -122,7 +122,7 @@ create table Specials(
 create table ContactForms(
 	ContactFormId int identity (1,1) not null, 
 	CustomerName nvarchar (50) not null, 
-	Email nvarchar (100) not null, 
-	Phone nvarchar(20) not null, 
+	Email nvarchar (100) null, 
+	Phone nvarchar(20) null, 
 	FormMessage nvarchar(max) not null,
 )

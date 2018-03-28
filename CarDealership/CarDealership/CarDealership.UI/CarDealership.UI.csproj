@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ContactFormVM.cs" />
     <Compile Include="Models\HomeVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListingVM.cs" />
