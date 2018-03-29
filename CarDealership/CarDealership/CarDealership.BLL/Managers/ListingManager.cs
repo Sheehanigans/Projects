@@ -1,5 +1,6 @@
 ﻿using CarDealership.Data.ADORepositories;
 using CarDealership.Models.Interfaces;
+using CarDealership.Models.Queries;
 using CarDealership.Models.Responses;
 using CarDealership.Models.Tables;
 using System;
@@ -89,6 +90,29 @@ namespace CarDealership.BLL.Managers
             {
                 response.Success = true;
             }
+
+            return response;
+        }
+
+        public TResponse<List<Listing>> Search(ListingSearchParameters paramters)
+        {
+            var response = new TResponse<List<Listing>>()
+            {
+                Payload = Repo.Search(paramters).ToList()
+            };
+
+            //set payload to result of repo search 
+            //veryify what it contains 
+
+            if (!response.Payload.Any())
+            {
+                response.Success = false;
+                response.Message = "Query could not find any results";
+            }
+            else
+            {
+                response.Success = true;
+            }         
 
             return response;
         }

@@ -1,4 +1,5 @@
-﻿using CarDealership.Models.Tables;
+﻿using CarDealership.Models.Queries;
+using CarDealership.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,7 @@ namespace CarDealership.Models.Interfaces
         List<Listing> GetFeaturedListings();
 
         List<Listing> GetSoldListings();
+
+        IEnumerable<Listing> Search(ListingSearchParameters parameters);
     }
 }

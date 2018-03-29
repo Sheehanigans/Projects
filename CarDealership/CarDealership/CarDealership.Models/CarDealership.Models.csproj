@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\ISpecialRepository.cs" />
     <Compile Include="Interfaces\IStateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\ListingSearchParameters.cs" />
     <Compile Include="Responses\ListingGetAllResponse.cs" />
     <Compile Include="Responses\ListingFeaturedResponse.cs" />
     <Compile Include="Responses\Response.cs" />
