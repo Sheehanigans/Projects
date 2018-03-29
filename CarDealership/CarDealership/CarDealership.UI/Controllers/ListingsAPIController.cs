@@ -15,7 +15,7 @@ namespace CarDealership.UI.Controllers
 
         [Route("api/listings/search")]
         [AcceptVerbs("GET")]
-        public IHttpActionResult Search(string quickSearch, int minPrice, int maxPrice, string minYear, string maxYear)
+        public IHttpActionResult Search(string quickSearch, int? minPrice, int? maxPrice, int? minYear, int? maxYear)
         {
             //check model state befor try
             _listingManager = ListingManagerFactory.Create();

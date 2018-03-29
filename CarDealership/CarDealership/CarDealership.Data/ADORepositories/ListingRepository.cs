@@ -127,6 +127,11 @@ namespace CarDealership.Data.ADORepositories
                 //min year 
                 //max year 
 
+                //lIKE keyword special characters for quicksearch
+
+                //_ for a single character 
+                //% for 0 or more unknown characters
+
                 if (!string.IsNullOrEmpty(parameters.QuickSearch))
                 {
                     query += "AND ma.MakeName LIKE @QuickSearch OR mo.ModelName LIKE @QuickSearch OR mo.ModelYear LIKE @QuickSearch";

@@ -11,7 +11,7 @@ namespace CarDealership.Models.Queries
         public string QuickSearch { get; set; }
         public decimal? MinPrice { get; set; }
         public decimal? MaxPrice { get; set; }
-        public string MinYear { get; set; }
-        public string MaxYear { get; set; }
+        public int? MinYear { get; set; }
+        public int? MaxYear { get; set; }
     }
 }
