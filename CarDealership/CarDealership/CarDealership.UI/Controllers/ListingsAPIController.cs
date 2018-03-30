@@ -15,7 +15,7 @@ namespace CarDealership.UI.Controllers
 
         [Route("api/listings/search")]
         [AcceptVerbs("GET")]
-        public IHttpActionResult Search(string quickSearch, int? minPrice, int? maxPrice, int? minYear, int? maxYear)
+        public IHttpActionResult Search(string view, string quickSearch, int? minPrice, int? maxPrice, int? minYear, int? maxYear)
         {
             //check model state befor try
             _listingManager = ListingManagerFactory.Create();
@@ -24,6 +24,7 @@ namespace CarDealership.UI.Controllers
             {
                 var parameters = new ListingSearchParameters()
                 {
+                    View = view,
                     QuickSearch = quickSearch,
                     MinPrice = minPrice,
                     MaxPrice = maxPrice,
@@ -32,7 +33,7 @@ namespace CarDealership.UI.Controllers
                 };
 
                 var result = _listingManager.Search(parameters);
-                return Ok(result);
+                return Ok(result.Payload);
             }
             catch(Exception ex)
             {

@@ -1,10 +1,17 @@
 ﻿.featuredListingBoarder {
-    border-style: solid;
+    border-style:solid;
     border-color: black;
     text-align: center;
 }
 
 .specialsListBoarder {
+    border-style: solid;
+    border-color: black;
+}
+
+.listingSearchBoarder {
+    padding: 10px;
+    margin: 5px;
     border-style: solid;
     border-color: black;
 }

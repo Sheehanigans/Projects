@@ -98,7 +98,7 @@ namespace CarDealership.Data.ADORepositories
             using (var cn = new SqlConnection(ConnectionStrings.GetConnectionString()))
             {
                 string query =
-                    "SELECT TOP 20 	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, " +
+                    "SELECT TOP 20 ListingId, l.ModelId, mo.ModelName, mo.ModelYear, " +
                     "ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, " +
                     "ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, " +
                     "Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, " +
@@ -108,34 +108,53 @@ namespace CarDealership.Data.ADORepositories
                     "inner join Makes ma on ma.MakeId = mo.MakeId  " +
                     "inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId  " +
                     "inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId  " +
-                    "inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId  " +
-                    "where  l.Condition = 1";
+                    "inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId  ";
+                //+
+                //    "where  l.Condition = 1 ";
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
 
+                switch (parameters.View)
+                {
+                    case "New":
+                        query += "where l.Condition = 1 ";
+                        break;
+                    case "Used":
+                        query += "where l.Condition = 2 ";
+                        break;
+                    case "All":
+                        query += "where (l.Condition = 1 or l.Condition = 2) ";
+                        break;
+                    default:
+                        break;
+                }
+
                 if (parameters.MinPrice.HasValue)
                 {
-                    query += "AND SalePrice >= @MinPrice";
+                    query += "AND SalePrice >= @MinPrice ";
                     cmd.Parameters.AddWithValue("@MinPrice", parameters.MinPrice.Value);
                 }
                 if (parameters.MaxPrice.HasValue)
                 {
-                    query += "AND SalePrice <= @MaxPrice";
+                    query += "AND SalePrice <= @MaxPrice ";
                     cmd.Parameters.AddWithValue("@MaxPrice", parameters.MaxPrice.Value);
                 }
-                //min year 
-                //max year 
-
-                //lIKE keyword special characters for quicksearch
-
-                //_ for a single character 
-                //% for 0 or more unknown characters
+                if (parameters.MinYear.HasValue)
+                {
+                    query += "AND mo.ModelYear >= @MinYear ";
+                    cmd.Parameters.AddWithValue("@MinYear", parameters.MinYear.Value);
+                }
+                if (parameters.MaxYear.HasValue)
+                {
+                    query += "AND mo.ModelYear <= @MaxYear ";
+                    cmd.Parameters.AddWithValue("@MaxYear", parameters.MaxYear.Value);
+                }
 
                 if (!string.IsNullOrEmpty(parameters.QuickSearch))
                 {
-                    query += "AND ma.MakeName LIKE @QuickSearch OR mo.ModelName LIKE @QuickSearch OR mo.ModelYear LIKE @QuickSearch";
-                    cmd.Parameters.AddWithValue("@QuickSearch", parameters.QuickSearch);
+                    query += "AND (ma.MakeName LIKE @QuickSearch OR mo.ModelName LIKE @QuickSearch OR mo.ModelYear LIKE @QuickSearch) ";
+                    cmd.Parameters.AddWithValue("@QuickSearch", parameters.QuickSearch + '%');
                 }
 
                 query += "ORDER BY DateAdded DESC";
@@ -152,7 +171,7 @@ namespace CarDealership.Data.ADORepositories
                         row.ListingId = (int)dr["ListingId"];
                         row.ModelId = (int)dr["ModelId"];
                         row.ModelName = dr["ModelName"].ToString();
-                        row.ModelYear = dr["ModelYear"].ToString();
+                        row.ModelYear = (int)dr["ModelYear"];
                         row.MakeId = (int)dr["MakeId"];
                         row.MakeName = dr["MakeName"].ToString();
                         row.BodyStyleId = (int)dr["BodyStyleId"];

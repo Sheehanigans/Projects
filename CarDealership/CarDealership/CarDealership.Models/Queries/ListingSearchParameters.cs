@@ -8,6 +8,7 @@ namespace CarDealership.Models.Queries
 {
     public class ListingSearchParameters
     {
+        public string View { get; set; }
         public string QuickSearch { get; set; }
         public decimal? MinPrice { get; set; }
         public decimal? MaxPrice { get; set; }

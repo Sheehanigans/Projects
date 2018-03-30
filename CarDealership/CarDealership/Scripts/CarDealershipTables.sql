@@ -52,7 +52,7 @@ create table Models(
 	ModelId int identity (1,1) not null primary key, 
 	MakeId int not null foreign key references Makes(MakeId),
 	ModelName nvarchar(50) not null,	
-	ModelYear char (4) not null,
+	ModelYear int not null,
 	DateAdded datetime2 not null default(getdate()),
 	UserId nvarchar(128) not null foreign key references AspNetUsers(Id)
 )
