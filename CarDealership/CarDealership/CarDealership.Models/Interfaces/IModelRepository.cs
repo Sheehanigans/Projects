@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CarDealership.Models.Interfaces
 {
-    public interface ISpecialRepository
+    public interface IModelRepository
     {
-        List<Special> GetSpecials();
-        Special Save(Special special);
-        bool DeleteSpecial(int id);
+        Model Save(Model model);
+
+        List<Model> GetAllModels();
     }
 }

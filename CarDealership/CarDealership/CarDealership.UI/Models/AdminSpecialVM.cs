@@ -6,12 +6,14 @@ using System.Web;
 
 namespace CarDealership.UI.Models
 {
-    public class SpecialsVM
+    public class AdminSpecialVM
     {
+        public Special Special { get; set; }
         public List<Special> Specials { get; set; }
 
-        public SpecialsVM()
+        public AdminSpecialVM()
         {
+            Special = new Special();
             Specials = new List<Special>();
         }
 

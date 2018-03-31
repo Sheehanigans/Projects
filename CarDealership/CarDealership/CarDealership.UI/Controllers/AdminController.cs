@@ -1,4 +1,7 @@
-﻿using CarDealership.UI.Models;
+﻿using CarDealership.BLL.Factories;
+using CarDealership.BLL.Managers;
+using CarDealership.Models.Tables;
+using CarDealership.UI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -16,6 +19,11 @@ namespace CarDealership.UI.Controllers
     {
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
+
+        private SpecialManager _specialManager;
+        private ListingManager _listingManager;
+        private MakeManager _makeManager;
+        private ModelManager _modelManager;
 
         public ApplicationUserManager UserManager
         {
@@ -41,6 +49,208 @@ namespace CarDealership.UI.Controllers
             }
         }
 
+        public ActionResult Admin()
+        {
+            //menu 
+            return View();
+        }
+
+        public ActionResult Vehicles()
+        {
+            return View();
+        }
+
+        public ActionResult AddVehicle()
+        {
+            return View();
+        }
+
+        public ActionResult EditVehicle()
+        {
+            return View();
+        }
+
+        public ActionResult Specials()
+        {
+            _specialManager = SpecialManagerFactory.Create();
+            var model = new AdminSpecialVM();
+            var response = _specialManager.GetAllSpecials();
+
+            if (!response.Success)
+            {
+                return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+            }
+            else
+            {
+                model.SetSpecialItems(response.Specials);
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Specials(AdminSpecialVM model)
+        {
+            _specialManager = SpecialManagerFactory.Create();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var response = _specialManager.SaveSpecial(model.Special);
+
+                    if (!response.Success)
+                    {
+                        return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                var response = _specialManager.GetAllSpecials();
+                model.SetSpecialItems(response.Specials);
+
+                return View(model);
+            }
+
+            return RedirectToAction("Specials");
+        }
+
+        public ActionResult DeleteSpecial(int id)
+        {
+            _specialManager = SpecialManagerFactory.Create();
+
+            var response = _specialManager.DeleteSpecial(id);
+
+            if (!response.Success)
+            {
+                return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+            }
+
+            return RedirectToAction("Specials");
+        }
+
+        public ActionResult Models()
+        {
+            _modelManager = ModelManagerFactory.Create();
+            _makeManager = MakeManagerFactory.Create();
+
+            var model = new ModelsVM();
+            var modelResponse = _modelManager.GetAllModels();
+            var makeResponse = _makeManager.GetAllMakes();
+
+            if (!modelResponse.Success || !makeResponse.Success)
+            {
+                return new HttpStatusCodeResult(500, $"Error in cloud. Message:{modelResponse.Message} {makeResponse.Message}");
+            }
+            else
+            {
+                model.SetModelItems(modelResponse.Payload);
+
+                model.Makes = makeResponse.Payload.Select(m => new SelectListItem
+                {
+                    Text = m.MakeName,
+                    Value = m.MakeId.ToString()
+                });
+
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Models(ModelsVM model)
+        {
+            _modelManager = ModelManagerFactory.Create();
+            _makeManager = MakeManagerFactory.Create();
+
+            if (ModelState.IsValid)
+            {
+                model.NewModel.DateAdded = DateTime.Now;
+                model.NewModel.UserName = User.Identity.Name;
+                
+                //model.NewModel.Make = _makeManager.GetMake(model.NewModel.Make)
+                
+
+
+                //save 
+                var response = _modelManager.SaveModel(model.NewModel);
+
+                //throw error for non success
+                if (!response.Success)
+                {
+                    return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+                }
+
+                return RedirectToAction("Models");
+            }
+            else
+            {
+                var makeResponse = _makeManager.GetAllMakes();
+                model.Makes = makeResponse.Payload.Select(m => new SelectListItem
+                {
+                    Text = m.MakeName,
+                    Value = m.MakeId.ToString()
+                });
+
+                return View(model);
+            }
+
+        }
+
+
+
+        public ActionResult Makes()
+        {
+            _makeManager = MakeManagerFactory.Create();
+            var model = new MakesVM();
+            var response = _makeManager.GetAllMakes();
+
+            if (!response.Success)
+            {
+                return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+            }
+            else
+            {
+                model.SetMakeItems(response.Payload);
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Makes(MakesVM model)
+        {
+            _makeManager = MakeManagerFactory.Create();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    model.NewMake.DateAdded = DateTime.Now;
+                    model.NewMake.UserName = User.Identity.Name;
+
+                    var response = _makeManager.SaveMake(model.NewMake);
+
+                    if (!response.Success)
+                    {
+                        return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+                    }
+
+                    return RedirectToAction("Makes");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                return View(model);
+            }
+        }
 
         public ActionResult Users()
         {

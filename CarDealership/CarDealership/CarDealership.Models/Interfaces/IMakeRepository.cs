@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CarDealership.Models.Interfaces
 {
-    public interface ISpecialRepository
+    public interface IMakeRepository
     {
-        List<Special> GetSpecials();
-        Special Save(Special special);
-        bool DeleteSpecial(int id);
+        Make Save(Make make);
+
+        List<Make> GetMakes();
     }
 }

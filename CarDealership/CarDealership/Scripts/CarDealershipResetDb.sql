@@ -57,17 +57,17 @@ begin
 	values ('00000000-0000-0000-0000-111111111111', '1c719ce0-0249-458d-9934-ee35b12cbd01')
 
 	set identity_insert Makes on; 
-	insert into Makes(MakeId, MakeName, UserId)
-	values (1, 'Jeep', '7149e0c5-34c1-4a33-b283-bfe66a66bc27'),
-	(2, 'Mazda', '7149e0c5-34c1-4a33-b283-bfe66a66bc27'),
-	(3, 'Delorian', '7149e0c5-34c1-4a33-b283-bfe66a66bc27')
+	insert into Makes(MakeId, MakeName, UserName)
+	values (1, 'Jeep', 'test@test.com'),
+	(2, 'Mazda', 'test@test.com'),
+	(3, 'Delorian', 'test@test.com')
 	set identity_insert Makes off; 
 	
 	set identity_insert Models on; 
-	insert into Models(ModelId, MakeId, ModelName, ModelYear, UserId)
-	values(1, 2, 'CX-3', 2019, '7149e0c5-34c1-4a33-b283-bfe66a66bc27'), 
-	(2, 1, 'Wrangler', 1995, '7149e0c5-34c1-4a33-b283-bfe66a66bc27'),
-	(3, 3, 'Docs Car', 1980, '7149e0c5-34c1-4a33-b283-bfe66a66bc27')
+	insert into Models(ModelId, MakeId, ModelName, UserName)
+	values(1, 2, 'CX-3', 'test@test.com'), 
+	(2, 1, 'Wrangler','test@test.com'),
+	(3, 3, 'Docs Car', 'test@test.com')
 	set identity_insert Models off;
 
 	set identity_insert BodyStyles on;
@@ -78,10 +78,10 @@ begin
 	set identity_insert BodyStyles off;
 
 	set identity_insert Listings on;
-	insert into Listings (ListingId, ModelId, BodyStyleId, InteriorColorId, ExteriorColorId, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold)
-	values(1, 1, 2, 1, 1, 1, 2, 25000, 'FTW12345BLAHHEY69', 30000.00, 29000.00, 'This little guy is a lot of fun', 'cx3.png', 0, 0), 
-	(2, 2, 1, 2, 2, 2, 1, 200000, 'JEEP229900HEYYO', 15000.00, 14000.00, 'Hey did you see that road there? Yeah neither did I.', 'jeep.jpg', 1, 0),
-	(3, 3, 3, 2, 2, 2, 1, 1000000, 'BACKTOTHEFUTURE', 400000.00, 399555.00, 'The reverse is broken and smells like lightning', 'delorian.jpg', 0, 1)
+	insert into Listings (ListingId, ModelId, BodyStyleId, InteriorColorId, ExteriorColorId, Condition, Transmission, Mileage, ModelYear, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold)
+	values(1, 1, 2, 1, 1, 1, 2, 25000, 2019, 'FTW12345BLAHHEY69', 30000.00, 29000.00, 'This little guy is a lot of fun', 'cx3.png', 0, 0), 
+	(2, 2, 1, 2, 2, 2, 1, 200000, 1995,'JEEP229900HEYYO', 15000.00, 14000.00, 'Hey did you see that road there? Yeah neither did I.', 'jeep.jpg', 1, 0),
+	(3, 3, 3, 2, 2, 2, 1, 1000000, 1980,'BACKTOTHEFUTURE', 400000.00, 399555.00, 'The reverse is broken and smells like lightning', 'delorian.jpg', 0, 1)
 	set identity_insert Listings off; 
 
 	set identity_insert SaleInformation on;

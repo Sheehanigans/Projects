@@ -98,7 +98,7 @@ namespace CarDealership.Data.ADORepositories
             using (var cn = new SqlConnection(ConnectionStrings.GetConnectionString()))
             {
                 string query =
-                    "SELECT TOP 20 ListingId, l.ModelId, mo.ModelName, mo.ModelYear, " +
+                    "SELECT TOP 20 ListingId, l.ModelId, mo.ModelName, l.ModelYear, " +
                     "ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, " +
                     "ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, " +
                     "Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, " +
@@ -109,8 +109,6 @@ namespace CarDealership.Data.ADORepositories
                     "inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId  " +
                     "inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId  " +
                     "inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId  ";
-                //+
-                //    "where  l.Condition = 1 ";
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
@@ -142,18 +140,18 @@ namespace CarDealership.Data.ADORepositories
                 }
                 if (parameters.MinYear.HasValue)
                 {
-                    query += "AND mo.ModelYear >= @MinYear ";
+                    query += "AND l.ModelYear >= @MinYear ";
                     cmd.Parameters.AddWithValue("@MinYear", parameters.MinYear.Value);
                 }
                 if (parameters.MaxYear.HasValue)
                 {
-                    query += "AND mo.ModelYear <= @MaxYear ";
+                    query += "AND l.ModelYear <= @MaxYear ";
                     cmd.Parameters.AddWithValue("@MaxYear", parameters.MaxYear.Value);
                 }
 
                 if (!string.IsNullOrEmpty(parameters.QuickSearch))
                 {
-                    query += "AND (ma.MakeName LIKE @QuickSearch OR mo.ModelName LIKE @QuickSearch OR mo.ModelYear LIKE @QuickSearch) ";
+                    query += "AND (ma.MakeName LIKE @QuickSearch OR mo.ModelName LIKE @QuickSearch OR l.ModelYear LIKE @QuickSearch) ";
                     cmd.Parameters.AddWithValue("@QuickSearch", parameters.QuickSearch + '%');
                 }
 

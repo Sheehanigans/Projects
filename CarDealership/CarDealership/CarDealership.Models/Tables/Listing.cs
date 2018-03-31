@@ -12,7 +12,6 @@ namespace CarDealership.Models.Tables
         public int ListingId { get; set; }
         public int ModelId { get; set; }
         public string ModelName { get; set; }
-        public int ModelYear { get; set; }
         public int MakeId { get; set; }
         public string MakeName { get; set; }
         public int BodyStyleId { get; set; }
@@ -24,6 +23,7 @@ namespace CarDealership.Models.Tables
         public Condition Condition { get; set; }
         public Transmission Transmission { get; set; }
         public string Mileage { get; set; }
+        public int ModelYear { get; set; }
         public string VIN { get; set; }
         public decimal MSRP { get; set; }
         public decimal SalePrice { get; set; }

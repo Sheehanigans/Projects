@@ -11,19 +11,15 @@ using System.Web.Mvc;
 
 namespace CarDealership.UI.Controllers
 {
-    public class InventoryController : Controller
+    public class SalesController : Controller
     {
-        public ActionResult New()
+        // GET: Sales
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Used()
-        {
-            return View();
-        }
-
-        public ActionResult Details(int id)
+        public ActionResult SalesDetails()
         {
             return View();
         }

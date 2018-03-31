@@ -92,7 +92,7 @@ namespace CarDealership.UI.Controllers
             else
             {
                 //create vm
-                SpecialsVM model = new SpecialsVM();
+                SpecialListVM model = new SpecialListVM();
                 model.SetSpecialItems(response.Specials);
 
                 return View(model);

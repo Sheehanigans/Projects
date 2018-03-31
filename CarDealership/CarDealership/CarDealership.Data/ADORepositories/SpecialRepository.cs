@@ -1,6 +1,7 @@
 ﻿using CarDealership.Data.Settings;
 using CarDealership.Models.Interfaces;
 using CarDealership.Models.Tables;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -40,6 +41,38 @@ namespace CarDealership.Data.ADORepositories
             }
 
             return specials;
+        }
+
+        public Special Save(Special special)
+        {
+            using (var connection = ConnectionStrings.GetOpenConnection())
+            {
+                connection.Execute(
+                    "SaveSpecial",
+                    special,
+                    commandType: CommandType.StoredProcedure
+                    );
+            }
+
+            return special;
+        }
+
+        public bool DeleteSpecial(int id)
+        {
+            using (var connection = ConnectionStrings.GetOpenConnection())
+            {
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@SpecialId", id);
+
+                connection.Execute(
+                    "DeleteSpecial",
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                    );
+            }
+
+            return true;
         }
     }
 }

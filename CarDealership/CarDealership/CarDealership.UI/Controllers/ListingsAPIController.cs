@@ -39,7 +39,6 @@ namespace CarDealership.UI.Controllers
             {
                 return BadRequest(ex.Message);
             }
-
         }
     }
 }

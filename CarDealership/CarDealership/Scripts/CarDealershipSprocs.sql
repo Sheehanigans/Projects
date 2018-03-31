@@ -38,7 +38,7 @@ GO
 
 CREATE PROCEDURE GetUsedListings AS
 BEGIN
-	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	SELECT ListingId, l.ModelId, mo.ModelName, l.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
 	FROM Listings l 
 	inner join Models mo on mo.ModelId = l.ModelId
 	inner join Makes ma on ma.MakeId = mo.MakeId
@@ -57,7 +57,7 @@ GO
 
 CREATE PROCEDURE GetNewListings AS
 BEGIN
-	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	SELECT ListingId, l.ModelId, mo.ModelName, l.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
 	FROM Listings l 
 	inner join Models mo on mo.ModelId = l.ModelId
 	inner join Makes ma on ma.MakeId = mo.MakeId
@@ -76,7 +76,7 @@ GO
 
 CREATE PROCEDURE GetFeaturedListings AS
 BEGIN
-	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	SELECT ListingId, l.ModelId, mo.ModelName, l.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
 	FROM Listings l 
 	inner join Models mo on mo.ModelId = l.ModelId
 	inner join Makes ma on ma.MakeId = mo.MakeId
@@ -95,7 +95,7 @@ GO
 
 CREATE PROCEDURE GetAllListings AS
 BEGIN
-	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	SELECT ListingId, l.ModelId, mo.ModelName, l.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
 	FROM Listings l 
 	inner join Models mo on mo.ModelId = l.ModelId
 	inner join Makes ma on ma.MakeId = mo.MakeId
@@ -113,7 +113,7 @@ GO
 
 CREATE PROCEDURE GetSoldListings AS
 BEGIN
-	SELECT ListingId, l.ModelId, mo.ModelName, mo.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	SELECT ListingId, l.ModelId, mo.ModelName, l.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
 	FROM Listings l 
 	inner join Models mo on mo.ModelId = l.ModelId
 	inner join Makes ma on ma.MakeId = mo.MakeId
@@ -135,7 +135,6 @@ begin
 	select SpecialId, SpecialTitle, SpecialMessage
 	from Specials s
 end
-
 go
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
@@ -145,10 +144,31 @@ GO
 
 create procedure GetMakes as 
 begin 
-	Select MakeId, MakeName, DateAdded, UserId
-	From Makes 
+	Select MakeId, MakeName, DateAdded, UserName
+	From Makes
 end 
 go
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'SaveMake')
+      DROP PROCEDURE SaveMake
+GO
+
+CREATE PROCEDURE SaveMake (
+	@MakeId int output, 
+	@MakeName nvarchar (50),
+	@UserName nvarchar(256),
+	@DateAdded datetime2
+)
+AS
+BEGIN 
+	INSERT INTO Makes (MakeName, UserName)
+	VALUES (@MakeName, @UserName)
+
+	SET @MakeId = SCOPE_IDENTITY();
+END
+GO
+
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'GetModels')
@@ -157,11 +177,31 @@ GO
 
 create procedure GetModels as
 begin 
-	Select ModelId, mo.MakeId, ModelName, ma.MakeName, ModelYear, mo.DateAdded, mo.UserId
+	Select ModelId, mo.ModelName, mo.MakeId, ma.MakeName, mo.DateAdded, mo.UserName
 	From Models mo
 	inner join Makes ma on ma.MakeId = mo.MakeId
 end
 go
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'SaveModel')
+      DROP PROCEDURE SaveModel
+GO
+
+CREATE PROCEDURE SaveModel (
+	@ModelId int output,
+	@MakeId int,
+	@DateAdded datetime2,
+	@UserName nvarchar(256)
+)AS
+BEGIN 
+	INSERT INTO Models(MakeId, ModelName, DateAdded, UserName)
+	VALUES(@MakeId, @ModelName, @DateAdded, @UserName)
+
+	SET @ModelId = SCOPE_IDENTITY();
+END
+GO
+
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'GetSpecials')
@@ -196,3 +236,38 @@ begin
 	set @ContactFormId = SCOPE_IDENTITY();
 end 
 go
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'SaveSpecial')
+      DROP PROCEDURE SaveSpecial
+GO
+
+CREATE PROCEDURE SaveSpecial(
+	@SpecialId int output,
+	@SpecialTitle nvarchar(50),
+	@SpecialMessage nvarchar(max)
+)
+
+AS 
+BEGIN 
+	INSERT INTO Specials(SpecialTitle, SpecialMessage)
+	VALUES (@SpecialTitle, @SpecialMessage)
+
+	SET @SpecialId = SCOPE_IDENTITY();
+END 
+GO
+
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'DeleteSpecial')
+      DROP PROCEDURE DeleteSpecial
+GO
+
+CREATE PROCEDURE DeleteSpecial(
+	@SpecialId int
+)
+AS
+BEGIN 
+	DELETE FROM Specials 
+	WHERE SpecialId = @SpecialId
+END

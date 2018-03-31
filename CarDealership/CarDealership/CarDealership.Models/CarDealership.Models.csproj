@@ -46,6 +46,8 @@
     <Compile Include="Enums\Transmission.cs" />
     <Compile Include="Interfaces\IListingRepository.cs" />
     <Compile Include="Interfaces\IContactFormRepository.cs" />
+    <Compile Include="Interfaces\IMakeRepository.cs" />
+    <Compile Include="Interfaces\IModelRepository.cs" />
     <Compile Include="Interfaces\ISpecialRepository.cs" />
     <Compile Include="Interfaces\IStateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

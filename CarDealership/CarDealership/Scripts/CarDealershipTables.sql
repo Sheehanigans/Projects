@@ -45,16 +45,14 @@ create table Makes(
 	MakeId int identity (1,1) not null primary key,
 	MakeName nvarchar(50) not null,
 	DateAdded datetime2 not null default(getdate()), 
-	UserId nvarchar(128) not null foreign key references AspNetUsers(Id)
+	UserName nvarchar(256) not null
 )
 
 create table Models(
 	ModelId int identity (1,1) not null primary key, 
 	MakeId int not null foreign key references Makes(MakeId),
-	ModelName nvarchar(50) not null,	
-	ModelYear int not null,
 	DateAdded datetime2 not null default(getdate()),
-	UserId nvarchar(128) not null foreign key references AspNetUsers(Id)
+	UserName nvarchar(256) not null
 )
 
 create table InteriorColors(
@@ -81,6 +79,7 @@ create table Listings(
 	Condition int not null,
 	Transmission int not null, 
 	Mileage int not null, 
+	ModelYear int not null,
 	VIN nvarchar (128) not null, 
 	MSRP decimal (10, 2) not null, 
 	SalePrice decimal (10,2) null, 
