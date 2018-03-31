@@ -122,8 +122,28 @@ BEGIN
 	inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId
 	where  l.IsSold = 1;
 END
-
 GO
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'GetListingById')
+      DROP PROCEDURE GetListingById
+GO
+
+CREATE PROCEDURE GetListingById (
+	@ListingId int
+)AS
+BEGIN 
+	SELECT ListingId, l.ModelId, mo.ModelName, l.ModelYear, ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, l.DateAdded
+	FROM Listings l 
+	inner join Models mo on mo.ModelId = l.ModelId
+	inner join Makes ma on ma.MakeId = mo.MakeId
+	inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId
+	inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId
+	inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId
+	WHERE l.ListingId = @ListingId
+END 
+GO
+
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'GetSpecials')
@@ -195,8 +215,8 @@ CREATE PROCEDURE SaveModel (
 	@UserName nvarchar(256)
 )AS
 BEGIN 
-	INSERT INTO Models(MakeId, ModelName, DateAdded, UserName)
-	VALUES(@MakeId, @ModelName, @DateAdded, @UserName)
+	INSERT INTO Models(MakeId, DateAdded, UserName)
+	VALUES(@MakeId, @DateAdded, @UserName)
 
 	SET @ModelId = SCOPE_IDENTITY();
 END

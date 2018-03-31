@@ -8,19 +8,6 @@ namespace CarDealership.UI.Models
 {
     public class ListingVM
     {
-        public List<Listing> Listings { get; set; }
-
-        public ListingVM()
-        {
-            Listings = new List<Listing>();
-        }
-
-        public void SetListingItems(IEnumerable<Listing> listings)
-        {
-            foreach (var listing in listings)
-            {
-                Listings.Add(listing);
-            }
-        }
+        public Listing Listing { get; set; }
     }
 }

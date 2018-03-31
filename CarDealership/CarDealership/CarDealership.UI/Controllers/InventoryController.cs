@@ -13,6 +13,8 @@ namespace CarDealership.UI.Controllers
 {
     public class InventoryController : Controller
     {
+        ListingManager _listingManager;
+
         public ActionResult New()
         {
             return View();
@@ -25,7 +27,22 @@ namespace CarDealership.UI.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            _listingManager = ListingManagerFactory.Create();
+
+            var response = _listingManager.GetListingById(id);
+
+            if (!response.Success)
+            {
+                return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+            }
+            else
+            {
+                var model = new ListingVM();
+                model.Listing = response.Payload;
+
+                return View(model);
+            }
+
         }
     }
 }

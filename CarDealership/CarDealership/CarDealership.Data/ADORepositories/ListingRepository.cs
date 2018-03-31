@@ -91,6 +91,26 @@ namespace CarDealership.Data.ADORepositories
             return listings;
         }
 
+        public Listing GetListingById(int id)
+        {
+            Listing listing;
+
+            using (var cn = ConnectionStrings.GetOpenConnection())
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@ListingId", id);
+
+                listing = cn.Query<Listing>(
+                    "GetListingById",
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                    ).SingleOrDefault();
+            }
+
+            return listing;
+        }
+
+
         public IEnumerable<Listing> Search (ListingSearchParameters parameters)
         {
             List<Listing> listings = new List<Listing>();

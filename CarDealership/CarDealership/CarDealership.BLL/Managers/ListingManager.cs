@@ -35,6 +35,30 @@ namespace CarDealership.BLL.Managers
             return response;
         }
 
+        public TResponse<Listing> GetListingById(int id)
+        {
+            var response = new TResponse<Listing>();
+
+            response.Payload = Repo.GetListingById(id);
+
+            if(response.Payload == null)
+            {
+                response.Success = false;
+                response.Message = $"Failed to load listing id {id}";
+            }
+            else if(response.Payload.ListingId != id)
+            {
+                response.Success = false;
+                response.Message = $"Failed to load listing id {id}";
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
+
         public ListingFeaturedResponse GetFeaturedListings()
         {
             var response = new ListingFeaturedResponse();
@@ -101,8 +125,6 @@ namespace CarDealership.BLL.Managers
                 Payload = Repo.Search(paramters).ToList()
             };
 
-            //set payload to result of repo search 
-            //veryify what it contains 
 
             if (!response.Payload.Any())
             {

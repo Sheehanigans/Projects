@@ -222,6 +222,7 @@
     <Compile Include="Models\ContactFormVM.cs" />
     <Compile Include="Models\HomeVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ListingListVM.cs" />
     <Compile Include="Models\ListingVM.cs" />
     <Compile Include="Models\ListUserVM.cs" />
     <Compile Include="Models\MakesVM.cs" />

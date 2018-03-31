@@ -21,5 +21,7 @@ namespace CarDealership.Models.Interfaces
         List<Listing> GetSoldListings();
 
         IEnumerable<Listing> Search(ListingSearchParameters parameters);
+
+        Listing GetListingById(int id);
     }
 }
