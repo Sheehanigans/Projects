@@ -18,8 +18,10 @@ namespace CarDealership.Models.Tables
         public string Email { get; set; }
         public string Street1 { get; set; }
         public string Street2 { get; set; }
+        public string City { get; set; }
         public string Zipcode { get; set; }
         public decimal PurchasePrice { get; set; }
         public PaymentOption PaymentOption { get; set; }
+        public string UserName { get; set; }
     }
 }

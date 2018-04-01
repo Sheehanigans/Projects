@@ -54,7 +54,7 @@
 
             var params;
             //var image path
-            //var detailsPath -- use this to go to the details of a listing when clicking on it
+            var purchasePath = '@Url.Action("Purchase", "Sales")/'
 
             params = '?view=All' + '&quickSearch=' + $('#quickSearch').val() + '&minPrice=' + $('#minPrice').val() + '&maxPrice=' +
                 $('maxPrice').val() + '&minYear=' + $('minYear').val() + '&maxYear=' + $('maxYear').val()
@@ -87,7 +87,7 @@
                         html += '<div class="col-xs-3">'
                         html += '<p class="recentListing"> <strong>SalePrice: </strong>$' + listing.SalePrice + '</p>'
                         html += '<p class="recentListing"> <strong>MSRP: </strong>$' + listing.MSRP + '</p>'
-                        html += '<button class="btn btn-default">Purchase</button>'
+                        html += '<a href="' + purchasePath + listing.ListingId + '" class="btn btn-danger">Purchase</a>'
                         html += '</div>'
                         html += '</div>'
                         html += '</div>'

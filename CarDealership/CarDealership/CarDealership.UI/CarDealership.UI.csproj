@@ -228,6 +228,7 @@
     <Compile Include="Models\MakesVM.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelsVM.cs" />
+    <Compile Include="Models\PurchaseListingVM.cs" />
     <Compile Include="Models\SearchMV.cs" />
     <Compile Include="Models\SpecialListVM.cs" />
     <Compile Include="Models\AdminSpecialVM.cs" />
@@ -305,12 +306,12 @@
     <Content Include="Views\Admin\Vehicles.cshtml" />
     <Content Include="Views\Admin\AddVehicle.cshtml" />
     <Content Include="Views\Admin\EditVehicle.cshtml" />
-    <Content Include="Views\Sales\SalesDetails.cshtml" />
     <Content Include="Views\Admin\Models.cshtml" />
     <Content Include="Views\Admin\Makes.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Admin\Specials.cshtml" />
     <Content Include="Views\Inventory\Details.cshtml" />
+    <Content Include="Views\Sales\Purchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

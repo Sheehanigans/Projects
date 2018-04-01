@@ -51,6 +51,7 @@ create table Makes(
 create table Models(
 	ModelId int identity (1,1) not null primary key, 
 	MakeId int not null foreign key references Makes(MakeId),
+	ModelName nvarchar(50) not null,	
 	DateAdded datetime2 not null default(getdate()),
 	UserName nvarchar(256) not null
 )
@@ -87,12 +88,12 @@ create table Listings(
 	ImageFileUrl nvarchar (max) null, 
 	IsFeatured bit not null,
 	IsSold bit not null,
-	DateAdded datetime2 not null default(getdate()),
+	DateAdded datetime2 not null default(getdate())
 )
 
 create table States(
 	StateId int identity (1,1) not null primary key, 
-	StateName nvarchar (15) not null,
+	StateName nvarchar (30) not null,
 	StateAbbreviation char(2) not null,
 )
 
@@ -106,10 +107,12 @@ create table SaleInformation(
 	Email nvarchar(100) not null, 
 	Street1 nvarchar (100) not null, 
 	Street2 nvarchar (100) null, 
+	City nvarchar (100) not null,
 	ZipCode char (5) not null, 
 	PurchasePrice decimal (10, 2) not null,
 	PaymentOption nvarchar(50) not null,
 	DateAdded datetime2 not null default(getdate()),
+	UserName nvarchar(256) not null
 )
 
 create table Specials(
