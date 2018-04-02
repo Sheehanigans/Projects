@@ -1,8 +1,8 @@
 use CarDealership
 go
 
-if exists (select * from sys.tables where name='SaleInformation')
-	drop table SaleInformation
+if exists (select * from sys.tables where name='Purchase')
+	drop table Purchase
 go
 
 if exists (select * from sys.tables where name='Listings')
@@ -97,9 +97,8 @@ create table States(
 	StateAbbreviation char(2) not null,
 )
 
-create table SaleInformation(
-	SaleId int identity (1,1) not null primary key, 
-	UserId nvarchar(128) not null foreign key references AspNetUsers(Id),
+create table Purchase (
+	PurchaseId int identity (1,1) not null primary key, 
 	ListingId int not null foreign key references Listings(ListingId), 
 	StateId int not null foreign key references States(StateId),
 	CustomerName nvarchar(50) not null, 

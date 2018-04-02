@@ -40,65 +40,65 @@
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.HiddenFor(m => m.ListingToPurchase.ListingId)
-                @Html.LabelFor(m => m.SaleInformationForm.CustomerName, new { @class = "col-md-2 control-label"})
+                @Html.LabelFor(m => m.PurchaseForm.CustomerName, new { @class = "col-md-2 control-label"})
                 <div class="col-md-4">
-                    @Html.TextBoxFor(m => m.SaleInformationForm.CustomerName, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PurchaseForm.CustomerName, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.SaleInformationForm.Phone, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.PurchaseForm.Phone, new { @class = "col-md-2 control-label" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(m => m.SaleInformationForm.Phone, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PurchaseForm.Phone, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.SaleInformationForm.Email, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.PurchaseForm.Email, new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.SaleInformationForm.Email, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PurchaseForm.Email, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.SaleInformationForm.Street1, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.PurchaseForm.Street1, new { @class = "col-md-2 control-label" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(m => m.SaleInformationForm.Street1, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PurchaseForm.Street1, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.SaleInformationForm.Street2, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.PurchaseForm.Street2, new { @class = "col-md-2 control-label" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(m => m.SaleInformationForm.Street2, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PurchaseForm.Street2, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.SaleInformationForm.City, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.PurchaseForm.City, new { @class = "col-md-2 control-label" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(m => m.SaleInformationForm.City, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PurchaseForm.City, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">State</label>
                 <div class="col-md-4">
-                    @Html.DropDownListFor(m => m.SaleInformationForm.StateId, Model.States, "-Choose a Make-", new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.PurchaseForm.StateId, Model.States, "-Choose a Make-", new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.SaleInformationForm.Zipcode, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.PurchaseForm.Zipcode, new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.SaleInformationForm.Zipcode, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PurchaseForm.Zipcode, new { @class = "form-control" })
                 </div>
             </div>
             <hr />
             <div class="form-group">
-                @Html.LabelFor(m => m.SaleInformationForm.PurchasePrice, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.PurchaseForm.PurchasePrice, new { @class = "col-md-2 control-label" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(m => m.SaleInformationForm.PurchasePrice, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.PurchaseForm.PurchasePrice, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Purchase Type</label>
                 <div class="col-md-4">
                     @Html.EnumDropDownListFor(
-                           m => m.SaleInformationForm.PaymentOption,
+                           m => m.PurchaseForm.PaymentOption,
                            "Select Payment Option",
                            new { @class = "form-control" })
                 </div>

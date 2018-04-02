@@ -35,6 +35,12 @@
                 </div>
             </div>
         </div>
+        @if (Model.Listing.IsSold)
+        {
+            <div class="col-sm-3">
+                <h2 style="color: red">SOLD!</h2>
+            </div>
+        }
     </div>
 </div>
 

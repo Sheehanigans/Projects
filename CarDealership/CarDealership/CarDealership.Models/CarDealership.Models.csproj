@@ -48,6 +48,7 @@
     <Compile Include="Interfaces\IContactFormRepository.cs" />
     <Compile Include="Interfaces\IMakeRepository.cs" />
     <Compile Include="Interfaces\IModelRepository.cs" />
+    <Compile Include="Interfaces\IPurchaseRepository.cs" />
     <Compile Include="Interfaces\ISpecialRepository.cs" />
     <Compile Include="Interfaces\IStateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="Tables\Listing.cs" />
     <Compile Include="Tables\Make.cs" />
     <Compile Include="Tables\Model.cs" />
-    <Compile Include="Tables\SaleInformation.cs" />
+    <Compile Include="Tables\Purchase.cs" />
     <Compile Include="Tables\Special.cs" />
     <Compile Include="Tables\State.cs" />
   </ItemGroup>

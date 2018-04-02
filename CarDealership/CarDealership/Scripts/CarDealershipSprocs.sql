@@ -291,3 +291,55 @@ BEGIN
 	DELETE FROM Specials 
 	WHERE SpecialId = @SpecialId
 END
+GO
+
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'SavePurchase')
+      DROP PROCEDURE SavePurchase
+GO
+
+CREATE PROCEDURE SavePurchase (
+	@PurchaseId int output, 
+	@ListingId int, 
+	@StateId int, 
+	@CustomerName nvarchar(50), 
+	@Phone nvarchar(20),
+	@Email nvarchar(100), 
+	@Street1 nvarchar (100), 
+	@Street2 nvarchar (100), 
+	@City nvarchar(100), 
+	@ZipCode char(5), 
+	@PurchasePrice decimal(10, 2), 
+	@PaymentOption nvarchar(50),
+	@DateAdded datetime2,
+	@UserName nvarchar(256)
+)AS
+BEGIN 
+	INSERT INTO Purchase(ListingId, StateId, CustomerName, Phone, Email, Street1, Street2, City, ZipCode, PurchasePrice, PaymentOption, DateAdded, UserName)
+	VALUES(@ListingId, @StateId, @CustomerName, @Phone, @Email, @Street1, @Street2, @City, @ZipCode, @PurchasePrice, @PaymentOption, @DateAdded, @UserName);
+
+	SET @PurchaseId = SCOPE_IDENTITY();
+
+	UPDATE Listings SET
+	IsSold = 1
+	WHERE ListingId = @ListingId
+END
+GO
+
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'SetListingToSold')
+      DROP PROCEDURE SetListingToSold
+GO
+
+--CREATE PROCEDURE SetListingToSold(
+--	@ListingId int, 
+--	@IsSold bit
+--)AS
+--BEGIN 
+--	UPDATE Listings SET
+--	IsSold = 1
+--	WHERE ListingId = @ListingId
+--END 
+--GO

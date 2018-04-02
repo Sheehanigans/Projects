@@ -56,7 +56,7 @@
             //var image path
             var purchasePath = '@Url.Action("Purchase", "Sales")/'
 
-            params = '?view=All' + '&quickSearch=' + $('#quickSearch').val() + '&minPrice=' + $('#minPrice').val() + '&maxPrice=' +
+            params = '?view=Sales' + '&quickSearch=' + $('#quickSearch').val() + '&minPrice=' + $('#minPrice').val() + '&maxPrice=' +
                 $('maxPrice').val() + '&minYear=' + $('minYear').val() + '&maxYear=' + $('maxYear').val()
 
             $.ajax({

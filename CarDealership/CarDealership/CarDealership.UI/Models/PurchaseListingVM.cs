@@ -10,7 +10,7 @@ namespace CarDealership.UI.Models
     public class PurchaseListingVM
     {
         public Listing ListingToPurchase { get; set; }
-        public SaleInformation SaleInformationForm { get; set; }
+        public Purchase PurchaseForm { get; set; }
         public IEnumerable<SelectListItem> States { get; set; }
     }
 }

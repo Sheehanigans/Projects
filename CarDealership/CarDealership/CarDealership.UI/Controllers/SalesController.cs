@@ -15,6 +15,7 @@ namespace CarDealership.UI.Controllers
     {
         ListingManager _listingManager;
         StateManager _stateManager;
+        PurchaseManager _purchaseManager;
 
         // GET: Sales
         public ActionResult Index()
@@ -40,7 +41,7 @@ namespace CarDealership.UI.Controllers
                     var model = new PurchaseListingVM
                     {
                         ListingToPurchase = listingResponse.Payload,
-                        SaleInformationForm = new SaleInformation()
+                        PurchaseForm = new Purchase()
                     };
 
                     var stateResponse = _stateManager.GetAllStates();
@@ -56,7 +57,7 @@ namespace CarDealership.UI.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new ApplicationException("Something wrong happened while loading a purchase:", ex);
             }
 
         }
@@ -64,15 +65,55 @@ namespace CarDealership.UI.Controllers
         [HttpPost]
         public ActionResult Purchase(PurchaseListingVM model)
         {
+            _purchaseManager = PurchaseManagerFactory.Create();
+
             try
             {
+                if (ModelState.IsValid)
+                {
+                    //set sold listing in db
+
+
+                    //set user name 
+                    model.PurchaseForm.UserName = User.Identity.Name;
+
+                    //set listing id 
+                    model.PurchaseForm.ListingId = model.ListingToPurchase.ListingId;
+
+                    //set date 
+                    model.PurchaseForm.DateAdded = DateTime.Now;
+
+
+
+                    //send to manager 
+                    var response = _purchaseManager.SavePurchase(model.PurchaseForm);
+
+                    if (!response.Success)
+                    {
+                        return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+                    }
+                }
+                else
+                {
+                    var stateResponse = _stateManager.GetAllStates();
+
+                    model.States = stateResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.StateAbbreviation,
+                        Value = m.StateId.ToString()
+                    });
+
+                    return View(model);
+                }
+
+                return RedirectToAction("Index");
 
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new ApplicationException("Something wrong happened while loading a purchase:", ex);
             }
-            return RedirectToAction("Index");
+
         }
     }
 }

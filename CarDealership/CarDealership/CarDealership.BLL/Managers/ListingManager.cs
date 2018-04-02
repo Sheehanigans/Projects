@@ -138,5 +138,12 @@ namespace CarDealership.BLL.Managers
 
             return response;
         }
+
+        //public TResponse<Listing> SetListingToSold(Listing listing)
+        //{
+        //    var response = new TResponse<Listing>();
+
+
+        //}
     }
 }

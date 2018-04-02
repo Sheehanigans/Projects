@@ -111,6 +111,15 @@ namespace CarDealership.Data.ADORepositories
         }
 
 
+        //public Listing SetListingToSold(Listing listing)
+        //{
+        //    using (var cn = ConnectionStrings.GetOpenConnection())
+        //    {
+
+        //    }
+        //}
+
+
         public IEnumerable<Listing> Search (ListingSearchParameters parameters)
         {
             List<Listing> listings = new List<Listing>();
@@ -128,7 +137,8 @@ namespace CarDealership.Data.ADORepositories
                     "inner join Makes ma on ma.MakeId = mo.MakeId  " +
                     "inner join InteriorColors ic on ic.InteriorColorId = l.InteriorColorId  " +
                     "inner join ExteriorColors ec on ec.ExteriorColorId = l.ExteriorColorId  " +
-                    "inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId  ";
+                    "inner join BodyStyles bs on bs.BodyStyleId = l.BodyStyleId  " +
+                    "WHERE 1 = 1 ";
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
@@ -136,13 +146,16 @@ namespace CarDealership.Data.ADORepositories
                 switch (parameters.View)
                 {
                     case "New":
-                        query += "where l.Condition = 1 ";
+                        query += "AND l.Condition = 1 ";
                         break;
                     case "Used":
-                        query += "where l.Condition = 2 ";
+                        query += "AND l.Condition = 2 ";
                         break;
-                    case "All":
-                        query += "where (l.Condition = 1 or l.Condition = 2) ";
+                    case "Admin":
+                        query += "AND (l.Condition = 1 or l.Condition = 2) ";
+                        break;
+                    case "Sales":
+                        query += "AND l.IsSold = 0 ";
                         break;
                     default:
                         break;
@@ -218,5 +231,6 @@ namespace CarDealership.Data.ADORepositories
 
             return listings;
         }
+
     }
 }

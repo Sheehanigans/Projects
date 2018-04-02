@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace CarDealership.Models.Tables
 {
-    public class SaleInformation
+    public class Purchase
     {
-        public int SaleId { get; set; }
-        public string UserId { get; set; }
+        public int PurchaseId { get; set; }
         public int ListingId { get; set; }
         public int StateId { get; set; }
         public string CustomerName { get; set; }
@@ -22,6 +21,7 @@ namespace CarDealership.Models.Tables
         public string Zipcode { get; set; }
         public decimal PurchasePrice { get; set; }
         public PaymentOption PaymentOption { get; set; }
+        public DateTime DateAdded { get; set; }
         public string UserName { get; set; }
     }
 }

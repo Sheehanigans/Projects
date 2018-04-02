@@ -45,12 +45,14 @@
     <Compile Include="Factories\ListingManagerFactory.cs" />
     <Compile Include="Factories\MakeManagerFactory.cs" />
     <Compile Include="Factories\ModelManagerFactory.cs" />
+    <Compile Include="Factories\PurchaseManagerFactory.cs" />
     <Compile Include="Factories\SpecialManagerFactory.cs" />
     <Compile Include="Factories\StateManagerFactory.cs" />
     <Compile Include="Managers\ContactFormManager.cs" />
     <Compile Include="Managers\ListingManager.cs" />
     <Compile Include="Managers\MakeManager.cs" />
     <Compile Include="Managers\ModelManager.cs" />
+    <Compile Include="Managers\PurchaseManager.cs" />
     <Compile Include="Managers\SpecialManager.cs" />
     <Compile Include="Managers\StateManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

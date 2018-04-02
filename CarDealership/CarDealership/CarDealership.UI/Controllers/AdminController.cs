@@ -171,10 +171,6 @@ namespace CarDealership.UI.Controllers
                 model.NewModel.DateAdded = DateTime.Now;
                 model.NewModel.UserName = User.Identity.Name;
                 
-                //model.NewModel.Make = _makeManager.GetMake(model.NewModel.Make)
-                
-
-
                 //save 
                 var response = _modelManager.SaveModel(model.NewModel);
 

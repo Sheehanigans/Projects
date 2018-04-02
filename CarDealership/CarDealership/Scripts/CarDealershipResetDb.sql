@@ -8,7 +8,7 @@ go
 
 create procedure ResetDb as 
 begin 
-	delete from SaleInformation;
+	delete from Purchase;
 	delete from States;
 	delete from Specials;
 	delete from ContactForms;
@@ -133,9 +133,9 @@ begin
 	(3, 3, 3, 2, 2, 2, 1, 1000000, 1980,'BACKTOTHEFUTURE', 400000.00, 399555.00, 'The reverse is broken and smells like lightning', 'delorian.jpg', 0, 1)
 	set identity_insert Listings off; 
 
-	set identity_insert SaleInformation on;
-	insert into SaleInformation(SaleId, UserId, ListingId, StateId, CustomerName, Phone, Email, Street1, City, ZipCode, PurchasePrice, PaymentOption, UserName)
-	values (1, '7149e0c5-34c1-4a33-b283-bfe66a66bc27', 1, 1, 'Ryan', '612-750-7473', 'ryan@ryan.com', '3117 Free Ave', 'Minneaplis', '55408', 25000.00, 'Bank Finance', 'test@test.com')
-	set identity_insert SaleInformation off;
+	set identity_insert Purchase on;
+	insert into Purchase(PurchaseId, ListingId, StateId, CustomerName, Phone, Email, Street1, City, ZipCode, PurchasePrice, PaymentOption, UserName)
+	values (1, 1, 1, 'Ryan', '612-750-7473', 'ryan@ryan.com', '3117 Free Ave', 'Minneaplis', '55408', 25000.00, 'Bank Finance', 'test@test.com')
+	set identity_insert Purchase off;
 
 end 

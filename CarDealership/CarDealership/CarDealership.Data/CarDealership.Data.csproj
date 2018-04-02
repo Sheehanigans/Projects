@@ -48,6 +48,7 @@
     <Compile Include="ADORepositories\ListingRepository.cs" />
     <Compile Include="ADORepositories\MakeRepository.cs" />
     <Compile Include="ADORepositories\ModelRepository.cs" />
+    <Compile Include="ADORepositories\PurchaseRepository.cs" />
     <Compile Include="ADORepositories\SpecialRepository.cs" />
     <Compile Include="ADORepositories\StateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
