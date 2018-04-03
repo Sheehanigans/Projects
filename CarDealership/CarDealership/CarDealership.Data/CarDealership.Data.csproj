@@ -44,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADORepositories\BodyStyleRepository.cs" />
     <Compile Include="ADORepositories\ContactFormRepository.cs" />
+    <Compile Include="ADORepositories\ExteriorColorRepository.cs" />
+    <Compile Include="ADORepositories\InteriorColorRepository.cs" />
     <Compile Include="ADORepositories\ListingRepository.cs" />
     <Compile Include="ADORepositories\MakeRepository.cs" />
     <Compile Include="ADORepositories\ModelRepository.cs" />

@@ -46,6 +46,41 @@ namespace CarDealership.Data.ADORepositories
             }
         }
 
+        public List<Model> GetModelsByMakeId(int makeId)
+        {
+            using (var cn = new SqlConnection(ConnectionStrings.GetConnectionString()))
+            {
+                List<Model> models = new List<Model>();
+                SqlCommand cmd = new SqlCommand("GetModelsByMakeId", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@MakeId", makeId);
+
+                cn.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Model row = new Model();
+                        row.Make = new Make();
+                        row.ModelId = (int)dr["ModelId"];
+                        row.ModelName = dr["ModelName"].ToString();
+                        row.Make.MakeId = (int)dr["MakeId"];
+                        row.Make.MakeName = dr["MakeName"].ToString();
+                        row.DateAdded = (DateTime)dr["DateAdded"];
+                        row.UserName = dr["UserName"].ToString();
+
+                        models.Add(row);
+                    }
+                }
+                if (models.Any())
+                {
+                    return models;
+                }
+                return null;
+            }
+        }
+
         public Model Save(Model model)
         {
             using (var cn = new SqlConnection(ConnectionStrings.GetConnectionString()))

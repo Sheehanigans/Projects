@@ -41,14 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\BodyStyleManagerFactory.cs" />
     <Compile Include="Factories\ContactFormManagerFactory.cs" />
+    <Compile Include="Factories\ExteriorColorManagerFactory.cs" />
+    <Compile Include="Factories\InteriorColorManagerFactory.cs" />
     <Compile Include="Factories\ListingManagerFactory.cs" />
     <Compile Include="Factories\MakeManagerFactory.cs" />
     <Compile Include="Factories\ModelManagerFactory.cs" />
     <Compile Include="Factories\PurchaseManagerFactory.cs" />
     <Compile Include="Factories\SpecialManagerFactory.cs" />
     <Compile Include="Factories\StateManagerFactory.cs" />
+    <Compile Include="Managers\BodyStyleManager.cs" />
     <Compile Include="Managers\ContactFormManager.cs" />
+    <Compile Include="Managers\ExteriorColorManager.cs" />
+    <Compile Include="Managers\InteriorColorManager.cs" />
     <Compile Include="Managers\ListingManager.cs" />
     <Compile Include="Managers\MakeManager.cs" />
     <Compile Include="Managers\ModelManager.cs" />

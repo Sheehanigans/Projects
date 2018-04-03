@@ -31,5 +31,6 @@ namespace CarDealership.Models.Tables
         public string ImageFileUrl { get; set; }
         public bool IsFeatured { get; set; }
         public bool IsSold { get; set; }
+        public DateTime DateAdded { get; set; }
     }
 }

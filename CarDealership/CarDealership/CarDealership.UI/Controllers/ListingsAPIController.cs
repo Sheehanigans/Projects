@@ -12,6 +12,8 @@ namespace CarDealership.UI.Controllers
     public class ListingsAPIController : ApiController
     {
         ListingManager _listingManager;
+        ModelManager _modelManager;
+        MakeManager _makeManager;
 
         [Route("api/listings/search")]
         [AcceptVerbs("GET")]
@@ -40,5 +42,40 @@ namespace CarDealership.UI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Route("api/get/models")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult GetModelsForMake(int makeId)
+        {
+            _modelManager = ModelManagerFactory.Create();
+
+            try
+            {
+
+                var result = _modelManager.GetModelsByMakeId(makeId);
+                return Ok(result.Payload);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //[Route("api/get/make")]
+        //[AcceptVerbs("GET")]
+        //public IHttpActionResult GetMake (int? modelId)
+        //{
+        //    _makeManager = MakeManagerFactory.Create();
+
+        //    try
+        //    {
+        //        var result = _makeManager.GetAllMakes();
+        //        return Ok(result.Payload);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
     }
 }

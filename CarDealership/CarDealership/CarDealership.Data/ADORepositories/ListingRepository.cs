@@ -128,7 +128,7 @@ namespace CarDealership.Data.ADORepositories
             {
                 string query =
                     "SELECT TOP 20 ListingId, l.ModelId, mo.ModelName, l.ModelYear, " +
-                    "ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, " +
+                    "ma.MakeId, ma.MakeName, l.BodyStyle, l.InteriorColorId, " +
                     "ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, " +
                     "Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, " +
                     "ImageFileUrl, IsFeatured, IsSold, l.DateAdded " +

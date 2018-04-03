@@ -329,17 +329,55 @@ GO
 
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
-   WHERE ROUTINE_NAME = 'SetListingToSold')
-      DROP PROCEDURE SetListingToSold
+   WHERE ROUTINE_NAME = 'GetModelsByMakeId')
+      DROP PROCEDURE GetModelsByMakeId
 GO
 
---CREATE PROCEDURE SetListingToSold(
---	@ListingId int, 
---	@IsSold bit
---)AS
---BEGIN 
---	UPDATE Listings SET
---	IsSold = 1
---	WHERE ListingId = @ListingId
---END 
---GO
+CREATE PROCEDURE GetModelsByMakeId(
+	@MakeId int
+)AS
+BEGIN
+	Select ModelId, mo.ModelName, mo.MakeId, ma.MakeName, mo.DateAdded, mo.UserName
+	FROM Models mo
+	INNER JOIN Makes ma on ma.MakeId = mo.MakeId
+	WHERE mo.MakeId = @MakeId
+END 
+GO
+
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'GetAllBodyStyles')
+      DROP PROCEDURE GetAllBodyStyles
+GO
+
+CREATE PROCEDURE GetAllBodyStyles AS
+BEGIN 
+	SELECT BodyStyleId, BodyStyleName
+	FROM BodyStyles
+END
+GO
+
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'GetAllExteriorColors')
+      DROP PROCEDURE GetAllExteriorColors
+GO
+
+CREATE PROCEDURE GetAllExteriorColors AS 
+BEGIN 
+	SELECT ExteriorColorId, ExteriorColorName
+	FROM ExteriorColors
+END
+GO 
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'GetAllInteriorColors')
+      DROP PROCEDURE GetAllInteriorColors
+GO
+
+CREATE PROCEDURE GetAllInteriorColors AS 
+BEGIN 
+	SELECT InteriorColorId, InteriorColorName
+	FROM InteriorColors
+END
+GO 

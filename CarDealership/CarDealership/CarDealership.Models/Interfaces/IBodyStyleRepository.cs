@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace CarDealership.Models.Interfaces
 {
-    public interface IModelRepository
+    public interface IBodyStyleRepository
     {
-        Model Save(Model model);
-
-        List<Model> GetAllModels();
-
-        List<Model> GetModelsByMakeId(int makeId);
+        List<BodyStyle> GetAll();
     }
 }

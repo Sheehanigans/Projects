@@ -55,5 +55,24 @@ namespace CarDealership.BLL.Managers
 
             return response;
         }
+
+        public TResponse<List<Model>> GetModelsByMakeId(int makeId)
+        {
+            var response = new TResponse<List<Model>>();
+
+            response.Payload = Repo.GetModelsByMakeId(makeId);
+
+            if (!response.Payload.Any())
+            {
+                response.Message = $"Unable to load any models with make id {makeId}";
+                response.Success = false;
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
     }
 }

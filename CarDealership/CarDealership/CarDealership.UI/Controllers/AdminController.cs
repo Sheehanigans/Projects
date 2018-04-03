@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -24,6 +25,9 @@ namespace CarDealership.UI.Controllers
         private ListingManager _listingManager;
         private MakeManager _makeManager;
         private ModelManager _modelManager;
+        private ExteriorColorManager _exteriorColorManager;
+        private InteriorColorManager _interiorColorManager;
+        private BodyStyleManager _bodyStyleManager;
 
         public ApplicationUserManager UserManager
         {
@@ -62,7 +66,192 @@ namespace CarDealership.UI.Controllers
 
         public ActionResult AddVehicle()
         {
-            return View();
+            _makeManager = MakeManagerFactory.Create();
+            _modelManager = ModelManagerFactory.Create();
+            _interiorColorManager = InteriorColorManagerFactory.Create();
+            _exteriorColorManager = ExteriorColorManagerFactory.Create();
+            _bodyStyleManager = BodyStyleManagerFactory.Create();
+
+            try
+            {
+                var model = new AddListingVM();
+
+                //load all the items 
+                var modelResponse = _modelManager.GetAllModels();
+                var makeResponse = _makeManager.GetAllMakes();
+                var interiorResponse = _interiorColorManager.GetAll();
+                var exteriorReponse = _exteriorColorManager.GetAll();
+                var bodyResponse = _bodyStyleManager.GetAll();
+
+                //verify they all loaded
+                if (!modelResponse.Success 
+                    || !makeResponse.Success
+                    || !interiorResponse.Success
+                    || !exteriorReponse.Success
+                    || !bodyResponse.Success)
+                {
+                    return new HttpStatusCodeResult(500, $"Error in cloud. Message:" +
+                        $"{modelResponse.Message} " +
+                        $"{makeResponse.Message}" +
+                        $"{interiorResponse.Message}" +
+                        $"{exteriorReponse.Message}" +
+                        $"{bodyResponse.Message}");
+                }
+                else
+                {
+                    //create select list items 
+                    model.Makes = makeResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.MakeName,
+                        Value = m.MakeId.ToString()
+                    });
+
+                    model.Models = modelResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.ModelName,
+                        Value = m.ModelId.ToString()
+                    });
+
+                    model.ExteriorColors = exteriorReponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.ExteriorColorName,
+                        Value = m.ExteriorColorId.ToString()
+                    });
+
+                    model.InteriorColors = interiorResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.InteriorColorName,
+                        Value = m.InteriorColorId.ToString()
+                    });
+
+                    model.BodyStyles = bodyResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.BodyStyleName,
+                        Value = m.BodyStyleId.ToString()
+                    });
+
+                    return View(model);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something wrong happened loading the add screen:", ex);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddVehicle(AddListingVM model)
+        {
+            _listingManager = ListingManagerFactory.Create();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.Listing.DateAdded = DateTime.Now;
+
+                    if(model.Listing.ImageFileUrl != null && model.ImageUpload.ContentLength > 0)
+                    {
+                        var savepath = Server.MapPath("~/Images");
+
+                        string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                        string extension = Path.GetExtension(model.ImageUpload.FileName);
+
+                        var filePath = Path.Combine(savepath, fileName + extension);
+
+                        int counter = 1;
+                        while (System.IO.File.Exists(filePath))
+                        {
+                            filePath = Path.Combine(savepath, fileName + counter.ToString() + extension);
+                            counter++;
+                        }
+
+                        model.ImageUpload.SaveAs(filePath);
+                        model.Listing.ImageFileUrl = Path.GetFileName(filePath);
+                    }
+
+                    //send to manager and repo 
+                    _listingManager.SaveListing(model.Listing);
+
+                    //should redirect to edit when edit is done... send in new listing by id with redirect 
+                    //listing id could be bad....
+                    //return RedirectToAction("Edit", new { id = model.Listing.ListingId });
+
+                    return RedirectToAction("Vehicles");
+
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException("Something wrong happened while trying to add a new listing:", ex);
+                }
+            }
+            else
+            {
+                //reset page with items 
+                _makeManager = MakeManagerFactory.Create();
+                _modelManager = ModelManagerFactory.Create();
+                _interiorColorManager = InteriorColorManagerFactory.Create();
+                _exteriorColorManager = ExteriorColorManagerFactory.Create();
+                _bodyStyleManager = BodyStyleManagerFactory.Create();
+
+                //load all the items 
+                var modelResponse = _modelManager.GetAllModels();
+                var makeResponse = _makeManager.GetAllMakes();
+                var interiorResponse = _interiorColorManager.GetAll();
+                var exteriorReponse = _exteriorColorManager.GetAll();
+                var bodyResponse = _bodyStyleManager.GetAll();
+
+                //verify they all loaded
+                if (!modelResponse.Success
+                    || !makeResponse.Success
+                    || !interiorResponse.Success
+                    || !exteriorReponse.Success
+                    || !bodyResponse.Success)
+                {
+                    return new HttpStatusCodeResult(500, $"Error in cloud. Message:" +
+                        $"{modelResponse.Message} " +
+                        $"{makeResponse.Message}" +
+                        $"{interiorResponse.Message}" +
+                        $"{exteriorReponse.Message}" +
+                        $"{bodyResponse.Message}");
+                }
+                else
+                {
+                    //create select list items 
+                    model.Makes = makeResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.MakeName,
+                        Value = m.MakeId.ToString()
+                    });
+
+                    model.Models = modelResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.ModelName,
+                        Value = m.ModelId.ToString()
+                    });
+
+                    model.ExteriorColors = exteriorReponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.ExteriorColorName,
+                        Value = m.ExteriorColorId.ToString()
+                    });
+
+                    model.InteriorColors = interiorResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.InteriorColorName,
+                        Value = m.InteriorColorId.ToString()
+                    });
+
+                    model.BodyStyles = bodyResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.BodyStyleName,
+                        Value = m.BodyStyleId.ToString()
+                    });
+
+                    return View(model);
+                }
+            }
         }
 
         public ActionResult EditVehicle()
@@ -103,7 +292,7 @@ namespace CarDealership.UI.Controllers
                         return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw ex;
                 }
@@ -170,7 +359,7 @@ namespace CarDealership.UI.Controllers
             {
                 model.NewModel.DateAdded = DateTime.Now;
                 model.NewModel.UserName = User.Identity.Name;
-                
+
                 //save 
                 var response = _modelManager.SaveModel(model.NewModel);
 
@@ -195,8 +384,6 @@ namespace CarDealership.UI.Controllers
             }
 
         }
-
-
 
         public ActionResult Makes()
         {
@@ -290,7 +477,7 @@ namespace CarDealership.UI.Controllers
             if (ModelState.IsValid)
             {
                 //get the user
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 //successfully got user
@@ -369,7 +556,7 @@ namespace CarDealership.UI.Controllers
             user.Email = model.Email;
             user.UserName = model.Email;
 
-            if(!user.Roles.Any(r => r.RoleId == model.Role))
+            if (!user.Roles.Any(r => r.RoleId == model.Role))
             {
                 //clear all roles from the user
                 var dbUser = context.Users.SingleOrDefault(u => u.Id == model.Id);

@@ -219,6 +219,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddListingVM.cs" />
     <Compile Include="Models\ContactFormVM.cs" />
     <Compile Include="Models\HomeVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -315,6 +316,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
