@@ -128,9 +128,9 @@ begin
 
 	set identity_insert Listings on;
 	insert into Listings (ListingId, ModelId, BodyStyleId, InteriorColorId, ExteriorColorId, Condition, Transmission, Mileage, ModelYear, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold)
-	values(1, 1, 2, 1, 1, 1, 2, 25000, 2019, 'FTW12345BLAHHEY69', 30000.00, 29000.00, 'This little guy is a lot of fun', 'cx3.png', 0, 0), 
-	(2, 2, 1, 2, 2, 2, 1, 200000, 1995,'JEEP229900HEYYO', 15000.00, 14000.00, 'Hey did you see that road there? Yeah neither did I.', 'jeep.jpg', 1, 0),
-	(3, 3, 3, 2, 2, 2, 1, 1000000, 1980,'BACKTOTHEFUTURE', 400000.00, 399555.00, 'The reverse is broken and smells like lightning', 'delorian.jpg', 0, 1)
+	values(1, 1, 2, 1, 1, 1, 2, 25000, 2019, 'FTW12345BLAHHEY69', 30000.00, 29000.00, 'This little guy is a lot of fun', 'cx3.jpg', 0, 0), 
+	(2, 2, 1, 2, 2, 2, 1, 200000, 1995,'JEEP229900HEYYO', 15000.00, 14000.00, 'Hey did you see that road there? Yeah neither did I.', '95wrangler.jpg', 1, 0),
+	(3, 3, 3, 2, 2, 2, 1, 1000000, 1980,'BACKTOTHEFUTURE', 400000.00, 399555.00, 'The reverse is broken and smells like lightning', 'doc.jpg', 0, 1)
 	set identity_insert Listings off; 
 
 	set identity_insert Purchase on;

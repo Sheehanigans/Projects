@@ -111,14 +111,45 @@ namespace CarDealership.Data.ADORepositories
         }
 
 
-        //public Listing SetListingToSold(Listing listing)
-        //{
-        //    using (var cn = ConnectionStrings.GetOpenConnection())
-        //    {
+        public Listing InsertListing(Listing listing)
+        {
+            using (var cn = new SqlConnection(ConnectionStrings.GetConnectionString()))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@ListingId", listing.ListingId, DbType.Int32, direction: ParameterDirection.Output);
+                parameters.Add("@ModelId", listing.ModelId);
+                parameters.Add("@BodyStyleId", listing.BodyStyleId);
+                parameters.Add("@InteriorColorId", listing.InteriorColorId);
+                parameters.Add("@ExteriorColorId", listing.ExteriorColorId);
+                parameters.Add("@Condition", listing.Condition);
+                parameters.Add("@Transmission", listing.Transmission);
+                parameters.Add("@Mileage", listing.Mileage);
+                parameters.Add("@ModelYear", listing.ModelYear);
+                parameters.Add("@VIN", listing.VIN);
+                parameters.Add("@MSRP", listing.MSRP);
+                parameters.Add("@SalePrice", listing.SalePrice);
+                parameters.Add("@VehicleDescription", listing.VehicleDescription);
+                parameters.Add("@ImageFileUrl", listing.ImageFileUrl);
+                parameters.Add("@IsFeatured", listing.IsFeatured);
+                parameters.Add("@IsSold", listing.IsSold);
+                parameters.Add("@DateAdded", listing.DateAdded);
+                cn.Execute("ListingInsert", parameters, commandType: CommandType.StoredProcedure);
 
-        //    }
-        //}
+            }
 
+            return listing;
+
+
+            //using (var cn = ConnectionStrings.GetOpenConnection())
+            //{
+            //    cn.Execute(
+            //        "ListingInsert",
+            //        listing,
+            //        commandType: CommandType.StoredProcedure
+            //        );
+            //}
+
+        }
 
         public IEnumerable<Listing> Search (ListingSearchParameters parameters)
         {
@@ -128,7 +159,7 @@ namespace CarDealership.Data.ADORepositories
             {
                 string query =
                     "SELECT TOP 20 ListingId, l.ModelId, mo.ModelName, l.ModelYear, " +
-                    "ma.MakeId, ma.MakeName, l.BodyStyle, l.InteriorColorId, " +
+                    "ma.MakeId, ma.MakeName, l.BodyStyleId, bs.BodyStyleName, l.InteriorColorId, " +
                     "ic.InteriorColorName, l.ExteriorColorId, ec.ExteriorColorName, " +
                     "Condition, Transmission, Mileage, VIN, MSRP, SalePrice, VehicleDescription, " +
                     "ImageFileUrl, IsFeatured, IsSold, l.DateAdded " +
@@ -231,6 +262,7 @@ namespace CarDealership.Data.ADORepositories
 
             return listings;
         }
+
 
     }
 }

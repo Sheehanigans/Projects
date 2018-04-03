@@ -52,7 +52,7 @@
         function search() {
 
             var params;
-            //var image path
+            var imagePath = '@Url.Content("~/Images/")';
             var detailsPath = '@Url.Action("Details", "Inventory")/'
 
             params = '?view=New' + '&quickSearch=' + $('#quickSearch').val() + '&minPrice=' + $('#minPrice').val() + '&maxPrice=' +
@@ -71,7 +71,7 @@
                         html += '<div class="row">'
                         html += '<div class="col-xs-3">'
                         html += '<p class="recentListing"><strong>' + listing.ModelYear + ' ' + listing.MakeName + ' ' + listing.ModelName + '</strong></p>' + '<br/>'
-                        html += '<p class="recentListing">' + listing.ImageFileUrl + '</p>'
+                        html += '<p class="recentListing" ><img src="' + imagePath + listing.ImageFileUrl + '" width="150"/></p >'
                         html += '</div>'
                         html += '<div class="col-xs-3">'
                         html += '<p class="recentListing"> <strong>Body Style: </strong>' + listing.BodyStyleName + '</p>'

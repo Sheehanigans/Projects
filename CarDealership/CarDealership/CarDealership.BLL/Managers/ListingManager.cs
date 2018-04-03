@@ -141,7 +141,21 @@ namespace CarDealership.BLL.Managers
 
         public TResponse<Listing> SaveListing(Listing listing)
         {
-            throw new NotImplementedException();
+            var response = new TResponse<Listing>();
+
+            response.Payload = Repo.InsertListing(listing);
+
+            if(response.Payload == null)
+            {
+                response.Success = false;
+                response.Message = "Unable to save new listing ";
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
         }
     }
 }

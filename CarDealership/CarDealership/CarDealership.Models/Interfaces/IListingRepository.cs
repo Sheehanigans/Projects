@@ -24,6 +24,6 @@ namespace CarDealership.Models.Interfaces
 
         Listing GetListingById(int id);
 
-        //Listing SetListingToSold(Listing listing);
+        Listing InsertListing(Listing listing);
     }
 }

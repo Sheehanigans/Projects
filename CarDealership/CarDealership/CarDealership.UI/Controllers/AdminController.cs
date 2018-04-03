@@ -151,9 +151,9 @@ namespace CarDealership.UI.Controllers
                 {
                     model.Listing.DateAdded = DateTime.Now;
 
-                    if(model.Listing.ImageFileUrl != null && model.ImageUpload.ContentLength > 0)
+                    if(model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
                     {
-                        var savepath = Server.MapPath("~/Images");
+                        var savepath = Server.MapPath("~/Images/");
 
                         string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
                         string extension = Path.GetExtension(model.ImageUpload.FileName);
@@ -171,12 +171,17 @@ namespace CarDealership.UI.Controllers
                         model.Listing.ImageFileUrl = Path.GetFileName(filePath);
                     }
 
+
+
                     //send to manager and repo 
                     _listingManager.SaveListing(model.Listing);
 
                     //should redirect to edit when edit is done... send in new listing by id with redirect 
                     //listing id could be bad....
+
                     //return RedirectToAction("Edit", new { id = model.Listing.ListingId });
+
+                    
 
                     return RedirectToAction("Vehicles");
 
@@ -254,7 +259,7 @@ namespace CarDealership.UI.Controllers
             }
         }
 
-        public ActionResult EditVehicle()
+        public ActionResult EditVehicle(int listingId)
         {
             return View();
         }
