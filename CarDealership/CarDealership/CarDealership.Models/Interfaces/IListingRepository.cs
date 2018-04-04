@@ -25,5 +25,9 @@ namespace CarDealership.Models.Interfaces
         Listing GetListingById(int id);
 
         Listing InsertListing(Listing listing);
+
+        Listing UpdateListing(Listing listing);
+
+        bool DeleteListing(int id);
     }
 }

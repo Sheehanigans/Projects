@@ -172,19 +172,18 @@ namespace CarDealership.UI.Controllers
                     }
 
 
-
                     //send to manager and repo 
-                    _listingManager.SaveListing(model.Listing);
+                    var listingResponse = _listingManager.SaveListing(model.Listing);
 
-                    //should redirect to edit when edit is done... send in new listing by id with redirect 
-                    //listing id could be bad....
-
-                    //return RedirectToAction("Edit", new { id = model.Listing.ListingId });
-
-                    
-
-                    return RedirectToAction("Vehicles");
-
+                    if (listingResponse.Success)
+                    {
+                        return RedirectToAction("EditVehicle", new { id = listingResponse.Payload.ListingId });
+                    }
+                    else
+                    {
+                        return new HttpStatusCodeResult(500, $"Error in cloud. Message:" +
+                       $"{listingResponse.Message}");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -259,9 +258,229 @@ namespace CarDealership.UI.Controllers
             }
         }
 
-        public ActionResult EditVehicle(int listingId)
+        public ActionResult EditVehicle(int id)
         {
-            return View();
+            var model = new EditListingVM();
+
+            //reset page with items 
+            _makeManager = MakeManagerFactory.Create();
+            _modelManager = ModelManagerFactory.Create();
+            _interiorColorManager = InteriorColorManagerFactory.Create();
+            _exteriorColorManager = ExteriorColorManagerFactory.Create();
+            _bodyStyleManager = BodyStyleManagerFactory.Create();
+            _listingManager = ListingManagerFactory.Create();
+
+            //load all the items 
+            var modelResponse = _modelManager.GetAllModels();
+            var makeResponse = _makeManager.GetAllMakes();
+            var interiorResponse = _interiorColorManager.GetAll();
+            var exteriorReponse = _exteriorColorManager.GetAll();
+            var bodyResponse = _bodyStyleManager.GetAll();
+
+            //get listing
+            var listingResponse = _listingManager.GetListingById(id);
+
+
+            //verify they all loaded
+            if (!modelResponse.Success
+                || !makeResponse.Success
+                || !interiorResponse.Success
+                || !exteriorReponse.Success
+                || !bodyResponse.Success
+                || !listingResponse.Success)
+            {
+                return new HttpStatusCodeResult(500, $"Error in cloud. Message:" +
+                    $"{modelResponse.Message} " +
+                    $"{makeResponse.Message}" +
+                    $"{interiorResponse.Message}" +
+                    $"{exteriorReponse.Message}" +
+                    $"{bodyResponse.Message}" +
+                    $"{listingResponse.Message}");
+            }
+            else
+            {
+                //create select list items 
+                model.Makes = makeResponse.Payload.Select(m => new SelectListItem
+                {
+                    Text = m.MakeName,
+                    Value = m.MakeId.ToString()
+                });
+
+                model.Models = modelResponse.Payload.Select(m => new SelectListItem
+                {
+                    Text = m.ModelName,
+                    Value = m.ModelId.ToString()
+                });
+
+                model.ExteriorColors = exteriorReponse.Payload.Select(m => new SelectListItem
+                {
+                    Text = m.ExteriorColorName,
+                    Value = m.ExteriorColorId.ToString()
+                });
+
+                model.InteriorColors = interiorResponse.Payload.Select(m => new SelectListItem
+                {
+                    Text = m.InteriorColorName,
+                    Value = m.InteriorColorId.ToString()
+                });
+
+                model.BodyStyles = bodyResponse.Payload.Select(m => new SelectListItem
+                {
+                    Text = m.BodyStyleName,
+                    Value = m.BodyStyleId.ToString()
+                });
+
+                model.Listing = listingResponse.Payload;
+
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditVehicle(EditListingVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _listingManager = ListingManagerFactory.Create();
+
+                    var oldListingResponse = _listingManager.GetListingById(model.Listing.ListingId);
+
+                    if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
+                    {
+                        var savepath = Server.MapPath("~/Images/");
+
+                        string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                        string extension = Path.GetExtension(model.ImageUpload.FileName);
+
+                        var filePath = Path.Combine(savepath, fileName + extension);
+
+                        int counter = 1;
+                        while (System.IO.File.Exists(filePath))
+                        {
+                            filePath = Path.Combine(savepath, fileName + counter.ToString() + extension);
+                            counter++;
+                        }
+
+                        model.ImageUpload.SaveAs(filePath);
+                        model.Listing.ImageFileUrl = Path.GetFileName(filePath);
+
+                        //delete the old file, use the response to get it
+                        var oldPath = Path.Combine(savepath, oldListingResponse.Payload.ImageFileUrl);
+                        if (System.IO.File.Exists(oldPath))
+                        {
+                            System.IO.File.Delete(oldPath);
+                        }
+                    }
+                    else
+                    {
+                        model.Listing.ImageFileUrl = oldListingResponse.Payload.ImageFileUrl;
+                    }
+
+                    var listingResponse = _listingManager.UpdateListing(model.Listing);
+
+                    if (listingResponse.Success)
+                    {
+                        return RedirectToAction("Vehicles");
+                        //return RedirectToAction("EditVehicle", new { id = listingResponse.Payload.ListingId });
+                    }
+                    else
+                    {
+                        return new HttpStatusCodeResult(500, $"Error in cloud. Message:" +
+                       $"{listingResponse.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException("Something wrong happened while trying to edit a listing:", ex);
+                }
+
+            }
+            else
+            {
+                //reset page with items 
+                _makeManager = MakeManagerFactory.Create();
+                _modelManager = ModelManagerFactory.Create();
+                _interiorColorManager = InteriorColorManagerFactory.Create();
+                _exteriorColorManager = ExteriorColorManagerFactory.Create();
+                _bodyStyleManager = BodyStyleManagerFactory.Create();
+                _listingManager = ListingManagerFactory.Create();
+
+                //load all the items 
+                var modelResponse = _modelManager.GetAllModels();
+                var makeResponse = _makeManager.GetAllMakes();
+                var interiorResponse = _interiorColorManager.GetAll();
+                var exteriorReponse = _exteriorColorManager.GetAll();
+                var bodyResponse = _bodyStyleManager.GetAll();
+
+                //verify they all loaded
+                if (!modelResponse.Success
+                    || !makeResponse.Success
+                    || !interiorResponse.Success
+                    || !exteriorReponse.Success
+                    || !bodyResponse.Success)
+                {
+                    return new HttpStatusCodeResult(500, $"Error in cloud. Message:" +
+                        $"{modelResponse.Message} " +
+                        $"{makeResponse.Message}" +
+                        $"{interiorResponse.Message}" +
+                        $"{exteriorReponse.Message}" +
+                        $"{bodyResponse.Message}");
+                }
+                else
+                {
+                    //create select list items 
+                    model.Makes = makeResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.MakeName,
+                        Value = m.MakeId.ToString()
+                    });
+
+                    model.Models = modelResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.ModelName,
+                        Value = m.ModelId.ToString()
+                    });
+
+                    model.ExteriorColors = exteriorReponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.ExteriorColorName,
+                        Value = m.ExteriorColorId.ToString()
+                    });
+
+                    model.InteriorColors = interiorResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.InteriorColorName,
+                        Value = m.InteriorColorId.ToString()
+                    });
+
+                    model.BodyStyles = bodyResponse.Payload.Select(m => new SelectListItem
+                    {
+                        Text = m.BodyStyleName,
+                        Value = m.BodyStyleId.ToString()
+                    });
+
+                    return View(model);
+                }
+            }
+        }
+
+        [HttpGet]
+        public ActionResult DeleteListing(int listingId)
+        {
+            _listingManager = ListingManagerFactory.Create();
+
+            var response = _listingManager.DeleteListing(listingId);
+
+            if (response.Success)
+            {
+                return RedirectToAction("Vehicles");
+            }
+            else
+            {
+                return new HttpStatusCodeResult(500, $"Error in cloud. Message:{response.Message}");
+            }
         }
 
         public ActionResult Specials()

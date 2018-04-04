@@ -221,6 +221,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddListingVM.cs" />
     <Compile Include="Models\ContactFormVM.cs" />
+    <Compile Include="Models\EditListingVM.cs" />
     <Compile Include="Models\HomeVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListingListVM.cs" />

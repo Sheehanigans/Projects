@@ -52,7 +52,7 @@
 
             var params;
             var imagePath = '@Url.Content("~/Images/")';
-            //var detailsPath = 
+            var editPath = '@Url.Action("EditVehicle", "Admin")/'
 
             params = '?view=Admin' + '&quickSearch=' + $('#quickSearch').val() + '&minPrice=' + $('#minPrice').val() + '&maxPrice=' +
                 $('maxPrice').val() + '&minYear=' + $('minYear').val() + '&maxYear=' + $('maxYear').val()
@@ -85,7 +85,7 @@
                         html += '<div class="col-xs-3">'
                         html += '<p class="recentListing"> <strong>SalePrice: </strong>$' + listing.SalePrice + '</p>'
                         html += '<p class="recentListing"> <strong>MSRP: </strong>$' + listing.MSRP + '</p>'
-                        html += '<button class="btn btn-default">Edit</button>'
+                        html += '<a href="' + editPath + listing.ListingId + '" class="btn btn-default">Edit</a>'
                         html += '</div>'
                         html += '</div>'
                         html += '</div>'

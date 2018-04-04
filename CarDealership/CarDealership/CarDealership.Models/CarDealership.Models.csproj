@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ConditionAndMileageAttribute.cs" />
+    <Compile Include="Attributes\ModelYearCharactersAndYearAttribute.cs" />
     <Compile Include="Attributes\ContactForm\PhoneOrEmailAttribute.cs" />
+    <Compile Include="Attributes\MSRPAndSalePriceAttribute.cs" />
     <Compile Include="Enums\PaymentOption.cs" />
     <Compile Include="Enums\Transmission.cs" />
     <Compile Include="Interfaces\IBodyStyleRepository.cs" />

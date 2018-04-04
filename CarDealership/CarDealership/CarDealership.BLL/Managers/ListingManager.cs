@@ -157,5 +157,43 @@ namespace CarDealership.BLL.Managers
 
             return response;
         }
+
+        public TResponse<Listing> UpdateListing(Listing listing)
+        {
+            var response = new TResponse<Listing>();
+
+            response.Payload = Repo.UpdateListing(listing);
+
+            if (response.Payload == null)
+            {
+                response.Success = false;
+                response.Message = $"Unable to update Listing Id {listing.ListingId}";
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
+
+        public TResponse<bool> DeleteListing(int id)
+        {
+            var response = new TResponse<bool>();
+
+            response.Payload = Repo.DeleteListing(id);
+
+            if(response.Payload == true)
+            {
+                response.Success = true;
+            }
+            else
+            {
+                response.Success = false;
+                response.Message = $"Unable to delete for Listing Id {id}";
+            }
+
+            return response;
+        }
     }
 }

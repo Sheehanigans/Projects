@@ -381,3 +381,95 @@ BEGIN
 	FROM InteriorColors
 END
 GO 
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'ListingInsert')
+      DROP PROCEDURE ListingInsert
+GO
+
+CREATE PROCEDURE ListingInsert(
+	@ListingId int output, 
+	@ModelId int, 
+	@BodyStyleId int, 
+	@InteriorColorId int, 
+	@ExteriorColorId int, 
+	@Condition int,
+	@Transmission int, 
+	@Mileage int, 
+	@ModelYear int, 
+	@VIN nvarchar(128), 
+	@MSRP decimal (10,2),
+	@SalePrice decimal (10,2),
+	@VehicleDescription nvarchar(max), 
+	@ImageFileUrl nvarchar(max),
+	@IsFeatured bit, 
+	@IsSold bit, 
+	@DateAdded datetime2
+)AS
+BEGIN 
+	INSERT INTO Listings(ModelId, BodyStyleId, InteriorColorId, ExteriorColorId, Condition, Transmission, Mileage, ModelYear, VIN, MSRP, SalePrice, VehicleDescription, ImageFileUrl, IsFeatured, IsSold, DateAdded)
+	VALUES(@ModelId, @BodyStyleId, @InteriorColorId, @ExteriorColorId, @Condition, @Transmission, @Mileage, @ModelYear, @VIN, @MSRP, @SalePrice, @VehicleDescription, @ImageFileUrl, @IsFeatured, @IsSold, @DateAdded);
+
+	SET @ListingId = SCOPE_IDENTITY();
+END
+GO
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'ListingUpdate')
+      DROP PROCEDURE ListingUpdate
+GO
+
+CREATE PROCEDURE ListingUpdate (
+	@ListingId int, 
+	@ModelId int, 
+	@BodyStyleId int, 
+	@InteriorColorId int, 
+	@ExteriorColorId int, 
+	@Condition int,
+	@Transmission int, 
+	@Mileage int, 
+	@ModelYear int, 
+	@VIN nvarchar(128), 
+	@MSRP decimal (10,2),
+	@SalePrice decimal (10,2),
+	@VehicleDescription nvarchar(max), 
+	@ImageFileUrl nvarchar(max),
+	@IsFeatured bit
+)AS
+BEGIN
+	UPDATE Listings SET
+	ModelId = @ModelId,
+	BodyStyleId = @BodyStyleId,
+	InteriorColorId = @InteriorColorId,
+	ExteriorColorId = @ExteriorColorId,
+	Condition = @Condition,
+	Transmission = @Transmission,
+	Mileage = @Mileage, 
+	ModelYear = @ModelYear, 
+	VIN = @VIN,
+	MSRP = @MSRP,
+	SalePrice = @SalePrice,
+	VehicleDescription = @VehicleDescription,
+	ImageFileUrl = @ImageFileUrl, 
+	IsFeatured = @IsFeatured
+	WHERE ListingId = @ListingId
+END
+GO
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'ListingDelete')
+      DROP PROCEDURE ListingDelete
+GO
+
+CREATE PROCEDURE ListingDelete (
+	@ListingId int
+) AS
+BEGIN
+	BEGIN TRANSACTION
+
+	DELETE FROM Purchase WHERE ListingId = @ListingId;
+	DELETE FROM Listings WHERE ListingId = @ListingId;
+
+	COMMIT TRANSACTION
+END 
+GO

@@ -110,6 +110,51 @@ namespace CarDealership.Data.ADORepositories
             return listing;
         }
 
+        public bool DeleteListing(int id)
+        {
+            using (var cn = ConnectionStrings.GetOpenConnection())
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@ListingId", id);
+
+                cn.Execute(
+                    "ListingDelete",
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                    );
+            }
+
+            return true;
+        }
+
+        public Listing UpdateListing(Listing listing)
+        {
+            using (var cn = new SqlConnection(ConnectionStrings.GetConnectionString()))
+            {
+                var parameters = new DynamicParameters();
+
+                parameters.Add("@ListingId", listing.ListingId);
+                parameters.Add("@ModelId", listing.ModelId);
+                parameters.Add("@BodyStyleId", listing.BodyStyleId);
+                parameters.Add("@InteriorColorId", listing.InteriorColorId);
+                parameters.Add("@ExteriorColorId", listing.ExteriorColorId);
+                parameters.Add("@Condition", listing.Condition);
+                parameters.Add("@Transmission", listing.Transmission);
+                parameters.Add("@Mileage", listing.Mileage);
+                parameters.Add("@ModelYear", listing.ModelYear);
+                parameters.Add("@VIN", listing.VIN);
+                parameters.Add("@MSRP", listing.MSRP);
+                parameters.Add("@SalePrice", listing.SalePrice);
+                parameters.Add("@VehicleDescription", listing.VehicleDescription);
+                parameters.Add("@ImageFileUrl", listing.ImageFileUrl);
+                parameters.Add("@IsFeatured", listing.IsFeatured);
+
+                cn.Execute("ListingUpdate", parameters, commandType: CommandType.StoredProcedure);
+            }
+
+            return listing;
+        }
+
 
         public Listing InsertListing(Listing listing)
         {
@@ -134,21 +179,9 @@ namespace CarDealership.Data.ADORepositories
                 parameters.Add("@IsSold", listing.IsSold);
                 parameters.Add("@DateAdded", listing.DateAdded);
                 cn.Execute("ListingInsert", parameters, commandType: CommandType.StoredProcedure);
-
             }
 
             return listing;
-
-
-            //using (var cn = ConnectionStrings.GetOpenConnection())
-            //{
-            //    cn.Execute(
-            //        "ListingInsert",
-            //        listing,
-            //        commandType: CommandType.StoredProcedure
-            //        );
-            //}
-
         }
 
         public IEnumerable<Listing> Search (ListingSearchParameters parameters)
@@ -244,7 +277,7 @@ namespace CarDealership.Data.ADORepositories
                         row.ExteriorColorName = dr["ExteriorColorName"].ToString();
                         row.Condition = (Condition)dr["Condition"];
                         row.Transmission = (Transmission)dr["Transmission"];
-                        row.Mileage = dr["Mileage"].ToString();
+                        row.Mileage = (int)dr["Mileage"];
                         row.VIN = dr["VIN"].ToString();
                         row.MSRP = (decimal)dr["MSRP"];
                         row.SalePrice = (decimal)dr["SalePrice"];
