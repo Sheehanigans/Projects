@@ -11,7 +11,9 @@
             <div class="row">
                 <div class="col-sm-3">
                     <p><strong>@Model.Listing.ModelYear @Model.Listing.MakeName @Model.Listing.ModelName</strong></p>  <br />
-                    <p>Image file</p>
+                    @{ var imagePath = Url.Content("~/Images/");
+                    }
+                    <p class="recentListing"><img src="@(imagePath + Model.Listing.ImageFileUrl)" width="150" /></p>
                 </div>
                 <div class="col-sm-3">
                     <p> <strong>Body Style: </strong>@Model.Listing.BodyStyleName</p>

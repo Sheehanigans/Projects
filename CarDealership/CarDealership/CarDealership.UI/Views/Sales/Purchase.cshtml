@@ -11,7 +11,9 @@
             <div class="row">
                 <div class="col-sm-3">
                     <p><strong>@Model.ListingToPurchase.ModelYear @Model.ListingToPurchase.MakeName @Model.ListingToPurchase.ModelName</strong></p>  <br />
-                    <p>Image file</p>
+                    @{ var imagePath = Url.Content("~/Images/");
+                    }
+                    <p class="recentListing"><img src="@(imagePath + Model.ListingToPurchase.ImageFileUrl)" width="150" /></p>
                 </div>
                 <div class="col-sm-3">
                     <p> <strong>Body Style: </strong>@Model.ListingToPurchase.BodyStyleName</p>
@@ -105,7 +107,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    <input type="submit" class="btn btn-primary" value="Save" />
+                    <input type="submit" class="btn btn-danger" value="Purchase" />
                 </div>
             </div>
         }

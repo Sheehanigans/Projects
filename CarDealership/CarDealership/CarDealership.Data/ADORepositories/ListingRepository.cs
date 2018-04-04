@@ -179,6 +179,8 @@ namespace CarDealership.Data.ADORepositories
                 parameters.Add("@IsSold", listing.IsSold);
                 parameters.Add("@DateAdded", listing.DateAdded);
                 cn.Execute("ListingInsert", parameters, commandType: CommandType.StoredProcedure);
+
+                listing.ListingId = parameters.Get<int>("@ListingId");
             }
 
             return listing;
