@@ -61,21 +61,21 @@ namespace CarDealership.UI.Controllers
             }
         }
 
-        //[Route("api/get/make")]
-        //[AcceptVerbs("GET")]
-        //public IHttpActionResult GetMake (int? modelId)
-        //{
-        //    _makeManager = MakeManagerFactory.Create();
+        [Route("api/get/inventoryReport")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult GetUsedInventoryReport(string report)
+        {
+            _listingManager = ListingManagerFactory.Create();
 
-        //    try
-        //    {
-        //        var result = _makeManager.GetAllMakes();
-        //        return Ok(result.Payload);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+            try
+            {
+                var result = _listingManager.GetInventoryReport(report);
+                return Ok(result.Payload);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

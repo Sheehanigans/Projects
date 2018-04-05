@@ -298,6 +298,55 @@ namespace CarDealership.Data.ADORepositories
             return listings;
         }
 
+        public List<InventoryReport> InventoryReport(string report)
+        {
+            List<InventoryReport> reportItems = new List<InventoryReport>();
 
+            using (var cn = new SqlConnection(ConnectionStrings.GetConnectionString()))
+            {
+                string query = "SELECT l.ModelYear, ma.MakeName, ModelName, COUNT(*) as [Count], SUM(l.SalePrice) AS 'StockValue' " +
+                "FROM Listings l " +
+                "INNER JOIN Models mo on mo.ModelId = l.ModelId " +
+                "INNER JOIN Makes ma on ma.MakeId = mo.MakeId ";
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+
+                switch (report)
+                {
+                    case "New":
+                        query += "WHERE l.Condition = 1 AND IsSold = 0 ";
+                        break;
+                    case "Used":
+                        query += "WHERE l.Condition = 2 AND IsSold = 0";
+                        break;
+                    default:
+                        break;
+                }
+
+                query += "GROUP BY l.ModelYear, mo.ModelName, ma.MakeName, l.SalePrice";
+
+                cmd.CommandText = query;
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        InventoryReport row = new InventoryReport();
+
+                        row.ModelYear = (int)dr["ModelYear"];
+                        row.MakeName = dr["MakeName"].ToString();
+                        row.ModelName = dr["ModelName"].ToString();
+                        row.Count = (int)dr["Count"];
+                        row.StockValue = (decimal)dr["StockValue"];
+
+                        reportItems.Add(row);
+                    }
+                }
+            }
+
+            return reportItems;
+        }
     }
 }

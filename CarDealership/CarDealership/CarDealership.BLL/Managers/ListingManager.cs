@@ -78,6 +78,25 @@ namespace CarDealership.BLL.Managers
             return response;
         }
 
+        public TResponse<List<InventoryReport>> GetInventoryReport(string report)
+        {
+            var response = new TResponse<List<InventoryReport>>();
+
+            response.Payload = Repo.InventoryReport(report);
+
+            if(response.Payload == null)
+            {
+                response.Message = $"Unable to load report for {report}";
+                response.Success = false;
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
+
         public TResponse<List<Listing>> GetNewListings()
         {
             var response = new TResponse<List<Listing>>

@@ -29,5 +29,7 @@ namespace CarDealership.Models.Interfaces
         Listing UpdateListing(Listing listing);
 
         bool DeleteListing(int id);
+
+        List<InventoryReport> InventoryReport(string report);
     }
 }

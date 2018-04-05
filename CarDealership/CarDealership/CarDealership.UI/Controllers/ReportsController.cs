@@ -13,5 +13,15 @@ namespace CarDealership.UI.Controllers
         {
             return View();
         }
+
+        public ActionResult InventoryReport()
+        {
+            return View();
+        }
+
+        public ActionResult SalesReport()
+        {
+            return View();
+        }
     }
 }

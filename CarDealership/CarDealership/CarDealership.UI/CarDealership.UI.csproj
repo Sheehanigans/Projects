@@ -320,10 +320,12 @@
     <Content Include="Views\Admin\Specials.cshtml" />
     <Content Include="Views\Inventory\Details.cshtml" />
     <Content Include="Views\Sales\Purchase.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\InventoryReport.cshtml" />
+    <Content Include="Views\Reports\SalesReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
