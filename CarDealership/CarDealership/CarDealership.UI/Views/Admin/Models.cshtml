@@ -11,6 +11,10 @@
     {
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">
+            @{
+                    Model.NewModel = new CarDealership.Models.Tables.Model { Make = new CarDealership.Models.Tables.Make { MakeName = "placeholder" } };
+                }
+                @Html.HiddenFor(m => m.NewModel.Make.MakeName)
             @Html.HiddenFor(m => m.NewModel.ModelId)
             @Html.LabelFor(m => m.NewModel.ModelName, "Model Name", new { @class = "col-md-2 control-label" })
             <div class="col-md-3">

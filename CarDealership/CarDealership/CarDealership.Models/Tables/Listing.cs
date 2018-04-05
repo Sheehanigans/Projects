@@ -60,7 +60,7 @@ namespace CarDealership.Models.Tables
         [Range(0, 999999999, ErrorMessage = "Please enter valid integer Number")]
         public decimal SalePrice { get; set; }
 
-        [Required(ErrorMessage = "Please enter a Description")]
+        //[Required(ErrorMessage = "Please enter a Description")]
         public string VehicleDescription { get; set; }
 
         public string ImageFileUrl { get; set; }

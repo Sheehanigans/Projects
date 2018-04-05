@@ -33,7 +33,7 @@
                     <p><strong>Description: </strong>@Model.Listing.VehicleDescription</p>
                 </div>
                 <div class="col-sm-offset-9 col-sm-3">
-                    @Html.ActionLink("Contact Us", "ContactUs", "Home", new { VIN = Model.Listing.VIN }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Contact Us", "Contact", "Home", new { vin = Model.Listing.VIN }, new { @class = "btn btn-default" })
                 </div>
             </div>
         </div>

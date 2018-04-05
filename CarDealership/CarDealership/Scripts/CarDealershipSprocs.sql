@@ -210,13 +210,14 @@ GO
 
 CREATE PROCEDURE SaveModel (
 	@ModelId int output,
+	@ModelName nvarchar (50),
 	@MakeId int,
 	@DateAdded datetime2,
 	@UserName nvarchar(256)
 )AS
 BEGIN 
-	INSERT INTO Models(MakeId, DateAdded, UserName)
-	VALUES(@MakeId, @DateAdded, @UserName)
+	INSERT INTO Models(MakeId, ModelName, DateAdded, UserName)
+	VALUES(@MakeId, @ModelName, @DateAdded, @UserName)
 
 	SET @ModelId = SCOPE_IDENTITY();
 END

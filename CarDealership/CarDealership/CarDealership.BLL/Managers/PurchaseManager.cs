@@ -48,9 +48,12 @@ namespace CarDealership.BLL.Managers
             {
                 response.Message = "Street 1 inavlid";
             }
-            else if (purchase.Street2.Length > 100)
+            else if (!string.IsNullOrEmpty(purchase.Street2))
             {
-                response.Message = "Street 2 inavlid";
+                if(purchase.Street2.Length > 100)
+                {
+                    response.Message = "Street 2 inavlid";
+                }
             }
             else if (purchase.City == null || purchase.City.Length > 100)
             {

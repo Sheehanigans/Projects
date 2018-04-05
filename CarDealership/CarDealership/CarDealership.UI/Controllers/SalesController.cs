@@ -67,9 +67,15 @@ namespace CarDealership.UI.Controllers
         public ActionResult Purchase(PurchaseListingVM model)
         {
             _purchaseManager = PurchaseManagerFactory.Create();
+            _stateManager = StateManagerFactory.Create();
+            _listingManager = ListingManagerFactory.Create();
 
             try
             {
+                var listingResponse = _listingManager.GetListingById(model.ListingToPurchase.ListingId);
+
+                model.ListingToPurchase = listingResponse.Payload;
+
                 if (ModelState.IsValid)
                 {
                     //set sold listing in db
@@ -103,6 +109,7 @@ namespace CarDealership.UI.Controllers
                         Text = m.StateAbbreviation,
                         Value = m.StateId.ToString()
                     });
+
 
                     return View(model);
                 }

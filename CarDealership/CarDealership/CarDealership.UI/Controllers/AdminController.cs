@@ -599,7 +599,10 @@ namespace CarDealership.UI.Controllers
             }
             else
             {
+                var modelResponse = _modelManager.GetAllModels();
                 var makeResponse = _makeManager.GetAllMakes();
+                model.SetModelItems(modelResponse.Payload);
+
                 model.Makes = makeResponse.Payload.Select(m => new SelectListItem
                 {
                     Text = m.MakeName,
@@ -657,6 +660,9 @@ namespace CarDealership.UI.Controllers
             }
             else
             {
+                var response = _makeManager.GetAllMakes();
+                model.SetMakeItems(response.Payload);
+
                 return View(model);
             }
         }

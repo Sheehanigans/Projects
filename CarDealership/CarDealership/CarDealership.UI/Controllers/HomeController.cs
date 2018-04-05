@@ -49,9 +49,19 @@ namespace CarDealership.UI.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(string vin)
         {
-            return View(new ContactFormVM());
+            var model = new ContactFormVM();
+
+            if (!string.IsNullOrEmpty(vin))
+            {
+                model.ContactForm = new ContactForm
+                {
+                    FormMessage = vin
+                };
+            }
+
+            return View(model);
         }
 
         [HttpPost]

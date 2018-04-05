@@ -9,5 +9,6 @@ namespace CarDealership.UI.Models
     public class ContactFormVM
     {
         public ContactForm ContactForm { get; set; }
+        public string VIN { get; set; }
     }
 }
