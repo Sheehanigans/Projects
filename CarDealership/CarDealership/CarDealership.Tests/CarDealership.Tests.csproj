@@ -37,6 +37,7 @@
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,8 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ManagerTests\ListingManagerTests.cs" />
+    <Compile Include="ManagerTests\MakeManagerTests.cs" />
+    <Compile Include="ManagerTests\ModelManagerTest.cs" />
+    <Compile Include="ManagerTests\PurchaseManagerTests.cs" />
+    <Compile Include="ManagerTests\SpecialManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryTests\ContactFormRepoTests.cs" />
     <Compile Include="RepositoryTests\ListingRepoTests.cs" />
+    <Compile Include="RepositoryTests\MakeRepoTests.cs" />
+    <Compile Include="RepositoryTests\ModelRepoTests.cs" />
+    <Compile Include="RepositoryTests\PurchaseRepoTests.cs" />
     <Compile Include="RepositoryTests\SpecialsRepoTests.cs" />
     <Compile Include="RepositoryTests\StateRepoTests.cs" />
   </ItemGroup>

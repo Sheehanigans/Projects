@@ -22,16 +22,24 @@ namespace CarDealership.BLL.Managers
         {
             var response = new TResponse<State>();
 
-            response.Payload = Repo.GetState(stateId);
-
-            if(response.Payload.StateId != stateId)
+            if(stateId < 1)
             {
-                response.Success = false; 
-                response.Message = $"State Id {stateId} was not found.";
+                response.Message = "Invalid state Id";
+                response.Success = false;
             }
             else
             {
-                response.Success = true;
+                response.Payload = Repo.GetState(stateId);
+
+                if (response.Payload.StateId != stateId)
+                {
+                    response.Success = false;
+                    response.Message = $"State Id {stateId} was not found.";
+                }
+                else
+                {
+                    response.Success = true;
+                }
             }
 
             return response;

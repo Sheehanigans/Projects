@@ -1,4 +1,4 @@
-﻿using CarDealership.Data.ADORepositories;
+using CarDealership.Data.ADORepositories;
 using CarDealership.Models.Interfaces;
 using CarDealership.Models.Queries;
 using CarDealership.Models.Responses;
@@ -39,22 +39,30 @@ namespace CarDealership.BLL.Managers
         {
             var response = new TResponse<Listing>();
 
-            response.Payload = Repo.GetListingById(id);
-
-            if(response.Payload == null)
+            if(id < 1)
             {
                 response.Success = false;
-                response.Message = $"Failed to load listing id {id}";
-            }
-            else if(response.Payload.ListingId != id)
-            {
-                response.Success = false;
-                response.Message = $"Failed to load listing id {id}";
+                response.Message = "Invalid Listing Id";
             }
             else
             {
-                response.Success = true;
-            }
+                response.Payload = Repo.GetListingById(id);
+
+                if (response.Payload == null)
+                {
+                    response.Success = false;
+                    response.Message = $"Failed to load listing id {id}";
+                }
+                else if (response.Payload.ListingId != id)
+                {
+                    response.Success = false;
+                    response.Message = $"Failed to load listing id {id}";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }            
 
             return response;
         }
@@ -84,7 +92,7 @@ namespace CarDealership.BLL.Managers
 
             response.Payload = Repo.InventoryReport(report);
 
-            if(response.Payload == null)
+            if (response.Payload == null)
             {
                 response.Message = $"Unable to load report for {report}";
                 response.Success = false;
@@ -139,21 +147,27 @@ namespace CarDealership.BLL.Managers
 
         public TResponse<List<Listing>> Search(ListingSearchParameters paramters)
         {
-            var response = new TResponse<List<Listing>>()
-            {
-                Payload = Repo.Search(paramters).ToList()
-            };
+            var response = new TResponse<List<Listing>>();
 
-
-            if (!response.Payload.Any())
+            if(paramters == null)
             {
+                response.Message = "No search parameters were provided";
                 response.Success = false;
-                response.Message = "Query could not find any results";
             }
             else
             {
-                response.Success = true;
-            }         
+                response.Payload = Repo.Search(paramters).ToList();
+
+                if (!response.Payload.Any())
+                {
+                    response.Success = false;
+                    response.Message = "Query could not find any results";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }           
 
             return response;
         }
@@ -162,17 +176,40 @@ namespace CarDealership.BLL.Managers
         {
             var response = new TResponse<Listing>();
 
-            response.Payload = Repo.InsertListing(listing);
-
-            if(response.Payload == null)
+            if (listing.ModelId < 1
+                || listing.BodyStyleId < 1
+                || listing.InteriorColorId < 1
+                || listing.ExteriorColorId < 1
+                || listing.Condition == null
+                || listing.Transmission == null
+                || listing.Mileage < 1
+                || listing.Mileage > 9999999
+                || listing.ModelYear < 1
+                || listing.ModelYear > 9999
+                || listing.VIN == null
+                || listing.MSRP < 0
+                || listing.MSRP > 9999999999
+                || listing.SalePrice < 0
+                || listing.SalePrice > 9999999999
+                || listing.VehicleDescription == null
+                || listing.ImageFileUrl == null)
             {
-                response.Success = false;
-                response.Message = "Unable to save new listing ";
+                response.Message = "Listing unable to save. Listing model paramters null or our of range";
             }
             else
             {
-                response.Success = true;
-            }
+                response.Payload = Repo.InsertListing(listing);
+
+                if (response.Payload == null)
+                {
+                    response.Success = false;
+                    response.Message = "Unable to save new listing ";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }            
 
             return response;
         }
@@ -181,35 +218,67 @@ namespace CarDealership.BLL.Managers
         {
             var response = new TResponse<Listing>();
 
-            response.Payload = Repo.UpdateListing(listing);
-
-            if (response.Payload == null)
+            if (listing.ModelId < 1
+                || listing.BodyStyleId < 1
+                || listing.InteriorColorId < 1
+                || listing.ExteriorColorId < 1
+                || listing.Condition == null
+                || listing.Transmission == null
+                || listing.Mileage < 1
+                || listing.Mileage > 9999999
+                || listing.ModelYear < 1
+                || listing.ModelYear > 9999
+                || listing.VIN == null
+                || listing.MSRP < 0
+                || listing.MSRP > 9999999999
+                || listing.SalePrice < 0
+                || listing.SalePrice > 9999999999
+                || listing.VehicleDescription == null
+                || listing.ImageFileUrl == null)
             {
-                response.Success = false;
-                response.Message = $"Unable to update Listing Id {listing.ListingId}";
+                response.Message = "Listing unable to save. Listing model paramters null or our of range";
             }
             else
             {
-                response.Success = true;
+                response.Payload = Repo.UpdateListing(listing);
+
+                if (response.Payload == null)
+                {
+                    response.Success = false;
+                    response.Message = $"Unable to update Listing Id {listing.ListingId}";
+                }
+                else
+                {
+                    response.Success = true;
+                }
             }
 
             return response;
+
         }
 
         public TResponse<bool> DeleteListing(int id)
         {
             var response = new TResponse<bool>();
 
-            response.Payload = Repo.DeleteListing(id);
-
-            if(response.Payload == true)
+            if(id < 1)
             {
-                response.Success = true;
+                response.Message = "Invalid listing Id";
+                response.Success = false;
             }
             else
             {
-                response.Success = false;
-                response.Message = $"Unable to delete for Listing Id {id}";
+                response.Payload = Repo.DeleteListing(id);
+
+                if (response.Payload == true)
+                {
+                    response.Success = true;
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Message = $"Unable to delete for Listing Id {id}";
+                }
             }
 
             return response;

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CarDealership.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ReportsController : Controller
     {
         // GET: Reports

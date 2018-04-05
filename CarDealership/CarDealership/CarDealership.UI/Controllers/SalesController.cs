@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace CarDealership.UI.Controllers
 {
+    [Authorize(Roles = "Sales, Admin")]
     public class SalesController : Controller
     {
         ListingManager _listingManager;

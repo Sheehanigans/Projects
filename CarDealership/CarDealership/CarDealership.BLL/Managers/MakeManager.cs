@@ -41,17 +41,30 @@ namespace CarDealership.BLL.Managers
         {
             var response = new TResponse<Make>();
 
-            response.Payload = Repo.Save(make);
-
-            if(response.Payload == null)
+            if (make == null)
             {
                 response.Success = false;
-                response.Message = $"failed to save Make {make.MakeName}";
+                response.Message = "No Make object recived in manager";
+            }
+            else if (make.MakeName == null || make.MakeName.Length > 50)
+            {
+                response.Success = false;
+                response.Message = "Make object paramters invalid";
             }
             else
             {
-                response.Success = true;
-            }
+                response.Payload = Repo.Save(make);
+
+                if (response.Payload == null)
+                {
+                    response.Success = false;
+                    response.Message = $"failed to save Make {make.MakeName}";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }            
 
             return response;
         }

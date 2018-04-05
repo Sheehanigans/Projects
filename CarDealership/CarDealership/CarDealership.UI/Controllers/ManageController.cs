@@ -10,7 +10,7 @@ using CarDealership.UI.Models;
 
 namespace CarDealership.UI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

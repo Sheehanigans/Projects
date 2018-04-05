@@ -41,17 +41,32 @@ namespace CarDealership.BLL.Managers
         {
             var response = new TResponse<Model>();
 
-            response.Payload = Repo.Save(model);
-
-            if(response.Payload == null)
+            if(model == null)
             {
-                response.Message = $"Unable to save model {model.ModelName}";
                 response.Success = false;
+                response.Message = "Model object was null";
+            }
+            else if(model.ModelName.Length > 50 
+                || model.ModelName == null
+                || model.Make.MakeId < 1)
+            {
+                response.Success = false;
+                response.Message = "Model object parameters invalid";
             }
             else
             {
-                response.Success = true;
-            }
+                response.Payload = Repo.Save(model);
+
+                if (response.Payload == null)
+                {
+                    response.Message = $"Unable to save model {model.ModelName}";
+                    response.Success = false;
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }           
 
             return response;
         }
@@ -60,17 +75,25 @@ namespace CarDealership.BLL.Managers
         {
             var response = new TResponse<List<Model>>();
 
-            response.Payload = Repo.GetModelsByMakeId(makeId);
-
-            if (!response.Payload.Any())
+            if(makeId < 1)
             {
-                response.Message = $"Unable to load any models with make id {makeId}";
+                response.Message = "Make Id invalid";
                 response.Success = false;
             }
             else
             {
-                response.Success = true;
-            }
+                response.Payload = Repo.GetModelsByMakeId(makeId);
+
+                if (!response.Payload.Any())
+                {
+                    response.Message = $"Unable to load any models with make id {makeId}";
+                    response.Success = false;
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }            
 
             return response;
         }

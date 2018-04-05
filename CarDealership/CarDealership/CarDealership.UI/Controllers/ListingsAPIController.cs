@@ -13,7 +13,6 @@ namespace CarDealership.UI.Controllers
     {
         ListingManager _listingManager;
         ModelManager _modelManager;
-        MakeManager _makeManager;
 
         [Route("api/listings/search")]
         [AcceptVerbs("GET")]

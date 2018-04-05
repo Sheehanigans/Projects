@@ -24,5 +24,8 @@ namespace CarDealership.Tests.RepositoryTests
             Assert.AreEqual("THE COOLEST CARS have some MEGA SaLeS", check.SpecialMessage);
         }
 
+        //save special
+        //delete special 
+
     }
 }

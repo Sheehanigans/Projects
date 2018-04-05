@@ -54,6 +54,8 @@
     <Compile Include="ADORepositories\PurchaseRepository.cs" />
     <Compile Include="ADORepositories\SpecialRepository.cs" />
     <Compile Include="ADORepositories\StateRepository.cs" />
+    <Compile Include="InMemoryRepositories\ListingMemRepo_ALWAYSNULL.cs" />
+    <Compile Include="InMemoryRepositories\ListingMemRepo_GOODDATA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ConnectionStrings.cs" />
   </ItemGroup>

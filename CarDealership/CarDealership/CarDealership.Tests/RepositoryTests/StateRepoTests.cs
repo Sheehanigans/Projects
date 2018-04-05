@@ -20,8 +20,8 @@ namespace CarDealership.Tests.RepositoryTests
 
             Assert.IsNotNull(states);
             var check = states[0];
-            Assert.AreEqual("Minnesota", check.StateName);
-            Assert.AreEqual("MN", check.StateAbbreviation);
+            Assert.AreEqual("Alabama", check.StateName);
+            Assert.AreEqual("AL", check.StateAbbreviation);
             Assert.AreEqual(1, check.StateId);
         }
 
@@ -34,8 +34,8 @@ namespace CarDealership.Tests.RepositoryTests
             if (stateToGet != null)
             {
                 Assert.AreEqual(1, stateToGet.StateId);
-                Assert.AreEqual("Minnesota", stateToGet.StateName);
-                Assert.AreEqual("MN", stateToGet.StateAbbreviation);
+                Assert.AreEqual("Alabama", stateToGet.StateName);
+                Assert.AreEqual("AL", stateToGet.StateAbbreviation);
             }
             else
             {

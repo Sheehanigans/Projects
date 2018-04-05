@@ -37,10 +37,10 @@ namespace CarDealership.Models.Tables
         public string ExteriorColorName { get; set; }
 
         [EnumDataType(typeof(Condition), ErrorMessage = "Please select a condition")]
-        public Condition Condition { get; set; }
+        public Condition? Condition { get; set; }
 
         [EnumDataType(typeof(Transmission), ErrorMessage = "Please select a Transmission")]
-        public Transmission Transmission { get; set; }
+        public Transmission? Transmission { get; set; }
 
         [Required(ErrorMessage = "Please select the mileage")]
         [Range(0, 9999999, ErrorMessage = "Please enter valid integer Number")]

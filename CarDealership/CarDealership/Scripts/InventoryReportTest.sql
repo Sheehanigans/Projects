@@ -1,4 +1,4 @@
-SELECT l.ModelYear, ma.MakeName, ModelName, COUNT(*) as [Count], SUM(l.SalePrice)
+SELECT l.ModelYear, ma.MakeName, ModelName, COUNT(*) as [Count], SUM(l.SalePrice) AS 'StockValue'
 FROM Listings l 
 INNER JOIN Models mo on mo.ModelId = l.ModelId
 INNER JOIN Makes ma on ma.MakeId = mo.MakeId
