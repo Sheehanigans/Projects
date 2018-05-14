@@ -46,6 +46,7 @@
     <Compile Include="Attributes\ContactForm\PhoneOrEmailAttribute.cs" />
     <Compile Include="Attributes\MSRPAndSalePriceAttribute.cs" />
     <Compile Include="Attributes\PhoneOrEmailPurchaseAttribute.cs" />
+    <Compile Include="Attributes\VINAttribute.cs" />
     <Compile Include="Enums\PaymentOption.cs" />
     <Compile Include="Enums\Transmission.cs" />
     <Compile Include="Interfaces\IBodyStyleRepository.cs" />

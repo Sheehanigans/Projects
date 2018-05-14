@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CarDealership.BLL.Managers
@@ -175,6 +176,7 @@ namespace CarDealership.BLL.Managers
         public TResponse<Listing> SaveListing(Listing listing)
         {
             var response = new TResponse<Listing>();
+            Regex r = new Regex("^[0-9A-Z-[IOQ]]{17}$");
 
             if (listing.ModelId < 1
                 || listing.BodyStyleId < 1
@@ -192,7 +194,8 @@ namespace CarDealership.BLL.Managers
                 || listing.SalePrice < 0
                 || listing.SalePrice > 9999999999
                 || listing.VehicleDescription == null
-                || listing.ImageFileUrl == null)
+                || listing.ImageFileUrl == null
+                || !r.IsMatch(listing.VIN))
             {
                 response.Message = "Listing unable to save. Listing model paramters null or our of range";
             }

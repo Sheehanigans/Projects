@@ -50,6 +50,7 @@ namespace CarDealership.Models.Tables
         [Range(0, 9999, ErrorMessage = "Please enter valid year")]
         public int ModelYear { get; set; }
 
+        [VIN(ErrorMessage = "The VIN is not properly formatted (Ex: 1G1FP22PXS2100001)")]
         public string VIN { get; set; }
 
         [Required(ErrorMessage = "Please enter an MSRP")]
