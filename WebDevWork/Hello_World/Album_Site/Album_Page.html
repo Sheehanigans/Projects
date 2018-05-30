@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>Foo Fioghters - Come Alive</title>
+        <link href="albumStyle.css"
+        rel="stylesheet"
+        type="text/css"/>
+        <link href="bootstrap-3.3.7-dist/css/bootstrap.css"
+        rel="stylesheet"
+        type="text/css">
+        <style>
+        #albumTitle{
+            color:#373737;
+            font-size: 50px;
+            font-family: fantasy;
+        }
+        .band_member_list{
+            font-family: fantasy;
+            font-style: italic;
+        }
+        #albumBackground{
+            height: 500px;
+            background-image: url("http://7wallpapers.net/wp-content/uploads/6_Foo-Fighters.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 500px;
+        }
+        a:link{
+            color: blue;
+        }
+        a:visited{
+            color: blue;
+        }
+        a:hover{
+            color: red;
+            text-decoration: underline;
+            font-size: 20px;
+        }
+        a:active{
+            font-weight: bold;
+        }
+        table{
+            color:aliceblue;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-style: italic;
+        }
+        .table-striped>tbody>tr:nth-child(odd)>td, 
+        .table-striped>tbody>tr:nth-child(odd)>th{
+           background-color: red;
+         }
+        .table-striped>tbody>tr:nth-child(even)>td, 
+        .table-striped>tbody>tr:nth-child(even)>th{
+           background-color:black;
+         }
+        </style>
+    </header>
+    <body>
+        <div id="albumBackground" class="container img-circle">
+            <!--<img src="http://7wallpapers.net/wp-content/uploads/6_Foo-Fighters.jpg"
+            img alt="Come Alive Lyrics - Foo Fighters"
+            img style="Width: 400px"
+            class="img-circle"/>-->
+            </a>
+        </div>
+        <div>
+            <center>
+                <h1 id="albumTitle">Come Alive</h1>
+                <a href="https://foofighters.com/" id="bandWebsiteLink">Foo Fighters</a><br/><br/>
+                <b>OUT NOW</b>
+            </center>
+            <hr/>
+        </div>
+        <div class="band_member_list">
+            <center>
+                <h2 style="color:red;font-size:20px">Band Members</h2>
+            </center>
+            <ul>
+                <li>Dave Grohl</li>
+                <li>Dave Grohl</li>
+                <li>Dave Grohl</li>
+                <li>Feat. Dave Grohl</li>
+            </ul>
+        </div>
+        <div class="container">
+            <h2 style="text-align: center">Tracks</h2>
+            <table class="table table-striped" >
+                <thead bgcolor="black">
+                    <tr>
+                        <th scope="col">Track #</th>
+                        <th scope="col">Track Title</th>
+                        <th scope="col">Track Length</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Come Alive</td>
+                        <td>maybes 4 mins</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>THE PRETENDER</td>
+                        <td>a good 3 mins</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

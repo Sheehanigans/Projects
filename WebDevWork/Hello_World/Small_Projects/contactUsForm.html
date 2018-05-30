@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <header>
+        <title>Contact Us</title>
+        <style>input{padding-left: 20px}</style>
+    </header>
+    <body>
+        <form action"contactUs.html" method="POST">
+            <div>
+                First Name: <input type="text" name="firstName"/><br/>
+                Last Name: <input type="text" name="lastName"/><br/>
+            </div>
+            <div>
+                Email: <input type="text" name="email"/><br/>
+            </div>
+            <div>
+                Type of license: <input type="radio" name="answer" value="business" checked/>Business
+                <input type="radio" name="answer" value="personal"/>Personal<br/>
+            </div>
+            <div>
+                <select name="Reason">
+                        <option value="selectAReason">Select a Reason</option>
+                        <option value="softwareSupport">Software Support</option>
+                        <option value="hardwareSupport">Hardware Support</option>
+                        <option value="informationRequest">Information Request</option>
+                    </select><br/>
+            </div>
+            <div>
+                <textarea name="briefDescription"></textarea><br/>
+            </div>
+            <div>
+                <input type="checkbox" name="oneChoice" Value="readTerm"/>I have read the terms or service<br/>
+            </div>
+            <div>
+                <p><button type="submit">Send Request</button></p>
+            </div>
+        </form>
+    </body>
+</html>

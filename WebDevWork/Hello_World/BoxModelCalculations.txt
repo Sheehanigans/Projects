@@ -1,0 +1,28 @@
+Box model calculations: 
+
+#div1 {
+
+height: 150px;
+
+width: 400px;
+
+margin: 20px;
+
+border: 1px solid red;
+
+padding: 10px;
+
+}
+
+
+Calculate: 
+Total height = 
+Total width = 
+Browser calculated height =
+Browser calculated width = 
+
+total height = 20 + 1 + 10 + 150 + 10 + 1 + 20 = 212
+total width = 20 + 1 + 10 + 400 + 10 + 1 + 20 = 462
+
+browser height = 1 + 10 + 150 + 10 + 1 = 172
+browser width = 1 + 10 + 400 + 10 + 1 = 422

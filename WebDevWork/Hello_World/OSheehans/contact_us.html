@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="restaurantStyles.css"
+        rel="stylesheet"
+        type="text/css">
+        <link href="bootstrap-3.3.7-dist/css/bootstrap.css"
+        rel="stylesheet"
+        type="text/css">
+        <title>O'Sheehan's - Contact Us</title>
+        <style>
+            label{
+                text-align:justify;
+                margin-right: 0.5em;
+                padding-left: 10px;
+            }
+            button{
+                min-width: 200px;
+            }
+            textarea{
+                min-width: 200px;
+            }
+            select{
+                min-width: 200px;
+            }
+            .nav{
+                max-height: 200px;
+            }
+            .col-md-6{
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
+            input[type="text"]{
+                min-width: 200px;
+                padding-left: 10px;
+            }
+            .form-styler{
+                box-sizing: border-box;
+                max-width: 80%;
+                margin: auto;
+            }
+            @media (min-width: 900px){
+                .form-styler{
+                    max-width: 50%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <noscript>Best viewed with JavaScript enabled!</noscript>
+        <div class="container" style="text-align: center">
+            <div class"row">
+            <p id="restaurantTitle" class="col-lg-12">O'Sheehan's Bar and Grill</p>
+            </div>
+        </div>
+
+<!-- NAVIGATION -->
+
+        <nav class="nav-pills">
+                <div class="container">
+                    <div class="row" id="navigation">
+                    <div class="col-lg-12">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="home.html"><span class="glyphicon glyphicon-home"></span></a></li>
+                            <li><a href="menu.html">Menu</a></li>
+                            <li class="active"><a href="contact_us.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </nav>
+            
+<!-- FORM -->
+
+        <div class="container">
+            <div class="form-styler">
+                <form action="contact_us.html" method="POST" role="form" class="form-inline form-horizontal">
+
+<!-- NAME FIELD -->
+
+                <div class="row">
+                    <div class="col-md-6">
+                            <label for="nameField" class="control-label" style="text-align: right">Name:</label>
+                    </div>
+                        <div class="col-md-6">
+                            <input type="text" name="nameField" class="form-control">
+                    </div>
+                </div>
+
+<!-- EMAIL FIELD -->
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="emailField" class= "form-control-plaintext">Email:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="emailField" class="form-control">
+                    </div>
+                </div>
+
+<!-- PHONE FIELD -->
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="phoneField" class="form-control-plaintext">Phone:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="phoneField" class="form-control" placeholder="(xxx)xxx-xxxx">
+                    </div>
+                </div>
+
+<!-- SELECTOR -->
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="reasonsforinquiry" class="form-control-plaintext">Reason for Inquiry:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <select name="reasonsforinquiry" class="form-control">
+                            <option value="catering">Catering</option>
+                            <option value="privateParty">Private Party</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+<!-- TEXTAREA -->
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="additionalInformation">Additional Information:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <textarea name="additionalInformation" rows="3" class="form-control"></textarea>
+                    </div>
+                </div>
+
+<!-- RADIO BUTTONS -->
+
+                <div class="row">
+                    <div class="col-md-6 form-check form-check-inline">
+                        <label for="answer">Have you been to the restaurant?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" name="answer" value="yes" class="form-check-input" checked/>Yes
+                        <input type="radio" name="answer" value="no" class="form-check-input"/>No
+                    </div>
+                </div>
+
+<!-- CHECKBOXES -->
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="contact">Best days to contact you:</label>
+                    </div>
+                    <div class="col-md-6 form-check form-check-inline">
+                        <input type="checkbox" name="monday" value="monday" class="form-check-input"/>M
+                        <input type="checkbox" name="tuesday" value="tuesday" class="form-check-input"/>T
+                        <input type="checkbox" name="wednesday" value="wednesday" class="form-check-input"/>W
+                        <input type="checkbox" name="thursday" value="thursday" class="form-check-input"/>Th
+                        <input type="checkbox" name="wednesday" value="wednesday" class="form-check-input"/>F
+                    </div>
+                </div>
+                
+<!-- BUTTON -->
+
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+                        <button type="submit" class="btn btn-default">Submit, laddie!</button>
+                    </div>
+                </div>
+           </form>
+           </div>
+        </div>
+        <div id="footer" style="text-align: center">
+            <hr>
+                Street, City, State, Zip Code <br/>
+                Telephone Number
+            <hr>
+        </div>
+    </body>
+</html>

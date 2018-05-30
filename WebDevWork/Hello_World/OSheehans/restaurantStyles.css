@@ -1,0 +1,29 @@
+#footer{
+    color:green;
+    font-weight: bold;
+}
+/*#navigation{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: fantasy;
+}*/
+#restaurantTitle{
+    font-family: fantasy;
+    color: green;
+    padding: 30px;
+    font-size: 35px;
+    font-weight: bold;
+}
+/*a:link{
+    color: black;
+}
+a:active{
+    color: red;
+}
+a:visited{
+    color: grey;
+}
+a:hover{
+    color:green;
+    text-decoration: none; 
+}*/
